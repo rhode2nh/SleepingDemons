@@ -76,3 +76,5 @@ crashlytics-build.properties
 
 # Plan Debugger
 /PlanDebugger/
+/Recordings/
+/.vscode/
