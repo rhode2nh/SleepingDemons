@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fe7d889f5597eb98ed302df742f9d4, type: 3}
+  m_Name: TestShotgun
+  m_EditorClassIdentifier: 
+  _GUID: 10e1889e-339c-44fa-8de9-3b6977159fe5
+  _icon: {fileID: 21300000, guid: a1891ad2f1432aadb8d3632bf11f314c, type: 3}
+  _cost: 2
+  _worldItem: {fileID: 681876070153124264, guid: 39e902f296fb4079980c65507b66af7c,
+    type: 3}
+  _marketItem: {fileID: 891781644108820049, guid: b37335e7b70e068e397fd0ff26da94a8,
+    type: 3}
+  _fpsItem: {fileID: 7769626503276897777, guid: 1a01bab88b83c7630bb226c41a455e8d,
+    type: 3}

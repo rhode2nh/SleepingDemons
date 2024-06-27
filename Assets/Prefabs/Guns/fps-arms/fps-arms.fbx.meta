@@ -1,0 +1,954 @@
+fileFormatVersion: 2
+guid: 01eab316652895e8fb073f961552b5ad
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: e580e61e023b7985e86f5af9c37a3eff, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 1
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: arms-glock-walk-baked
+      takeName: arms-glock-walk-baked
+      internalID: -3113352267020728701
+      firstFrame: 1
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-t-pose
+      takeName: arms-t-pose
+      internalID: 5735584367346085003
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-idle.001
+      takeName: arms-glock-idle.001
+      internalID: 990776714679575199
+      firstFrame: 1
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-sway-D
+      takeName: arms-glock-sway-D
+      internalID: -4927301634516423082
+      firstFrame: 1
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-sway-L
+      takeName: arms-glock-sway-L
+      internalID: 3026008502503329393
+      firstFrame: 1
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-sway-U
+      takeName: arms-glock-sway-U
+      internalID: 1690444867528725234
+      firstFrame: 1
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-sway-R
+      takeName: arms-glock-sway-R
+      internalID: 3532948747118562845
+      firstFrame: 1
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-walk-left-baked
+      takeName: arms-glock-walk-left-baked
+      internalID: -6752379174438160567
+      firstFrame: 1
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-walk-right-baked
+      takeName: arms-glock-walk-right-baked
+      internalID: 6970047070383944552
+      firstFrame: 1
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-aim-baked
+      takeName: arms-glock-aim-baked
+      internalID: 1220953984754362237
+      firstFrame: 2
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-shoot-baked
+      takeName: arms-glock-shoot-baked
+      internalID: 8828263117735961174
+      firstFrame: 1
+      lastFrame: 17
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: OnShoot
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: StopShooting
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-another-shoot-test
+      takeName: arms-another-shoot-test
+      internalID: 4040192686054549304
+      firstFrame: 1
+      lastFrame: 18
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: OnShoot
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: StopShooting
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-uncheck-chamber-baked
+      takeName: arms-glock-uncheck-chamber-baked
+      internalID: 4240722157587126590
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-empty-chamber-final-baked
+      takeName: arms-glock-empty-chamber-final-baked
+      internalID: -4604967383570436350
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: StopEmptyChamber
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-check-chamber-baked
+      takeName: arms-glock-check-chamber-baked
+      internalID: -2970553451080076333
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-check-chamber-idle-again
+      takeName: arms-glock-check-chamber-idle-again
+      internalID: -7533135118349285410
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-add-bullet-baked
+      takeName: arms-glock-add-bullet-baked
+      internalID: -7597070263895986799
+      firstFrame: 0
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: StopLoadBullet
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-check-magazine-baked
+      takeName: arms-glock-check-magazine-baked
+      internalID: -7006022975024752779
+      firstFrame: 0
+      lastFrame: 52
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.03438802
+        functionName: HideAnimatedMagazine
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.36129057
+        functionName: HideGun
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-check-magazine-idle
+      takeName: arms-glock-check-magazine-idle
+      internalID: 2427276481219665665
+      firstFrame: 0
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arms-glock-check-magazine-baked (1)
+      takeName: arms-glock-check-magazine-baked
+      internalID: -3799856703543379847
+      firstFrame: 0
+      lastFrame: 52
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.10185005
+        functionName: ShowAnimatedMagazine
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.31632698
+        functionName: ShowGun
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: fps-arms(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: arm-high-poly
+      parentName: fps-arms(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fps-arms-rig
+      parentName: fps-arms(Clone)
+      position: {x: 0, y: 0.050438337, z: -0.009281543}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 100, y: 100, z: 100}
+    - name: root
+      parentName: fps-arms-rig
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: shoulder_L
+      parentName: root
+      position: {x: -0.0028130442, y: -0.0000955452, z: 0.00009281542}
+      rotation: {x: 0.011675266, y: -0.011541483, z: 0.71421605, w: 0.6997327}
+      scale: {x: 1.0000006, y: 1.0000002, z: 1}
+    - name: elbow_L
+      parentName: shoulder_L
+      position: {x: -8.731149e-12, y: 0.0045936983, z: -7.3050614e-11}
+      rotation: {x: 0.030026358, y: -0.0006043814, z: 0.019007308, w: 0.9993682}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000005}
+    - name: wrist_L
+      parentName: elbow_L
+      position: {x: 1.742137e-11, y: 0.0041584373, z: -1.9608705e-11}
+      rotation: {x: 0.5028266, y: 0.0017869085, z: -0.004277405, w: 0.8643749}
+      scale: {x: 0.9999999, y: 1, z: 0.99999994}
+    - name: pinky_01_L
+      parentName: wrist_L
+      position: {x: 0.00002047568, y: 0.0014201256, z: -0.000845414}
+      rotation: {x: -0.07244687, y: 0.00066427194, z: -0.0027390325, w: 0.99736834}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: pinky_02_L
+      parentName: pinky_01_L
+      position: {x: 6.0535965e-11, y: 0.00040314547, z: 2.4065933e-10}
+      rotation: {x: 0.029169828, y: -0.0057287323, z: 0.028116006, w: 0.9991626}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: pinky_03_L
+      parentName: pinky_02_L
+      position: {x: 3.1199304e-10, y: 0.00038226103, z: 5.9107846e-10}
+      rotation: {x: -0.01512382, y: 0.002620499, z: 0.0013514006, w: 0.9998813}
+      scale: {x: 0.9999998, y: 0.99999976, z: 1}
+    - name: ring_01_L
+      parentName: wrist_L
+      position: {x: 0.000114961695, y: 0.0016782847, z: -0.0004223206}
+      rotation: {x: -0.017977402, y: 0.00010909584, z: 0.04123438, w: 0.9989878}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: ring_02_L
+      parentName: ring_01_L
+      position: {x: 1.4206307e-11, y: 0.0005200237, z: 1.815061e-11}
+      rotation: {x: 0.006917777, y: -0.00046418517, z: 0.013946663, w: 0.9998787}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.9999999}
+    - name: ring_03_L
+      parentName: ring_02_L
+      position: {x: -3.189598e-11, y: 0.00047681193, z: 5.5797145e-11}
+      rotation: {x: 0.0032513235, y: -0.00042870242, z: 0.0500795, w: 0.99873984}
+      scale: {x: 0.99999994, y: 0.99999976, z: 1}
+    - name: middle_01_L
+      parentName: wrist_L
+      position: {x: 0.00012475658, y: 0.0017808288, z: -0.000011312981}
+      rotation: {x: -0.021824097, y: 0.0002876818, z: 0.047330167, w: 0.99864084}
+      scale: {x: 1, y: 0.9999998, z: 0.99999994}
+    - name: middle_02_L
+      parentName: middle_01_L
+      position: {x: -1.845592e-11, y: 0.0005864374, z: 1.0477885e-11}
+      rotation: {x: 0.010822915, y: -0.0010305044, z: 0.029662538, w: 0.9995009}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.99999994}
+    - name: middle_03_L
+      parentName: middle_02_L
+      position: {x: -1.630292e-10, y: 0.00044446634, z: 3.3252956e-12}
+      rotation: {x: 0.021149004, y: -0.0028005948, z: 0.0070637465, w: 0.99974746}
+      scale: {x: 1.0000004, y: 1, z: 1.0000001}
+    - name: index_01_L
+      parentName: wrist_L
+      position: {x: 0.000071934715, y: 0.0017389407, z: 0.00038735638}
+      rotation: {x: 0.0052055037, y: 0.0006663485, z: 0.037022255, w: 0.99930066}
+      scale: {x: 0.99999994, y: 0.9999997, z: 1}
+    - name: index_02_L
+      parentName: index_01_L
+      position: {x: -6.909658e-11, y: 0.0004408771, z: 1.1677912e-11}
+      rotation: {x: -0.011061723, y: -0.0017602332, z: 0.029952466, w: 0.9994886}
+      scale: {x: 0.99999976, y: 0.9999999, z: 0.99999994}
+    - name: index_03_L
+      parentName: index_02_L
+      position: {x: -3.2159733e-11, y: 0.00048328785, z: 1.2660166e-11}
+      rotation: {x: 0.0028265743, y: 0.0013976075, z: 0.03251896, w: 0.9994662}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.9999998}
+    - name: thumb_01_L
+      parentName: wrist_L
+      position: {x: 0.000008552713, y: 0.00075761264, z: 0.00061171805}
+      rotation: {x: 0.3400525, y: 0.0197274, z: -0.025815537, w: 0.9398451}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: thumb_02_L
+      parentName: thumb_01_L
+      position: {x: 1.44355e-10, y: 0.0005993145, z: -3.4558978e-10}
+      rotation: {x: -0.03169437, y: -0.0016851781, z: -0.011184051, w: 0.99943364}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: shoulder_R
+      parentName: root
+      position: {x: 0.0028130442, y: -0.0000955452, z: 0.00009281542}
+      rotation: {x: 0.011675117, y: 0.011541483, z: -0.71421605, w: 0.6997328}
+      scale: {x: 1.0000006, y: 1.0000002, z: 1}
+    - name: elbow_R
+      parentName: shoulder_R
+      position: {x: -4.0745363e-12, y: 0.0045936983, z: -7.4505804e-11}
+      rotation: {x: 0.030026361, y: 0.0006043814, z: -0.019007308, w: 0.9993682}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000005}
+    - name: wrist_R
+      parentName: elbow_R
+      position: {x: 1.9845174e-11, y: 0.0041584373, z: -5.638867e-12}
+      rotation: {x: 0.5028264, y: -0.0017863946, z: 0.0042779534, w: 0.86437505}
+      scale: {x: 0.9999999, y: 1, z: 0.9999998}
+    - name: pinky_01_R
+      parentName: wrist_R
+      position: {x: -0.000020475662, y: 0.0014201256, z: -0.000845414}
+      rotation: {x: -0.07244494, y: -0.00066398043, z: 0.0027390255, w: 0.99736845}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: pinky_02_R
+      parentName: pinky_01_R
+      position: {x: 6.0535965e-11, y: 0.00040314413, z: 3.1363234e-10}
+      rotation: {x: 0.029164176, y: 0.0057287333, z: -0.028113257, w: 0.99916285}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: pinky_03_R
+      parentName: pinky_02_R
+      position: {x: -9.778887e-11, y: 0.00038226205, z: 4.395038e-10}
+      rotation: {x: -0.015123854, y: -0.0026204945, z: -0.0013513685, w: 0.9998813}
+      scale: {x: 0.99999976, y: 0.99999964, z: 0.9999999}
+    - name: ring_01_R
+      parentName: wrist_R
+      position: {x: -0.00011496167, y: 0.0016782847, z: -0.00042232053}
+      rotation: {x: -0.017977402, y: -0.00010909597, z: -0.04123438, w: 0.9989878}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: ring_02_R
+      parentName: ring_01_R
+      position: {x: 4.474714e-12, y: 0.0005200237, z: -4.758149e-13}
+      rotation: {x: 0.006917777, y: 0.00046418526, z: -0.013946669, w: 0.9998787}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.9999999}
+    - name: ring_03_R
+      parentName: ring_02_R
+      position: {x: 1.2509645e-10, y: 0.00047681073, z: 5.1141962e-11}
+      rotation: {x: 0.0032512809, y: 0.00042865355, z: -0.050079565, w: 0.99873984}
+      scale: {x: 0.9999998, y: 0.9999999, z: 0.99999994}
+    - name: middle_01_R
+      parentName: wrist_R
+      position: {x: -0.00012475661, y: 0.0017808288, z: -0.000011312976}
+      rotation: {x: -0.021824036, y: -0.00028768487, z: -0.047330167, w: 0.99864084}
+      scale: {x: 1, y: 0.9999998, z: 1}
+    - name: middle_02_R
+      parentName: middle_01_R
+      position: {x: -3.7332484e-11, y: 0.0005864386, z: 1.0055876e-11}
+      rotation: {x: 0.010822911, y: 0.0010305042, z: -0.02966253, w: 0.9995009}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
+    - name: middle_03_R
+      parentName: middle_02_R
+      position: {x: 3.243713e-11, y: 0.0004444664, z: -2.1904611e-12}
+      rotation: {x: 0.021148944, y: 0.0028006167, z: -0.007063717, w: 0.99974746}
+      scale: {x: 1, y: 0.9999998, z: 0.9999999}
+    - name: index_01_R
+      parentName: wrist_R
+      position: {x: -0.00007193474, y: 0.0017389407, z: 0.00038735638}
+      rotation: {x: 0.005205509, y: -0.00066634844, z: -0.037022255, w: 0.99930066}
+      scale: {x: 0.99999994, y: 0.9999997, z: 1}
+    - name: index_02_R
+      parentName: index_01_R
+      position: {x: 5.0263224e-11, y: 0.0004408783, z: 1.6298145e-11}
+      rotation: {x: -0.0110617215, y: 0.0017602331, z: -0.029952466, w: 0.9994886}
+      scale: {x: 0.99999976, y: 0.9999999, z: 0.99999994}
+    - name: index_03_R
+      parentName: index_02_R
+      position: {x: 5.0495146e-11, y: 0.0004832867, z: -4.3364708e-11}
+      rotation: {x: 0.0028265417, y: -0.0013976215, z: -0.03251898, w: 0.9994662}
+      scale: {x: 0.99999976, y: 0.9999999, z: 0.9999999}
+    - name: thumb_01_R
+      parentName: wrist_R
+      position: {x: -0.000008552731, y: 0.00075761264, z: 0.00061171805}
+      rotation: {x: 0.34005225, y: -0.019727401, z: 0.02581554, w: 0.93984514}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: thumb_02_R
+      parentName: thumb_01_R
+      position: {x: -4.6566128e-12, y: 0.0005993145, z: -2.735851e-10}
+      rotation: {x: -0.031102514, y: -0.05153349, z: -0.08867702, w: 0.9942401}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.9999999}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: fps-arms-rig
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
