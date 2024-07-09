@@ -3,11 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TimeRatio
+{
+    Seconds = 1,
+    HalfMinute = 30,
+    Minute = 60,
+    HalfHour = 60 * 30,
+    Hour = 60 * 60,
+}
+
 public class TimeManager : MonoBehaviour
 {
+    
     private const int SECONDS_IN_DAY = 86400;
     private const int SECONDS_IN_HOUR = 60 * 60;
     private const int SECONDS_IN_MINUTE = 60;
+
     [SerializeField, ReadOnly] private int seconds;
     [SerializeField, ReadOnly] private int hours;
     [SerializeField, ReadOnly] private int minutes;
@@ -17,6 +28,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField, ReadOnly] private float _currentTime;
     [SerializeField, ReadOnly] private int _totalTime;
     [SerializeField] public float scale;
+    [SerializeField] public TimeRatio timeRatio;
 
     public static TimeManager Instance;
     public event Action<int> onProcessTick;
@@ -52,7 +64,7 @@ public class TimeManager : MonoBehaviour
 
     private void ProcessTick()
     {
-        _currentTime += Time.deltaTime * scale;
+        _currentTime += Time.deltaTime * scale * (float)timeRatio;
         if (!(_currentTime >= 1.0f)) return;
         var tick = Mathf.FloorToInt(_currentTime);
         _totalTime += tick;

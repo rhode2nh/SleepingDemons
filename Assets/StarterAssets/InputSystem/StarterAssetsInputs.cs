@@ -234,6 +234,11 @@ namespace StarterAssets
 			PlayerManager.instance.PreviousMarketItem();
 		}
 
+		public void OnFlashlight(InputValue value)
+		{
+			InputManager.instance.isFlashlightOn = !InputManager.instance.isFlashlightOn;
+		}
+		
 		public void OnThrow(InputValue value)
 		{
 			throwItem = value.isPressed;

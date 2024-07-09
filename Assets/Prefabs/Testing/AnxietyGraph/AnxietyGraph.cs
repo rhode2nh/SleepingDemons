@@ -22,7 +22,7 @@ public class AnxietyGraph : MonoBehaviour
     {
         var position = point.transform.position;
         Vector3 newPosition = new Vector3(position.x,
-            SanityManager.Instance.AnxietyManager.Current * yMax, position.z);
+            SanityManager.Instance.AnxietyManager.OverallAnxiety * yMax, position.z);
         point.transform.position = newPosition;
     }
 }

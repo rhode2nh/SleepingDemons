@@ -83,23 +83,53 @@ public class AnxietyEvent
 
 public class AnxietyManager : MonoBehaviour
 {
-    [SerializeField] private List<AnxietyEvent> activeAnxietyEvents;
-    [SerializeField] private List<AnxietyEvent> anxietyEventHistory;
+    [field: Header("Calculated Values")]
+    [field: SerializeField, ReadOnly] public float OverallAnxiety { get; private set; }
+    [field: SerializeField, ReadOnly] public float BaseAnxiety { get; private set; }
+    [field: SerializeField, ReadOnly] public float EventAnxiety { get; private set; }
+    [field: SerializeField, ReadOnly] public float ProximalAnxiety { get; private set; }
+    
+    [field: Header("Weights")]
+    [field: SerializeField, Range(0.01f, 1)] public float BaseAnxietyWeight { get; private set; }
+    [field: SerializeField, Range(0.01f, 1)] public float ProximalAnxietyWeight { get; private set; }
+    [field: SerializeField, Range(0.01f, 1)] public float EventAnxietyWeight { get; private set; }
+    
+    [field: Header("Event Anxiety Testing")]
     [SerializeField] private bool addShortAnxietyEvent;
     [SerializeField] private bool addMediumAnxietyEvent;
+    
+    [field: Header("Base Anxiety")]
+    [field: SerializeField, ReadOnly] public float EventAnxietyPenalty { get; private set; }
+    [field: SerializeField] public float EventAnxietyPenaltyScale { get; private set; }
+    [field: SerializeField, ReadOnly] public float ProximalAnxietyPenalty { get; private set; }
+    [field: SerializeField] public float ProximalAnxietyPenaltyScale { get; private set; }
+    [field: SerializeField, ReadOnly] public float RaycastAnxietyPenalty { get; private set; }
+    [field: SerializeField] public float RaycastAnxietyPenaltyScale { get; private set; }
+    
+    [field: Header("Event Anxiety")]
+    [SerializeField] private List<AnxietyEvent> activeAnxietyEvents;
+    [field: SerializeField] public AnxietyEvent GreatestAnxietyEvent { get; private set; }
+    [SerializeField] private List<AnxietyEvent> anxietyEventHistory;
     [field: SerializeField] public int AnxietyEventCooldown { get; private set; }
     [field: SerializeField] public int AnxietyEventCooldownTimer { get; private set; }
-    [field: SerializeField] public bool IsCooldown { get; private set; }
+    [field: SerializeField, ReadOnly] public bool IsCooldown { get; private set; }
+    [field: SerializeField, ReadOnly] public int NumAnxietyEvents { get; private set; }
     [field: SerializeField] public int AnxietyEventCooldownThreshold { get; private set; }
-    [field: SerializeField] public int AnxietyHistoryTimeCheck { get; private set; }
-    [field: SerializeField] public int NumAnxietyEvents { get; private set; }
-    [field: SerializeField] public float Current { get; private set;  }
-    [field: SerializeField] public int AnxietyTimeHistoryLimit { get; private set; }
-    [field: SerializeField] public AnxietyEvent GreatestAnxietyEvent { get; private set; }
+    [field: SerializeField, Tooltip("Determines which events are considered for cooldown")]
+    public int AnxietyHistoryTimeCheck { get; private set; }
+    [field: SerializeField, Tooltip("How long to keep track of previous anxiety events")]
+    public int AnxietyTimeHistoryLimit { get; private set; }
+    
+    [field: Header("Proximal Anxiety")]
+    [field: SerializeField] public int MaxProximalAnxietySources { get; private set; }
+    [field: SerializeField] public float ProximalDecay { get; private set; }
+
+    [SerializeField] private List<ProximalAnxiety> proximalAnxietySources;
     void Awake()
     {
         activeAnxietyEvents = new List<AnxietyEvent>();
         anxietyEventHistory = new List<AnxietyEvent>();
+        proximalAnxietySources = new List<ProximalAnxiety>();
     }
 
     IEnumerator Start()
@@ -114,8 +144,15 @@ public class AnxietyManager : MonoBehaviour
 
     void ProcessTick(int tick)
     {
+        ProcessBaseAnxiety();
+        ProcessProximalAnxiety();
         ProcessAnxietyEventHistory();
+        ProcessRaycastAnxiety();
+        
         CheckCooldown(tick);
+        
+        // Calculate overall anxiety after everything else
+        ProcessOverallAnxiety();
     }
     
     void Update()
@@ -130,10 +167,66 @@ public class AnxietyManager : MonoBehaviour
         }
     }
 
+    void ProcessBaseAnxiety()
+    {
+        BaseAnxiety = EventAnxietyPenalty + ProximalAnxietyPenalty;
+    }
+
+    void ProcessRaycastAnxiety()
+    {
+        
+    }
+
+    void ProcessProximalAnxiety()
+    {
+        if (proximalAnxietySources.Count > 0)
+        {
+            var sumOfSources = proximalAnxietySources.Sum(x => x.GetCurrentProximalRate());
+            ProximalAnxiety = Mathf.Clamp(ProximalAnxiety + sumOfSources * Time.deltaTime, 0, 1);
+            
+            var sumOfPenalties = proximalAnxietySources.Sum(x => x.CurrentPenalty) * ProximalAnxietyPenaltyScale;
+            ProximalAnxietyPenalty = Mathf.Clamp(sumOfPenalties, 0, 1);
+        }
+        else
+        {
+            ProximalAnxiety = Mathf.Clamp( ProximalAnxiety - ProximalDecay * Time.deltaTime, 0, 1);
+            ProximalAnxietyPenalty = 0.0f;
+        }
+    }
+
+    public void AddProximalSource(ProximalAnxiety source)
+    {
+        if (proximalAnxietySources.Count < MaxProximalAnxietySources)
+        {
+            proximalAnxietySources.Add(source);
+        }
+    }
+    
+    public void RemoveProximalSource(ProximalAnxiety source)
+    {
+        if (proximalAnxietySources.Count < MaxProximalAnxietySources)
+        {
+            proximalAnxietySources.Remove(source);
+        }
+    }
+
+    void ProcessOverallAnxiety()
+    {
+        var weightSum = BaseAnxietyWeight + ProximalAnxietyWeight + EventAnxietyWeight;
+        var normalizedBWeight = BaseAnxietyWeight / weightSum;
+        var normalizedPWeight = ProximalAnxietyWeight / weightSum;
+        var normalizedEWeight = EventAnxietyWeight / weightSum;
+
+        OverallAnxiety = BaseAnxiety * normalizedBWeight + ProximalAnxiety * normalizedPWeight +
+               EventAnxiety * normalizedEWeight;
+    }
+
     void ProcessAnxietyEventHistory()
     {
         anxietyEventHistory.RemoveAll(x => x.timestamp < TimeManager.Instance.GetTotalTime() - AnxietyTimeHistoryLimit);
         NumAnxietyEvents = anxietyEventHistory.Count(x => x.timestamp >= TimeManager.Instance.GetTotalTime() - AnxietyHistoryTimeCheck);
+
+        EventAnxietyPenalty = anxietyEventHistory.Count * EventAnxietyPenaltyScale;
     }
 
     void CheckCooldown(int tick)
@@ -161,9 +254,7 @@ public class AnxietyManager : MonoBehaviour
         AnxietyEvent anxietyEvent = new AnxietyEvent(anxietyType, TimeManager.Instance.GetTotalTime());
         if (TryProcessAnxietyEvent(anxietyEvent))
         {
-            activeAnxietyEvents.Add(anxietyEvent);
-            anxietyEventHistory.Add(anxietyEvent);
-            StartCoroutine(ProcessAnxietyEvent(activeAnxietyEvents[^1], OnAnxietyEventFinished));
+            StartCoroutine(ProcessAnxietyEvent(anxietyEvent, OnAnxietyEventFinished));
         }
     }
 
@@ -174,6 +265,8 @@ public class AnxietyManager : MonoBehaviour
 
     IEnumerator ProcessAnxietyEvent(AnxietyEvent anxietyEvent, Action<string> onAnxietyEventFinished)
     {
+        activeAnxietyEvents.Add(anxietyEvent);
+        anxietyEventHistory.Add(anxietyEvent);
         anxietyEvent.isAttacking = true;
         while (true)
         {
@@ -199,7 +292,7 @@ public class AnxietyManager : MonoBehaviour
             {
                 if (GreatestAnxietyEvent.guid.Equals(anxietyEvent.guid))
                 {
-                    Current += anxietyEvent.initialRate * Time.deltaTime;
+                    EventAnxiety += anxietyEvent.initialRate * Time.deltaTime;
                 }
             }
         }
@@ -236,7 +329,7 @@ public class AnxietyManager : MonoBehaviour
         {
             var rateToAdd = anxietyEvent.initialRate * Time.deltaTime;
             anxietyEvent.currentAmount -= rateToAdd;
-            Current = Mathf.Clamp(Current - rateToAdd, 0, 1);
+            EventAnxiety = Mathf.Clamp(EventAnxiety - rateToAdd, 0, 1);
         }
         else
         {

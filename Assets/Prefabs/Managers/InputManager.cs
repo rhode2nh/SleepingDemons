@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] [ReadOnly] private List<string> _lastActionMap;
     [SerializeField] private PlayerInput _playerInput;
 
+    public bool isFlashlightOn;
+
     void Awake()
     {
         instance = this;

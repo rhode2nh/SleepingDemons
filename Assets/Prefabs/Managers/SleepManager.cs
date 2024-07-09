@@ -7,19 +7,31 @@ using UnityEngine.Serialization;
 public class SleepManager : MonoBehaviour
 {
     // The amount of energy remaining until the player should go to sleep.
-    [SerializeField] private int _energyRemaining;
+    [Header("Sleep Info")]
     [SerializeField, ReadOnly] private string formattedEnergyRemaining;
-    [SerializeField] private int _previousSleepAmount;
-    [SerializeField] private int _timeSinceLastRest;
+    [SerializeField, ReadOnly] private int _previousSleepAmount;
     [SerializeField, ReadOnly] private string formattedTimeSinceLastRest;
-    [SerializeField] private int _sleepThreshold;
-    [SerializeField, ReadOnly] private int OPTIMAL_SLEEP = 28800;
-    [SerializeField, ReadOnly] private int _amountToSleep;
+    [SerializeField, ReadOnly] private int _sleepThreshold;
+    [SerializeField, ReadOnly] private int potentialSleep;
+    
+    [field: Header("Penalties")]
+    [field: SerializeField, ReadOnly] public float EnergyPenalty { get; private set; }
+    [field: SerializeField] public float EnergyPenaltyRate { get; private set; }
+    [field: SerializeField] public float MaxEnergyPenalty { get; private set; }
+    [field: SerializeField] public int EnergyPenaltyInterval { get; private set; }
+    [field: SerializeField, ReadOnly] public int EnergyPenaltyTime { get; private set; }
+    
+    private int _energyRemaining;
+    private int _timeSinceLastRest;
+    private int OPTIMAL_SLEEP = 28800;
+    private int FULL_DAY = 86400;
 
     private void Start()
     {
         TimeManager.Instance.onProcessTick += ProcessTick;
-        _amountToSleep = OPTIMAL_SLEEP;
+        potentialSleep = OPTIMAL_SLEEP;
+        _sleepThreshold = FULL_DAY - OPTIMAL_SLEEP;
+        _energyRemaining = FULL_DAY - OPTIMAL_SLEEP;
     }
 
     private void ProcessTick(int tick)
@@ -28,6 +40,24 @@ public class SleepManager : MonoBehaviour
         _timeSinceLastRest += tick;
         formattedEnergyRemaining = TimeManager.Instance.FormattedTime(_energyRemaining);
         formattedTimeSinceLastRest = TimeManager.Instance.FormattedTime(_timeSinceLastRest);
+        
+        ProcessSleepPenalty(tick);
+    }
+
+    private void ProcessSleepPenalty(int tick)
+    {
+        if (_energyRemaining > 0) return;
+
+        if (EnergyPenalty < MaxEnergyPenalty)
+        {
+            EnergyPenaltyTime += tick;
+        }
+        
+        if (EnergyPenaltyTime > EnergyPenaltyInterval && EnergyPenalty < MaxEnergyPenalty)
+        {
+            EnergyPenalty += EnergyPenaltyRate;
+            EnergyPenaltyTime = 0;
+        }
     }
 
     public void Sleep()
@@ -35,9 +65,9 @@ public class SleepManager : MonoBehaviour
         if (_timeSinceLastRest <= _sleepThreshold) return;
         
         CalculateAmountToSleep();
-        TimeManager.Instance.ProgressTime(_amountToSleep);
+        TimeManager.Instance.ProgressTime(potentialSleep);
         CalculateEnergyRemaining();
-        _previousSleepAmount = _amountToSleep;
+        _previousSleepAmount = potentialSleep;
         _timeSinceLastRest = 0;
         // SanityManager.Instance.AnxietyManager.DecreaseSleepPenalty(_previousSleepAmount);
     }
@@ -50,6 +80,6 @@ public class SleepManager : MonoBehaviour
     private void CalculateEnergyRemaining()
     {
         _energyRemaining = 57600;
-        _energyRemaining -= OPTIMAL_SLEEP - _amountToSleep;
+        _energyRemaining -= OPTIMAL_SLEEP - potentialSleep;
     }
 }
