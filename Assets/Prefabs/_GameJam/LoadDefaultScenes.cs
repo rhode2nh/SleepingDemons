@@ -8,8 +8,9 @@ public class LoadDefaultScenes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene("MainRoom", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Basement", LoadSceneMode.Additive);
+        #if !UNITY_EDITOR
+        SceneManager.LoadScene("Apartment", LoadSceneMode.Additive);
+        #endif
     }
     
 }

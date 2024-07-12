@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] public GameObject weaponSpawnPos;
     [SerializeField] public Transform bulletRaycastePos;
     [SerializeField] private Texture2D cursorTexture;
+    [field: SerializeField] public GameObject player;
 
     void Awake()
     {
@@ -27,7 +28,8 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        firstPersonController = GameObject.FindWithTag("Player").GetComponent<FirstPersonController>();
+        player = GameObject.FindWithTag("Player");
+        firstPersonController = player.GetComponent<FirstPersonController>();
         Vector2 cursorOffset = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
         Cursor.SetCursor(cursorTexture, cursorOffset, CursorMode.Auto);
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RebuildDatabases : MonoBehaviour
 {
+    #if UNITY_EDITOR
     [MenuItem("Database/Rebuild Databases")]
     public static void RebuildDBs() {
         // Grab the GUIDs
@@ -34,5 +35,5 @@ public class RebuildDatabases : MonoBehaviour
         // }
         AssetDatabase.SaveAssets();
     } 
-
+    #endif
 }

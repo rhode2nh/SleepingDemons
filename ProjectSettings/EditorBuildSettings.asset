@@ -5,19 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FPS_Controller.unity
+    guid: 3d5d971569804ade184533296f23fb61
+  - enabled: 1
+    path: Assets/Scenes/Apartment.unity
+    guid: e3180b526b2e29b5fbb520933542c8c1
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
     path: Assets/Scenes/TestBasement.unity
     guid: 6bca2b048653a0e30ae205e96eb910bb
-  - enabled: 1
-    path: Assets/Scenes/FPS_Controller.unity
-    guid: 3d5d971569804ade184533296f23fb61
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainRoom.unity
     guid: 7275747cea83ebe23a5989558077935d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Basement.unity
     guid: e5ed414a045f929b1ae1c66f1132c72e
   m_configObjects:
