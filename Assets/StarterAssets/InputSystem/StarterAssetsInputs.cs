@@ -25,8 +25,6 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 
 		private Interact interact;
-		private FirstPersonController firstPersonController;
-		private Footsteps footsteps;
 		private PlayerInput _playerInput;
 		private bool _checkChamber;
 		[SerializeField] private Gun _gun;
@@ -37,8 +35,6 @@ namespace StarterAssets
 		{
 			_lastActionMap = new List<string>();
 			interact = GetComponentInChildren<Interact>();
-			footsteps = GetComponentInChildren<Footsteps>();
-			firstPersonController = GetComponent<FirstPersonController>();
 			_playerInput = GetComponent<PlayerInput>();
 			_lastActionMap.Add(_playerInput.currentActionMap.name);
 			_checkChamber = false;
@@ -258,14 +254,6 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-			if (newMoveDirection == Vector2.zero)
-			{
-				footsteps.isWalking = false;
-			}
-			else
-			{
-				footsteps.isWalking = true;
-			}
 		}
 
 		public void LeanInput(float newLeanInput)
@@ -286,7 +274,6 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
-			footsteps.isSprinting = newSprintState;
 		}
 
 		public void InteractInput(bool newInteractState)

@@ -1,39 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorController : MonoBehaviour, IInteractable
 {
-    [SerializeField] private DoorOpenCloseAudio _doorOpenCloseAudio;
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] private HingeJoint _hingeJoint;
     [SerializeField] private PhysicsDoor _physicsDoor;
-    [SerializeField] private float _minCloseAngle;
-    [SerializeField] private float _maxCloseAngle;
-    [SerializeField] private float _minOpenAngle;
-    [SerializeField] private float _maxOpenAngle;
-
-    private JointLimits limits;
-
+    [SerializeField] GameObject _lockParent;
+    private List<ILock> _locks = new();
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        limits = _hingeJoint.limits;
+        _physicsDoor = GetComponent<PhysicsDoor>();
+        _locks = new List<ILock>(_lockParent.GetComponentsInChildren<ILock>());
+    }
+    
+    public void ExecuteInteraction(GameObject other)
+    {
+        if (IsUnlocked())
+        {
+            _physicsDoor.Hold(other.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.instance.isHolding);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool IsUnlocked()
     {
-        if (!_doorOpenCloseAudio.IsOpen() && !_physicsDoor.IsHolding()) {
-            // _rb.velocity = Vector3.zero;
-            // _hingeJoint.limits.min = _minCloseAngle;
-            // limits.min = _minCloseAngle;
-            // limits.max = _maxCloseAngle;
-            // _hingeJoint.limits = limits;
-        } else if (!_doorOpenCloseAudio.IsOpen() && _physicsDoor.IsHolding()) {
-            limits.min = _minOpenAngle;
-            limits.max = _maxOpenAngle;
-            _hingeJoint.limits = limits;
-        }
+        return _locks.All(llock => !llock.IsLocked);
+    }
+
+    public bool ExecuteOnRelease()
+    {
+        return true;
     }
 }

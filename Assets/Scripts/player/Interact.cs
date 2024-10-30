@@ -12,7 +12,7 @@ public class Interact : MonoBehaviour
     public void InteractWith(bool isPressed) {
         PlayerManager.instance.isHolding = isPressed;
         if (!_inputRaycast.isHitting) return;
-        var interactable = _inputRaycast.hit.transform.gameObject.GetComponentInParent<IInteractable>();
+        var interactable = _inputRaycast.hit.collider.GetComponent<IInteractable>();
         if (interactable == null) return;
         
         var executeOnRelease = interactable.ExecuteOnRelease();

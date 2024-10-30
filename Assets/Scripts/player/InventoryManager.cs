@@ -74,7 +74,7 @@ public class InventoryManager : MonoBehaviour
             onUpdateInventoryGUI();
         }
     }
-
+    
     public void EquipWeapon(int index)
     {
         if (_equippedWeaponGameobject != null)

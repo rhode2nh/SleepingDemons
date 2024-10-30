@@ -11,7 +11,6 @@ public class Gun : MonoBehaviour, IGun, IEquippable
     [SerializeField] private float _damage;
     [SerializeField] private int _capacity;
     [SerializeField] private int _currentAmmoCount;
-    [SerializeField] private GameObject _emitter;
     [SerializeField] private Vector3 _equipPos;
     [SerializeField] private GameObject _animatedMagazine;
     [SerializeField] private GameObject _animatedGun;
@@ -67,17 +66,14 @@ public class Gun : MonoBehaviour, IGun, IEquippable
         Vector3 rightDir = Camera.main.transform.right;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out hit, Mathf.Infinity, _layerMask))
         {
-            if (hit.transform.gameObject.GetComponentInParent<IHoldable>() != null)
-            {
-                hit.transform.gameObject.GetComponentInParent<Rigidbody>().AddForce(forwardDir * _force, ForceMode.Impulse);
-                hit.transform.gameObject.GetComponentInParent<Rigidbody>().AddTorque(rightDir * _torque, ForceMode.Impulse);
-                Instantiate(_emitter, hit.point, Quaternion.LookRotation(-forwardDir));
-            }
-            else if (hit.transform.gameObject.GetComponent<IHittable>() != null)
-            {
-                hit.transform.gameObject.GetComponent<IHittable>().TakeDamage(_damage, forwardDir * _force, rightDir * _torque);
-                Instantiate(_emitter, hit.point, Quaternion.LookRotation(-forwardDir));
-            }
+            // if (hit.collider.gameObject.GetComponent<IHoldable>() != null)
+            // {
+            //     hit.transform.gameObject.GetComponentInParent<Rigidbody>().AddForce(forwardDir * _force, ForceMode.Impulse);
+            //     hit.transform.gameObject.GetComponentInParent<Rigidbody>().AddTorque(rightDir * _torque, ForceMode.Impulse);
+            //     Instantiate(_emitter, hit.point, Quaternion.LookRotation(-forwardDir));
+            // }
+            var hittable = hit.collider.GetComponent<IHittable>();
+            hittable?.TakeDamage(_damage, forwardDir * _force, rightDir * _torque);
         }
 
         if (_gunShot != null)

@@ -11,7 +11,7 @@ public class EyeSensor : MonoBehaviour
     [SerializeField] private float timeToAcknowledgePlayer;
     [SerializeField] private float losePlayerThresholdTimer;
     [SerializeField] private float fov;
-    [SerializeField] private float dotProductLosThreshold;
+    [SerializeField, Range(0, 360)] private float dotProductLosThresholdInDegrees;
     [SerializeField] Vector3 playerOffset;
 
     [field: SerializeField, ReadOnly] public bool IsLookingAtPlayer { get; private set; }
@@ -27,6 +27,12 @@ public class EyeSensor : MonoBehaviour
     void FixedUpdate()
     {
         Sense();
+    }
+
+    float ConvertToDegrees(float num)
+    {
+        float slope = 1.0f * ((1.0f - -1.0f) / (360.0f - 0.0f));
+        return 1 - (0.0f + slope * (num - 0.0f));
     }
 
     void Sense()
@@ -76,11 +82,11 @@ public class EyeSensor : MonoBehaviour
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, _player.transform.position + playerOffset - transform.position, out hit,
-                    raycastDistance))
+                    (_player.transform.position + playerOffset - transform.position).magnitude))
             {
                 if (
                     hit.transform.CompareTag("Player")
-                    && Vector3.Dot((_player.transform.position + playerOffset - transform.position).normalized, transform.forward) > dotProductLosThreshold
+                    && Vector3.Dot((_player.transform.position + playerOffset - transform.position).normalized, transform.forward) > ConvertToDegrees(dotProductLosThresholdInDegrees)
                     )
                 {
                     IsLookingAtPlayer = true;
@@ -110,11 +116,11 @@ public class EyeSensor : MonoBehaviour
     private void OnDrawGizmos()
     {
         Debug.DrawRay(transform.position, transform.forward * raycastDistance, Color.green);
-        Debug.DrawRay(transform.position, (transform.right * fov + transform.forward).normalized * raycastDistance, Color.green);
-        Debug.DrawRay(transform.position, (-transform.right * fov + transform.forward).normalized * raycastDistance, Color.green);
+        Debug.DrawRay(transform.position, Quaternion.AngleAxis(-dotProductLosThresholdInDegrees / 2.0f, Vector3.up) * transform.forward * raycastDistance, Color.green);
+        Debug.DrawRay(transform.position, Quaternion.AngleAxis(dotProductLosThresholdInDegrees / 2.0f, Vector3.up) * transform.forward * raycastDistance, Color.green);
         if (PlayerInTrigger)
         {
-            Debug.DrawRay(transform.position, (_player.transform.position + playerOffset - transform.position).normalized * raycastDistance, Color.red);
+            Debug.DrawRay(transform.position, (_player.transform.position + playerOffset - transform.position), Color.red);
         }
     }
 }

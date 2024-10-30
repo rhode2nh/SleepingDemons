@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PhysicsDoor : MonoBehaviour, IHoldable, IInteractable
+public class PhysicsDoor : MonoBehaviour, IHoldable
 {
     [SerializeField] private bool _isHolding;
     [SerializeField] private bool _flipAxis;
@@ -48,7 +48,7 @@ public class PhysicsDoor : MonoBehaviour, IHoldable, IInteractable
         var relativeDistance = Vector3.Distance(Camera.main.transform.position, hitPoint);
         var intiialReferencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
         var referenceDot = Vector3.Dot(transform.forward, intiialReferencePoint);
-        _rb.angularDrag = 5f;
+        // _rb.angularDrag = 5f;
         while (PlayerManager.instance.isHolding) {
             var referencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
             var dotProduct = Vector3.Dot(transform.forward, referencePoint) - referenceDot;
@@ -95,11 +95,6 @@ public class PhysicsDoor : MonoBehaviour, IHoldable, IInteractable
     public float GetNormalizedVelocity() {
         // return Mathf.Lerp(0.0f, _maxVelocity, _rb.velocity.magnitude);
         return (_rb.velocity.magnitude - 0.0f) / (_maxVelocity - 0);
-    }
-
-    public void ExecuteInteraction(GameObject other)
-    {
-        Hold(other.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.instance.isHolding);
     }
 
     public bool ExecuteOnRelease() { return true; }

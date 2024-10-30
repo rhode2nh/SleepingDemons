@@ -93,6 +93,11 @@ public class Inventory : MonoBehaviour, IInventory
         _items[secondIndex] = firstItem;
     }
 
+    public bool HasItem(string GUID)
+    {
+        return _items.Any(x => x.Item.GUID == GUID);
+    }
+
     public int MaxLength { get => _maxLength; }
 
     public int Count { get => _items.Count(x => x.Item != DatabaseManager.instance.GetEmptyItem()); }
