@@ -17,7 +17,7 @@ public class TestEnemyManager : MonoBehaviour, IHittable
     private float _currentStaggerValue;
     public void TakeDamage(float damage, Vector3 force, Vector3 torque)
     {
-        // health -= damage;
+        health -= damage;
         _currentStaggerValue += damage;
         if (_currentStaggerValue >= staggerThreshold)
         {

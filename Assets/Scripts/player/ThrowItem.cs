@@ -10,9 +10,9 @@ public class ThrowItem : MonoBehaviour
 
     void Update()
     {
-        if (_input.throwItem && !InventoryManager.instance.equippedWeapon.IsEmpty)
+        if (_input.throwItem && !InventoryManager.instance.selectedSlot.IsEmpty)
         {
-            Slot slot = InventoryManager.instance.Remove(InventoryManager.instance.equippedWeapon.GUID);
+            Slot slot = InventoryManager.instance.Remove(InventoryManager.instance.selectedSlot.GUID);
             InventoryManager.instance.UpdateInventoryGUI();
             Instantiate(slot.Item.WorldItem, PlayerManager.instance.dropItemSpawnPos.position, Quaternion.identity);
         }

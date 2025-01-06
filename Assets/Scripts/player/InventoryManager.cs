@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     public Inventory inventory;
-    public Slot equippedWeapon;
-    public IEquippable equippable;
+    public Inventory noteInventory;
+    public Slot selectedSlot;
+    public IEquippable Equippable;
     private GameObject _equippedWeaponGameobject;
     public int eyes;
 
@@ -24,15 +26,15 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
-        equippedWeapon = DatabaseManager.instance.GetEmptySlot();
+        selectedSlot = DatabaseManager.instance.GetEmptySlot();
     }
 
     public Slot Remove(int index)
     {
         Slot slot = inventory.Remove(index);
-        if (!equippedWeapon.IsEmpty)
+        if (!selectedSlot.IsEmpty)
         {
-            if (slot.GUID == equippedWeapon.GUID)
+            if (slot.GUID == selectedSlot.GUID)
             {
                 UnequipWeapon();
             }
@@ -43,9 +45,9 @@ public class InventoryManager : MonoBehaviour
     public Slot Remove(string GUID)
     {
         Slot slot = inventory.Remove(GUID);
-        if (!equippedWeapon.IsEmpty)
+        if (!selectedSlot.IsEmpty)
         {
-            if (slot.GUID == equippedWeapon.GUID)
+            if (slot.GUID == selectedSlot.GUID)
             {
                 UnequipWeapon();
             }
@@ -75,22 +77,32 @@ public class InventoryManager : MonoBehaviour
         }
     }
     
-    public void EquipWeapon(int index)
+    public void UseItem(int index)
+    {
+        selectedSlot = inventory.Get(index);
+        selectedSlot.Item.Use();
+    }
+
+    public void EquipWeapon(GameObject weapon)
     {
         if (_equippedWeaponGameobject != null)
         {
             UnequipWeapon();
         }
-        equippedWeapon = inventory.Get(index);
-        _equippedWeaponGameobject = Instantiate(equippedWeapon.Item.FpsItem, PlayerManager.instance.weaponSpawnPos.transform);
-        equippable = _equippedWeaponGameobject.GetComponent<IEquippable>();
-        _equippedWeaponGameobject.transform.localPosition = equippable.GetEquipPos();
+        _equippedWeaponGameobject = weapon;
+        Equippable = _equippedWeaponGameobject.GetComponent<IEquippable>();
+        _equippedWeaponGameobject.transform.localPosition = Equippable.GetEquipPos();
+    }
+
+    public void ClearSelectedSlot()
+    {
+        selectedSlot = DatabaseManager.instance.GetEmptySlot();
     }
 
     public void UnequipWeapon()
     {
-        equippedWeapon = DatabaseManager.instance.GetEmptySlot();
-        equippable = null;
+        ClearSelectedSlot();
+        Equippable = null;
         Destroy(_equippedWeaponGameobject);
     }
 }

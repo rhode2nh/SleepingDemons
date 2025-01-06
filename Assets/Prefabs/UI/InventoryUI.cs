@@ -62,7 +62,7 @@ public class InventoryUI : MonoBehaviour, IUIPanel
         }
         else if (eventData.button == PointerEventData.InputButton.Left)
         {
-            InventoryManager.instance.EquipWeapon(index);
+            InventoryManager.instance.UseItem(index);
         }
     }
 }

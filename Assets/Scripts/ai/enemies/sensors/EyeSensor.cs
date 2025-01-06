@@ -10,7 +10,6 @@ public class EyeSensor : MonoBehaviour
     [SerializeField] private float raycastDistance;
     [SerializeField] private float timeToAcknowledgePlayer;
     [SerializeField] private float losePlayerThresholdTimer;
-    [SerializeField] private float fov;
     [SerializeField, Range(0, 360)] private float dotProductLosThresholdInDegrees;
     [SerializeField] Vector3 playerOffset;
 
@@ -80,6 +79,7 @@ public class EyeSensor : MonoBehaviour
     {
         if (PlayerInTrigger && _player != null)
         {
+            Debug.Log("Player in trigger");
             RaycastHit hit;
             if (Physics.Raycast(transform.position, _player.transform.position + playerOffset - transform.position, out hit,
                     (_player.transform.position + playerOffset - transform.position).magnitude))

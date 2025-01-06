@@ -89,29 +89,26 @@ namespace StarterAssets
 
 		public void OnAim(InputValue value)
 		{
-			if (!PlayerManager.instance.isHolding)
+			if (PlayerManager.instance.isHolding) return;
+			if (InventoryManager.instance.selectedSlot.IsEmpty) return;
+			
+			InventoryManager.instance.Equippable.Aim(value.isPressed);
+			if (value.isPressed)
 			{
-				if (!InventoryManager.instance.equippedWeapon.IsEmpty)
-				{
-					InventoryManager.instance.equippable.Aim(value.isPressed);
-					if (value.isPressed)
-					{
-						PlayerManager.instance.isAiming = true;
-						_playerInput.SwitchCurrentActionMap("Aim");
-					}
-					else
-					{
-						PlayerManager.instance.isAiming = false;
-						_playerInput.SwitchCurrentActionMap("Player");
-					}
-				}
+				PlayerManager.instance.isAiming = true;
+				_playerInput.SwitchCurrentActionMap("Aim");
+			}
+			else
+			{
+				PlayerManager.instance.isAiming = false;
+				_playerInput.SwitchCurrentActionMap("Player");
 			}
 		}
 
 		public void OnShoot(InputValue value)
 		{
 			// _gun.Attack(value.isPressed);
-			InventoryManager.instance.equippable.Attack(value.isPressed);
+			InventoryManager.instance.Equippable.Attack(value.isPressed);
 			if (value.isPressed)
 			{
 				// _gun.Play("Shoot", -1, 0f);
@@ -138,18 +135,18 @@ namespace StarterAssets
 		public void OnCheckChamber(InputValue value)
 		{
 			// TODO: Rework when animations are implemented
-			InventoryManager.instance.equippable.SwitchToMag(false);
-			InventoryManager.instance.equippable.SwitchToChamber(false);
-			InventoryManager.instance.equippable.CheckChamber(value.isPressed);
+			InventoryManager.instance.Equippable.SwitchToMag(false);
+			InventoryManager.instance.Equippable.SwitchToChamber(false);
+			InventoryManager.instance.Equippable.CheckChamber(value.isPressed);
 			_playerInput.SwitchCurrentActionMap("Player");
 		}
 		
 		public void OnCheckMagazine(InputValue value)
 		{
 			// TODO: Rework when animations are implemented
-			InventoryManager.instance.equippable.SwitchToMag(false);
-			InventoryManager.instance.equippable.SwitchToChamber(false);
-			InventoryManager.instance.equippable.CheckMagazine(value.isPressed);
+			InventoryManager.instance.Equippable.SwitchToMag(false);
+			InventoryManager.instance.Equippable.SwitchToChamber(false);
+			InventoryManager.instance.Equippable.CheckMagazine(value.isPressed);
 			_playerInput.SwitchCurrentActionMap("Player");
 		}
 		
@@ -159,39 +156,39 @@ namespace StarterAssets
 			{
 				StopCoroutine(CheckChamber());
 				_checkChamberCoroutineStarted = false;
-				InventoryManager.instance.equippable.CheckChamber(true);
+				InventoryManager.instance.Equippable.CheckChamber(true);
 				_playerInput.SwitchCurrentActionMap("CheckChamber");
 			}
 			else
 			{
-				InventoryManager.instance.equippable.CheckMagazine(true);
+				InventoryManager.instance.Equippable.CheckMagazine(true);
 				_playerInput.SwitchCurrentActionMap("CheckMagazine");
 			}
 		}
 
 		public void OnEmptyChamber(InputValue value)
 		{
-			InventoryManager.instance.equippable.EmptyChamber();
+			InventoryManager.instance.Equippable.EmptyChamber();
 		}
 		
 		public void OnLoadBullet(InputValue value)
 		{
-			InventoryManager.instance.equippable.LoadBullet();
+			InventoryManager.instance.Equippable.LoadBullet();
 		}
 
 		public void OnMagToChamber(InputValue value)
 		{
 			// TODO: Rework to use events when animations are implemented
-			InventoryManager.instance.equippable.SwitchToChamber(true);
-			InventoryManager.instance.equippable.SwitchToMag(false);
+			InventoryManager.instance.Equippable.SwitchToChamber(true);
+			InventoryManager.instance.Equippable.SwitchToMag(false);
 			// _playerInput.SwitchCurrentActionMap("CheckChamber");
 		}
 
 		public void OnChamberToMag(InputValue value)
 		{
 			// TODO: Rework to use events when animations are implemented
-			InventoryManager.instance.equippable.SwitchToMag(true);
-			InventoryManager.instance.equippable.SwitchToChamber(false);
+			InventoryManager.instance.Equippable.SwitchToMag(true);
+			InventoryManager.instance.Equippable.SwitchToChamber(false);
 			// _playerInput.SwitchCurrentActionMap("CheckMagazine");
 		}
 
@@ -213,21 +210,6 @@ namespace StarterAssets
 		public void OnCloseInventory(InputValue value)
 		{
 			InputManager.instance.ClosePanel(UIManager.instance._inventoryUI);
-		}
-
-		public void OnCloseMarket(InputValue value)
-		{
-			InputManager.instance.ClosePanel(UIManager.instance._marketUI);
-		}
-
-		public void OnNextItem(InputValue value)
-		{
-			PlayerManager.instance.NextMarketItem();
-		}
-
-		public void OnPreviousItem(InputValue value)
-		{
-			PlayerManager.instance.PreviousMarketItem();
 		}
 
 		public void OnFlashlight(InputValue value)

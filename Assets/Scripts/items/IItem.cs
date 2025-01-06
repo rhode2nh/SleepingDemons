@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IItem
 {
     public string GUID { get; }
+    public void Use();
 }

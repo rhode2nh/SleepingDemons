@@ -75,7 +75,7 @@ public class MarketUI : MonoBehaviour, IUIPanel, IUIInventory
         }
         _currentSlot = _inventory.Get(_index);
         uiSlots[_index].SetActive(true);
-        _curMarketModel = Instantiate(_currentSlot.Item.MarketItem, _marketModelPos.position, Camera.main.transform.rotation, _marketCamera.transform);
+        // _curMarketModel = Instantiate(_currentSlot.Item.MarketItem, _marketModelPos.position, Camera.main.transform.rotation, _marketCamera.transform);
         _curMarketModel.transform.localScale = _curMarketModel.transform.localScale * _viewItemScaleFactor;
         _lastViewItemRotation = _curMarketModel.transform.rotation;
         // _marketStats.UpdateSlot(_currentSlot);
@@ -179,6 +179,5 @@ public class MarketUI : MonoBehaviour, IUIPanel, IUIInventory
 
     public void OnClose()
     {
-        InputManager.instance.ClosePanel(UIManager.instance._marketUI);
     }
 }

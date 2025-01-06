@@ -58,7 +58,6 @@ public class Market : MonoBehaviour, IMarket, IInteractable
     public void ExecuteInteraction(GameObject other)
     {
         OpenMarket();
-        InputManager.instance.OpenPanel(UIManager.instance._marketUI, "Market");
     }
 
     public bool ExecuteOnRelease()

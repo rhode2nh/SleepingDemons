@@ -12,7 +12,7 @@ public class Item : ScriptableObject, IItem
     [SerializeField] private int _cost;
     [SerializeField] private GameObject _worldItem;
     [SerializeField] private GameObject _marketItem;
-    [SerializeField] private GameObject _fpsItem;
+    // [SerializeField] private GameObject _fpsItem;
 
     void Awake()
     {
@@ -24,5 +24,10 @@ public class Item : ScriptableObject, IItem
     public int Cost { get => _cost;}
     public GameObject WorldItem { get => _worldItem; }
     public GameObject MarketItem { get => _marketItem; }
-    public GameObject FpsItem { get => _fpsItem; }
+
+    // This method is called whenever an item in the inventory is used.
+    public virtual void Use()
+    {
+        Debug.Log("Using item: " + _GUID);       
+    }
 }

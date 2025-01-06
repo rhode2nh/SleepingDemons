@@ -8,11 +8,9 @@ public class UIManager : MonoBehaviour
 
     public IUIPanel _pauseUI;
     public IUIPanel _inventoryUI;
-    public IUIPanel _marketUI;
 
     [SerializeField] private GameObject _pause;
     [SerializeField] private GameObject _inventory;
-    [SerializeField] private GameObject _market;
 
 
     void Awake()
@@ -24,7 +22,6 @@ public class UIManager : MonoBehaviour
     {
         _pauseUI = _pause.GetComponent<IUIPanel>();
         _inventoryUI = _inventory.GetComponent<IUIPanel>();
-        _marketUI = _market.GetComponent<IUIPanel>();
     }
 
     public void OpenPanel(IUIPanel panel)
