@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/FPS_Controller.unity
+    path: Assets/_SleepyDemons/_Levels/FPS_Controller.unity
     guid: 3d5d971569804ade184533296f23fb61
   - enabled: 1
     path: Assets/_deprecated/scenes/Apartment-old.unity
