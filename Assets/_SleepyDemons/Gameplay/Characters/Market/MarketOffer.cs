@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarketOffer : MonoBehaviour, IInteractable, IPickupable
+public class MarketOffer : Interactable, IPickupable
 {
     [SerializeField] private Item _itemSO;
     [SerializeField] private float _rotationSpeed;   
@@ -24,14 +24,9 @@ public class MarketOffer : MonoBehaviour, IInteractable, IPickupable
         Destroy(gameObject);
     }
 
-    public void ExecuteInteraction(GameObject other)
+    public override void ExecuteInteraction(GameObject other)
     {
         Pickup();
-    }
-
-    public bool ExecuteOnRelease()
-    {
-        return false;
     }
 
     public void Pickup()

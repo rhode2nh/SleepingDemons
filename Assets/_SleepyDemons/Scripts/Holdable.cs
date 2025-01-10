@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Holdable : MonoBehaviour, IHoldable, IInteractable
+public class Holdable : Interactable, IHoldable
 {
     [SerializeField] bool _isHolding;
     [SerializeField] private float _strength;
@@ -53,11 +53,9 @@ public class Holdable : MonoBehaviour, IHoldable, IInteractable
         }
     }
 
-    public void ExecuteInteraction(GameObject other)
+    public override void ExecuteInteraction(GameObject other)
     {
         // TODO: Is there some way to get around using the global variable?
         Hold(other.gameObject.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.instance.isHolding);
     }
-
-    public bool ExecuteOnRelease() { return true;}
 }

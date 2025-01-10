@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldItem : MonoBehaviour, IInteractable, IPickupable
+public class WorldItem : Interactable, IPickupable
 {
     [SerializeField] private Item _itemSO;
 
@@ -13,15 +13,13 @@ public class WorldItem : MonoBehaviour, IInteractable, IPickupable
         Destroy(gameObject);
     }
 
-    public void ExecuteInteraction(GameObject other)
+    public override void ExecuteInteraction(GameObject other)
     {
         // if (PlayerManager.instance.isHolding)
         // {
             Pickup();
         // }
     }
-
-    public bool ExecuteOnRelease() { return false; }
 
     public void Pickup()
     {

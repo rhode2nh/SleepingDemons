@@ -24,6 +24,21 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 2.589999
       objectReference: {fileID: 0}
+    - target: {fileID: 3679839548314562208, guid: 03772a0cda548469d8dcf726efc3d36a,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 6.4908333
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679839548314562208, guid: 03772a0cda548469d8dcf726efc3d36a,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.3899999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679839548314562208, guid: 03772a0cda548469d8dcf726efc3d36a,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 4754708668861678180, guid: 03772a0cda548469d8dcf726efc3d36a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -82,7 +97,12 @@ PrefabInstance:
     - target: {fileID: 7374120785201836912, guid: 03772a0cda548469d8dcf726efc3d36a,
         type: 3}
       propertyPath: m_Name
-      value: door-wood Variant
+      value: Door_Wood_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374120785201836912, guid: 03772a0cda548469d8dcf726efc3d36a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

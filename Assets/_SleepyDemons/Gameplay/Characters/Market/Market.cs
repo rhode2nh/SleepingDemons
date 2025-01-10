@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using StarterAssets;
 using UnityEngine;
 
-public class Market : MonoBehaviour, IMarket, IInteractable
+public class Market : Interactable, IMarket
 {
     [SerializeField] private Inventory _marketInventory;
     [SerializeField] [ReadOnly] private int _index;

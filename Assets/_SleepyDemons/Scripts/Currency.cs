@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Currency : MonoBehaviour, IInteractable, ICurrency, IPickupable
+public class Currency : Interactable, ICurrency, IPickupable
 {
     [SerializeField] public int amount; 
     [SerializeField] private Item _itemSO;
@@ -20,7 +20,7 @@ public class Currency : MonoBehaviour, IInteractable, ICurrency, IPickupable
         Destroy(gameObject);
     }
 
-    public void ExecuteInteraction(GameObject other)
+    public override void ExecuteInteraction(GameObject other)
     {
         Pickup();
     }
@@ -29,8 +29,6 @@ public class Currency : MonoBehaviour, IInteractable, ICurrency, IPickupable
     {
         return _isBag;
     }
-
-    public bool ExecuteOnRelease() { return false; }
 
     public void Pickup()
     {

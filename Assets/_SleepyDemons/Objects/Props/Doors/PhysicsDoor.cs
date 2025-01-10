@@ -5,6 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(HingeJoint))]
 public class PhysicsDoor : MonoBehaviour, IHoldable
 {
     [SerializeField] private bool _isHolding;
@@ -16,13 +19,21 @@ public class PhysicsDoor : MonoBehaviour, IHoldable
     [SerializeField] private float _minPitch;
     [SerializeField] private float _maxPitch;
     [SerializeField] private float _maxVelocity;
+    [SerializeField] private float boxColliderScalar = 1.0f;
     
     private Rigidbody _rb;
-    private Vector3 axis;
+    private HingeJoint _hingeJoint;
+    private BoxCollider _boxCollider;
+    private Vector3 _axis;
 
-    void Start() {
-        _rb = GetComponentInParent<Rigidbody>();
+    void Awake() {
+        _rb = GetComponent<Rigidbody>();
+        _hingeJoint = GetComponent<HingeJoint>();
+        _boxCollider = GetComponent<BoxCollider>();
         _isHolding = false;
+        
+        CalculatePivot();
+        CalculateBoxCollider();
     }
 
     public void Hold(Vector3 hitPoint, bool isHolding) {
@@ -93,9 +104,20 @@ public class PhysicsDoor : MonoBehaviour, IHoldable
     }
 
     public float GetNormalizedVelocity() {
-        // return Mathf.Lerp(0.0f, _maxVelocity, _rb.velocity.magnitude);
         return (_rb.velocity.magnitude - 0.0f) / (_maxVelocity - 0);
     }
 
-    public bool ExecuteOnRelease() { return true; }
+    private void CalculatePivot()
+    {
+        var center = _boxCollider.center;
+        _hingeJoint.anchor = new Vector3(0.5f, center.y, center.z);
+        _hingeJoint.axis = new Vector3(0, 1, 0);
+    }
+
+    private void CalculateBoxCollider()
+    {
+        // var size = _boxCollider.size;
+        // _boxCollider.size = new Vector3(size.x * boxColliderScalar, size.y * boxColliderScalar, size.z);
+        _boxCollider.size *= boxColliderScalar;
+    }
 }

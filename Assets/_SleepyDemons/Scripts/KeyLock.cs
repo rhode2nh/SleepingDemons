@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyLock : MonoBehaviour, ILock, IInteractable, IHittable
+public class KeyLock : Interactable, ILock, IHittable
 {
     [field: SerializeField] public bool IsLocked { get; private set; }
     [field: SerializeField] public bool IsBroken { get; private set; }
@@ -22,17 +20,12 @@ public class KeyLock : MonoBehaviour, ILock, IInteractable, IHittable
         IsLocked = false;
     }
 
-    public void ExecuteInteraction(GameObject other)
+    public override void ExecuteInteraction(GameObject other)
     {
         if (InventoryManager.instance.inventory.HasItem(Key.GUID))
         {
             SwitchLock();
         }
-    }
-
-    public bool ExecuteOnRelease()
-    {
-        return false;
     }
 
     public void TakeDamage(float damage, Vector3 force, Vector3 torque)

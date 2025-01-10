@@ -2,35 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class DoorController : MonoBehaviour, IInteractable
+public class DoorController : Interactable
 {
-    [SerializeField] private PhysicsDoor _physicsDoor;
-    [SerializeField] GameObject _lockParent;
-    private List<ILock> _locks = new();
+    [SerializeField] private PhysicsDoor physicsDoor;
+    [SerializeField] private LockController lockController;
     
-    // Start is called before the first frame update
-    void Awake()
+    public override void ExecuteInteraction(GameObject other)
     {
-        _physicsDoor = GetComponent<PhysicsDoor>();
-        _locks = new List<ILock>(_lockParent.GetComponentsInChildren<ILock>());
-    }
-    
-    public void ExecuteInteraction(GameObject other)
-    {
-        if (IsUnlocked())
+        if (IsLocked())
         {
-            _physicsDoor.Hold(other.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.instance.isHolding);
+            physicsDoor.Hold(other.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.instance.isHolding);
         }
     }
 
-    private bool IsUnlocked()
+    private bool IsLocked()
     {
-        return _locks.All(llock => !llock.IsLocked);
-    }
-
-    public bool ExecuteOnRelease()
-    {
-        return true;
+        return lockController.IsLocked();
     }
 }

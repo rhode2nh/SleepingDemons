@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Note : MonoBehaviour, IPickupable, IInteractable
+public class Note : Interactable, IPickupable
 {
     [field: SerializeField] public Item ItemSO { get; private set; }
     public void DestroyItem()
@@ -20,13 +20,8 @@ public class Note : MonoBehaviour, IPickupable, IInteractable
         DestroyItem();
     }
 
-    public void ExecuteInteraction(GameObject other)
+    public override void ExecuteInteraction(GameObject other)
     {
         Pickup();
-    }
-
-    public bool ExecuteOnRelease()
-    {
-        return false;
     }
 }
