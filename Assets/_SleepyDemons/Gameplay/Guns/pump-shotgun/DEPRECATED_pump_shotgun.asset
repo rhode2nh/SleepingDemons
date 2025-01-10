@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fe7d889f5597eb98ed302df742f9d4, type: 3}
+  m_Name: DEPRECATED_pump_shotgun
+  m_EditorClassIdentifier: 
+  _GUID: 
+  _icon: {fileID: 0}
+  _cost: 4
+  _worldItem: {fileID: 5682503628717446261, guid: 4ef1ac8b84168a1c59c3b67164a6071b,
+    type: 3}
+  _marketItem: {fileID: 0}
+  _fpsItem: {fileID: 8339975435419959490, guid: 9b9714abfe0805f3a88e9928a3343de1,
+    type: 3}
