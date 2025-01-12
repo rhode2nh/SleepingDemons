@@ -55,12 +55,12 @@ public class Market : Interactable, IMarket
         throw new System.NotImplementedException();
     }
 
-    public void ExecuteInteraction(GameObject other)
+    public override void ExecuteInteraction(GameObject other)
     {
         OpenMarket();
     }
 
-    public bool ExecuteOnRelease()
+    public override bool ExecuteOnRelease()
     {
         return false;
     }

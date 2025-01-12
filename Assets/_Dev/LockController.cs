@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LockController : MonoBehaviour
 {
-    [SerializeField] GameObject _lockParent;
+    [Header("References")]
+    [SerializeField] GameObject lockParent;
+    
     private List<ILock> _locks = new();
     
     void Awake()
     {
-        _locks = new List<ILock>(_lockParent.GetComponentsInChildren<ILock>());
+        _locks = new List<ILock>(lockParent.GetComponentsInChildren<ILock>());
     }
 
     public bool IsLocked()
     {
-        if (_locks.Count <= 0)
-        {
-            return true;
-        }
-        return _locks.All(llock => llock.IsLocked);
+        return _locks.Count > 0 && _locks.Any(llock => llock.IsLocked);
     }
 }

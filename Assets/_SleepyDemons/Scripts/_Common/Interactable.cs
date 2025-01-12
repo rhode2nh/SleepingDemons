@@ -2,7 +2,10 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour, IInteractable
 {
-    [SerializeField] private bool _executeOnRelease;
+    [Header("Interactable Settings")]
+    [Tooltip("Should the action be executed only on press or when the input is pressed and released?")]
+    [SerializeField]
+    private bool executeOnRelease;
 
     public virtual void ExecuteInteraction(GameObject other)
     {
@@ -11,6 +14,6 @@ public abstract class Interactable : MonoBehaviour, IInteractable
 
     public virtual bool ExecuteOnRelease()
     {
-        return _executeOnRelease;
+        return executeOnRelease;
     }
 }
