@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &787268650864062650
 Transform:
@@ -173,6 +173,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bb-floor
       objectReference: {fileID: 0}
+    - target: {fileID: 2614541275583350493, guid: 25cb7fbee350c2e69b3633b58d580f3d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -242,10 +247,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1968894118219302473, guid: 2aec7baaef5b55ae9b05a8586d8af080,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146106586566282673, guid: 2aec7baaef5b55ae9b05a8586d8af080,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5667252631999469394, guid: 2aec7baaef5b55ae9b05a8586d8af080,
         type: 3}
       propertyPath: m_Name
       value: bb-hallway (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667252631999469394, guid: 2aec7baaef5b55ae9b05a8586d8af080,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011905946988989704, guid: 2aec7baaef5b55ae9b05a8586d8af080,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -270,6 +295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bb-corner-inside
+      objectReference: {fileID: 0}
+    - target: {fileID: 429227055823696263, guid: 236d7c78adc5c00a4ac04920174e1766,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1873561686024907059, guid: 236d7c78adc5c00a4ac04920174e1766,
         type: 3}
@@ -390,10 +420,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1968894118219302473, guid: 2aec7baaef5b55ae9b05a8586d8af080,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146106586566282673, guid: 2aec7baaef5b55ae9b05a8586d8af080,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5667252631999469394, guid: 2aec7baaef5b55ae9b05a8586d8af080,
         type: 3}
       propertyPath: m_Name
       value: bb-hallway (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667252631999469394, guid: 2aec7baaef5b55ae9b05a8586d8af080,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011905946988989704, guid: 2aec7baaef5b55ae9b05a8586d8af080,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

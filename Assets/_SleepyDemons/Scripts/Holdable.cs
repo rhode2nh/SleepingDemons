@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Holdable : Interactable, IHoldable
 {
-    [SerializeField] bool _isHolding;
+    [SerializeField] protected bool _isHolding;
     [SerializeField] private float _strength;
     [SerializeField] private bool _bringToCenter;
+    [SerializeField] private Rigidbody rb;
     private Vector3 _initialReferencePoint;
     private Vector3 _relativePointToHold;
-    private Rigidbody _rb;
 
-    void Start() {
-        _rb = GetComponentInParent<Rigidbody>();
+     void Start() {
+        rb = GetComponent<Rigidbody>();
         _initialReferencePoint = new Vector3();
         _relativePointToHold = new Vector3();
         _isHolding = false;
@@ -27,23 +27,23 @@ public class Holdable : Interactable, IHoldable
 
     IEnumerator HoldObject(Vector3 hitPoint) {
         var relativeDistance = Vector3.Distance(Camera.main.transform.position, hitPoint);
-        var initialPos = _rb.position;
+        var initialPos = rb.position;
         _initialReferencePoint = Camera.main.transform.position + Camera.main.transform.forward * relativeDistance;
-        _rb.angularDrag = 3f;
+        // rb.angularDrag = 3f;
         while (PlayerManager.instance.isHolding) {
             var posToHold = Camera.main.transform.position + (Camera.main.transform.forward * relativeDistance);
             if (_bringToCenter) {
                 // What are the reprecussions?
-                // _rb.AddForce((posToHold - _rb.position) * _strength);
-                _rb.velocity = (posToHold - _rb.position) * _strength;
+                // rb.AddForce((posToHold - rb.position) * _strength);
+                rb.velocity = (posToHold - rb.position) * _strength;
             } else {
-                _relativePointToHold = _initialReferencePoint + (_rb.position - initialPos);
-                // _rb.AddForce((posToHold - _relativePointToHold) * _strength);
-                _rb.velocity = (posToHold - _relativePointToHold) * _strength;
+                _relativePointToHold = _initialReferencePoint + (rb.position - initialPos);
+                // rb.AddForce((posToHold - _relativePointToHold) * _strength);
+                rb.velocity = (posToHold - _relativePointToHold) * _strength;
             }
             yield return new WaitForFixedUpdate();
         }
-        _rb.angularDrag = 0.5f;
+        // rb.angularDrag = 0.5f;
     }
 
     void OnDrawGizmos() {
