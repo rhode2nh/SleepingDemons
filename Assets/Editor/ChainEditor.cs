@@ -1,24 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-[CustomEditor(typeof(ChainTest))]
+[CustomEditor(typeof(ChainGenerator))]
 public class ChainEditor : Editor
 {
-    private SerializedProperty segment;
-    private int numSegments;
-    private List<GameObject> segments = new();
-    private Rigidbody chainHead;
-    private float distanceBetweenSegments;
-    
-    private float pullDistance;
-    private Renderer _renderer;
-    private Light lightBulb;
-    private float emissiveIntensity;
-    private Transform transform;
-    
     public override void OnInspectorGUI()
     {
         GUILayout.Label("Chain Settings");
@@ -27,21 +12,19 @@ public class ChainEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("chainHead"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("distanceBetweenSegments"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("pullDistance"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("_renderer"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("lightBulb"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("emissiveIntensity"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("lampSwitchOn"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("lampSwitchOff"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("segments"));
         
         if (GUILayout.Button("Reset Chain"))
         {
-            var chainTest = target as ChainTest;
+            var chainTest = target as ChainGenerator;
             chainTest.ResetChain();
         }
         if (GUILayout.Button("Generate Chain"))
         {
-            var chainTest = target as ChainTest;
+            var chainTest = target as ChainGenerator;
             chainTest.GenerateChain();
+            EditorUtility.SetDirty(chainTest);
+            PrefabUtility.RecordPrefabInstancePropertyModifications(chainTest);
         }
 
         serializedObject.ApplyModifiedProperties();
