@@ -60,13 +60,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 22c8dfbd9273015eb995b98f4fb6991e,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 22c8dfbd9273015eb995b98f4fb6991e,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b725817d543b1572db47aa75e974e0b4, type: 2}
     - target: {fileID: 919132149155446097, guid: 22c8dfbd9273015eb995b98f4fb6991e,
         type: 3}
       propertyPath: m_Name
-      value: Link_01_TEST
+      value: Link_01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -264,11 +269,5 @@ MonoBehaviour:
   rb: {fileID: -1618632835564653314}
   pullDistance: 0.03
   anchor: {fileID: 0}
-  lightBulb: {fileID: 0}
-  emissiveIntensity: 1
-  lampShadeRenderer: {fileID: 0}
   tension: 1
   pullStrength: 4
-  maxPullLength: 0.03
-  lampSwitchOn: {fileID: 0}
-  lampSwitchOff: {fileID: 0}

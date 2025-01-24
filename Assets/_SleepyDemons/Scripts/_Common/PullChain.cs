@@ -15,12 +15,12 @@ public class PullChain : Holdable
     {
         this.pullDistance = pullDistance;
         this.anchor = anchor;
-        this._triggerable = _triggerable;
     }
     
     void Start()
     {
         initialAnchorPos = anchor.position;
+        _triggerable = GetComponentInParent<ITriggerable>();
     }
     
     public override void ExecuteInteraction(GameObject other)

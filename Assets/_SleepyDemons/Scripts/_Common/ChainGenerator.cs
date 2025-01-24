@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class ChainGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject segment;
@@ -16,19 +15,13 @@ public class ChainGenerator : MonoBehaviour
     [SerializeField] private Rigidbody anchor;
     [SerializeField] private Lamp lamp;
 
-    private void Awake()
-    {
-        ResetChain();
-        GenerateChain();
-    }
-
     public void ResetChain()
     {
         try
         {
             foreach (var t in segments)
             {
-                DestroyImmediate(t);
+                Undo.DestroyObjectImmediate(t);
             }
 
             segments.Clear();
@@ -52,7 +45,7 @@ public class ChainGenerator : MonoBehaviour
                 {
                     var seg = segments[i];
                     segments.RemoveAt(i);
-                    DestroyImmediate(seg);
+                    Undo.DestroyObjectImmediate(seg);
                     
                 }
             }

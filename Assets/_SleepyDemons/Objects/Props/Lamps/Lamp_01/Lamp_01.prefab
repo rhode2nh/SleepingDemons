@@ -179,12 +179,7 @@ MonoBehaviour:
   chainHead: {fileID: 984275799459433241}
   distanceBetweenSegments: 1.5
   pullDistance: 0.03
-  _renderer: {fileID: 8219012405901690198}
   anchor: {fileID: 984275799459433241}
-  lightBulb: {fileID: 7463084144476466829}
-  emissiveIntensity: 1
-  lampSwitchOn: {fileID: 6299397611522943152}
-  lampSwitchOff: {fileID: 5486751593366230539}
   lamp: {fileID: 0}
 --- !u!1 &3049123225219184595
 GameObject:
@@ -511,17 +506,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.339001
+      value: 10.276721
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.973
+      value: 0.977
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.65398693
+      value: -0.6763237
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
         type: 3}
@@ -649,6 +644,8 @@ MonoBehaviour:
   light: {fileID: 7463084144476466829}
   lampShadeRenderer: {fileID: 8219012405901690198}
   emissiveIntensity: 1
+  lampSwitchOn: {fileID: 6299397611522943152}
+  lampSwitchOff: {fileID: 5486751593366230539}
 --- !u!4 &2286708901836078151 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
