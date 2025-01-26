@@ -4,6 +4,9 @@ public class LightController : MonoBehaviour, ITriggerable
 {
     [SerializeField] internal new Light light;
 
+    [SerializeField]
+    internal float activationDistance;
+
     public virtual void SwitchLight()
     {
         light.enabled = !light.enabled;
