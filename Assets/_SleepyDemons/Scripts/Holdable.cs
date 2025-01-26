@@ -7,12 +7,17 @@ public class Holdable : Interactable, IHoldable
     [SerializeField] protected bool _isHolding;
     [SerializeField] private float _strength;
     [SerializeField] private bool _bringToCenter;
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private bool modifyVelocityDirectly;
+    [SerializeField] private float brakingDistance;
+    [SerializeField] private float brakingStrength;
+    
+    private Rigidbody _rb;
     private Vector3 _initialReferencePoint;
     private Vector3 _relativePointToHold;
+    private Vector3 _posToHold;
 
-     void Start() {
-        rb = GetComponent<Rigidbody>();
+     internal virtual void Awake() {
+        _rb = GetComponent<Rigidbody>();
         _initialReferencePoint = new Vector3();
         _relativePointToHold = new Vector3();
         _isHolding = false;
@@ -27,29 +32,47 @@ public class Holdable : Interactable, IHoldable
 
     IEnumerator HoldObject(Vector3 hitPoint) {
         var relativeDistance = Vector3.Distance(Camera.main.transform.position, hitPoint);
-        var initialPos = rb.position;
         _initialReferencePoint = Camera.main.transform.position + Camera.main.transform.forward * relativeDistance;
-        // rb.angularDrag = 3f;
-        while (PlayerManager.instance.isHolding) {
-            var posToHold = Camera.main.transform.position + (Camera.main.transform.forward * relativeDistance);
-            if (_bringToCenter) {
-                // What are the reprecussions?
-                // rb.AddForce((posToHold - rb.position) * _strength);
-                rb.velocity = (posToHold - rb.position) * _strength;
-            } else {
-                _relativePointToHold = _initialReferencePoint + (rb.position - initialPos);
-                // rb.AddForce((posToHold - _relativePointToHold) * _strength);
-                rb.velocity = (posToHold - _relativePointToHold) * _strength;
+        var initialPos = _rb.position;
+        
+        while (PlayerManager.instance.isHolding)
+        {
+            _posToHold = Camera.main.transform.position + (Camera.main.transform.forward * relativeDistance);
+            var pointToHold = _bringToCenter ? _rb.position : _initialReferencePoint + (_rb.position - initialPos);
+            var force = (_posToHold - pointToHold) * _strength;
+            
+            Vector3 directionToWaypoint = _posToHold - _rb.position;
+            float distanceToWaypoint = directionToWaypoint.magnitude;
+        
+            
+            // What are the reprecussions?
+            if (modifyVelocityDirectly)
+            {
+                _rb.velocity = force;
             }
+            else
+            {
+                if (distanceToWaypoint > brakingDistance)
+                {
+                    // If we're not close to the waypoint, move towards it
+                    _rb.AddForce(force);
+                }
+                else
+                {
+                    // Apply braking force when near the waypoint
+                    Vector3 brakingForce = -_rb.velocity.normalized * brakingStrength;
+                    _rb.AddForce(brakingForce, ForceMode.Force);
+                }
+            }
+
             yield return new WaitForFixedUpdate();
         }
-        // rb.angularDrag = 0.5f;
     }
 
     void OnDrawGizmos() {
         if (_isHolding) {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(_relativePointToHold, 0.1f);
+            Gizmos.DrawSphere(_posToHold, 0.1f);
         }
     }
 

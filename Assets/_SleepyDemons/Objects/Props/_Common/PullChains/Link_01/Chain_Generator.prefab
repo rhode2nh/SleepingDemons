@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4770445865461446196}
   - component: {fileID: 3517874185695405732}
+  - component: {fileID: 4038501378972943766}
   m_Layer: 0
   m_Name: head
   m_TagString: Untagged
@@ -59,6 +60,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 10
   m_CollisionDetection: 0
+--- !u!114 &4038501378972943766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605740339313830008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384c6c184dec9cc82ba0b7da2d2da3b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pullDistance: 0.05
+  rb: {fileID: 3517874185695405732}
 --- !u!1 &5764972089917377101
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,12 +123,5 @@ MonoBehaviour:
   numSegments: 5
   segments: []
   chainHead: {fileID: 3517874185695405732}
-  distanceBetweenSegments: 1.5
-  pullDistance: 0.03
-  _renderer: {fileID: 0}
-  anchor: {fileID: 3517874185695405732}
-  lightBulb: {fileID: 0}
-  emissiveIntensity: 1
-  lampSwitchOn: {fileID: 0}
-  lampSwitchOff: {fileID: 0}
-  lamp: {fileID: 0}
+  distanceBetweenSegments: 0.03
+  tail: {fileID: 0}

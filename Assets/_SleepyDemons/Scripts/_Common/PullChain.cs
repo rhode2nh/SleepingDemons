@@ -10,7 +10,7 @@ public class PullChain : Chain
 
     private Vector3 initialAnchorPos;
     
-    public override void Awake()
+    internal override void Awake()
     {
         base.Awake();
         triggerable = GetComponentInParent<ITriggerable>();

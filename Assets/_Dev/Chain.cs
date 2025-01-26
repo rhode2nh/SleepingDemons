@@ -1,17 +1,17 @@
-using System.Collections;
 using UnityEngine;
 
 public class Chain : Holdable, IChain
 {
-    [SerializeField] private ConfigurableJoint configurableJoint;
+    private ConfigurableJoint _configurableJoint;
 
-    public virtual void Awake()
+    internal override void Awake()
     {
-        configurableJoint = GetComponent<ConfigurableJoint>();
+        base.Awake();
+        _configurableJoint = GetComponent<ConfigurableJoint>();
     }
     
     public void Init(Rigidbody previousSegment)
     {
-        configurableJoint.connectedBody = previousSegment;
+        _configurableJoint.connectedBody = previousSegment;
     }
 }
