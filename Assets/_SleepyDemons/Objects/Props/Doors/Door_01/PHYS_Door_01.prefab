@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 548712558505235229, guid: 3a65f930ae09b524495ef56d37d80d32,
+        type: 3}
+      propertyPath: boxColliderScalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6362793703873876253, guid: 3a65f930ae09b524495ef56d37d80d32,
         type: 3}
       propertyPath: m_Name

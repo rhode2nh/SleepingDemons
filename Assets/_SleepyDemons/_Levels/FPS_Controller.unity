@@ -388,6 +388,20 @@ MonoBehaviour:
   weaponSpawnPos: {fileID: 6076766968885451633}
   cursorTexture: {fileID: 2800000, guid: b91cf042a13adcf0f9f3d1830bb030ee, type: 3}
   player: {fileID: 0}
+--- !u!1 &1543293996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3768787608333504675, guid: b0f3700f1a9518b519d9819a2798a2a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7173313306912893366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!124 &1543294002
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543293996}
+  m_Enabled: 1
 --- !u!1 &1608015716
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +977,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3768787608333504673, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 18167
+      objectReference: {fileID: 0}
     - target: {fileID: 5435351746387582239, guid: b0f3700f1a9518b519d9819a2798a2a5,
         type: 3}
       propertyPath: m_Name
@@ -976,7 +995,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3768787608333504675, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1543294002}
   m_SourcePrefab: {fileID: 100100000, guid: b0f3700f1a9518b519d9819a2798a2a5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

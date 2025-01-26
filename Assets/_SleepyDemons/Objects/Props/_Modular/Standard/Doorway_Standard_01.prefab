@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 795509077840907592}
   - component: {fileID: 3033894191324971566}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 12587054805399216}
   - component: {fileID: 4254040947765878771}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1527497845124863012}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5342671517615493479}
   - component: {fileID: 746397275326778686}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 4952373486258059041}
   - component: {fileID: 4359597959853858180}
   - component: {fileID: 494484638467390637}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Doorway_Standard_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
