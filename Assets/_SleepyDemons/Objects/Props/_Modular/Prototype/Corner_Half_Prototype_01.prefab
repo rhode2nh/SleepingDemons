@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6160092546220736973
+--- !u!1001 &2187482115739466389
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,67 +8,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3101687953459865105, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
-        type: 3}
-      propertyPath: m_Name
-      value: Corner_Half_Prototype_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3101687953459865105, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6071842467344984171, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 24797411284379056, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6573216045908251606, guid: e2db80e8f1a6c890da171ee0a2f6c77f,
+    - target: {fileID: 798203323709931274, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
+        type: 3}
+      propertyPath: m_Name
+      value: Corner_Half_Standard_01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158328634741333727, guid: 67e5e94c6feac5f0a8c9826b0e1e25af,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -77,4 +72,4 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e2db80e8f1a6c890da171ee0a2f6c77f, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 67e5e94c6feac5f0a8c9826b0e1e25af, type: 3}
