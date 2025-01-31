@@ -1,34 +1,33 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LightSwitchSlide : MonoBehaviour
 {
     [SerializeField] private ConfigurableJoint configurableJoint;
-    [SerializeField] private List<Light> lightSources;
-
     [SerializeField, ReadOnly] private float limit;
     [SerializeField, ReadOnly] private float currentIntensity;
 
-    private float maxLimit;
-    private float minLimit;
+    private LightSwitch _lightSwitch;
+    private float _maxLimit;
+    private float _minLimit;
 
-    void Start()
+    void Awake()
     {
+        _lightSwitch = GetComponentInParent<LightSwitch>();
         limit = configurableJoint.linearLimit.limit;
-        minLimit = transform.position.y - limit;
-        maxLimit = transform.position.y + limit;
+        _minLimit = transform.position.y - limit;
+        _maxLimit = transform.position.y + limit;
+        currentIntensity = CalculateIntensity();
     }
 
     void Update()
     {
-        var curYPos = transform.position.y;
-        currentIntensity = (curYPos - minLimit) / (maxLimit - minLimit);
-        if (lightSources.Count > 0)
-        {
-            foreach (var lightSource in lightSources)
-            {
-                lightSource.intensity = currentIntensity;
-            }
-        } 
+        currentIntensity = CalculateIntensity();
+        _lightSwitch.DimLight(currentIntensity);   
+    }
+
+    private float CalculateIntensity()
+    {
+       var curYPos = transform.position.y;
+       return (curYPos - _minLimit) / (_maxLimit - _minLimit);
     }
 }

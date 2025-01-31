@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KeyLock : Interactable, ILock, IHittable
+public class KeyLock : Interactable, ILock, IDamageable
 {
     [field: SerializeField] public bool IsLocked { get; private set; }
     [field: SerializeField] public bool IsBroken { get; private set; }

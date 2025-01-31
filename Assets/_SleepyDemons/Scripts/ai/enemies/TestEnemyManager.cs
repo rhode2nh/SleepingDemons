@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnemyManager : MonoBehaviour, IHittable
+public class TestEnemyManager : MonoBehaviour, IDamageable
 {
     [SerializeField] private float health;
     [SerializeField] private float staggerThreshold;

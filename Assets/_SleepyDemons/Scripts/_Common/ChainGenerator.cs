@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class ChainGenerator : MonoBehaviour
     [SerializeField] private Rigidbody chainHead;
     [SerializeField] private float distanceBetweenSegments;
     [SerializeField] private GameObject tail;
+
+    public event Action OnPullClick;
+    public event Action OnLetGo;
 
     void Start()
     {
@@ -39,7 +43,6 @@ public class ChainGenerator : MonoBehaviour
         var instantiatedTail = Instantiate(tail, spawnPos, rotation, chainHead.transform);
         var tailChain = instantiatedTail.GetComponent<IChain>(); 
         tailChain.Init(segments.Last().GetComponent<Rigidbody>());
-        // segments.Add(instantiatedSegment);
     }
 
     private void OnDrawGizmos()
@@ -56,5 +59,15 @@ public class ChainGenerator : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(currentPos, boundsY);
+    }
+
+    public void PullClick()
+    {
+        OnPullClick?.Invoke();
+    }
+    
+    public void LetGo()
+    {
+        OnLetGo?.Invoke();
     }
 }
