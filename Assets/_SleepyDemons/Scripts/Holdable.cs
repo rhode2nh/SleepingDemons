@@ -13,13 +13,11 @@ public class Holdable : Interactable, IHoldable
     
     private Rigidbody _rb;
     private Vector3 _initialReferencePoint;
-    private Vector3 _relativePointToHold;
     private Vector3 _posToHold;
 
      internal virtual void Awake() {
         _rb = GetComponent<Rigidbody>();
         _initialReferencePoint = new Vector3();
-        _relativePointToHold = new Vector3();
         _isHolding = false;
     }
 

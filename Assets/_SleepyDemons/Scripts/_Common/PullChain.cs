@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,16 +6,18 @@ public class PullChain : Chain
 {
     [SerializeField] private float tension;
     [SerializeField] private float pullStrength;
-    [SerializeField] ITriggerable triggerable;
     [SerializeField] private ChainAnchor chainAnchor;
 
+    private LightSwitch _lightSwitch;
     private Vector3 initialAnchorPos;
+    private ChainGenerator _chainGenerator;
     
     internal override void Awake()
     {
         base.Awake();
-        triggerable = GetComponentInParent<ITriggerable>();
+        _lightSwitch = GetComponentInParent<LightSwitch>();
         chainAnchor = GetComponentInParent<ChainAnchor>();
+        _chainGenerator = GetComponentInParent<ChainGenerator>();
         initialAnchorPos = chainAnchor.rb.position;
     }
     
@@ -47,7 +50,8 @@ public class PullChain : Chain
             if (initialAncPos.y - chainAnchor.rb.position.y > chainAnchor.pullDistance && !lightSwitched)
             {
                 lightSwitched = true;
-                triggerable.ExecuteTrigger();
+                _chainGenerator.PullClick();
+                _lightSwitch.SwitchLight();
             }
             yield return new WaitForFixedUpdate();
         }
@@ -61,7 +65,7 @@ public class PullChain : Chain
 
         if (lightSwitched)
         {
-            triggerable.ExecutePostTrigger();
+            _chainGenerator.LetGo();
         }
     }
 }

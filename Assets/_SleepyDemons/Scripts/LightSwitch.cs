@@ -1,17 +1,49 @@
+using System;
 using UnityEngine;
 
-public class LightSwitch : Interactable
+public class LightSwitch : MonoBehaviour
 {
-    public Light[] lightSources;
-    public AudioSource audioSource;
+    public event Action<float> OnDimLight;
+    public float initialIntensity;
     public bool isOn;
 
-    public override void ExecuteInteraction(GameObject other) {
-        for (int i = 0; i < lightSources.Length; i++) {
-            lightSources[i].enabled = !lightSources[i].enabled;
-            isOn = lightSources[i].enabled;
-        }
+    private float currentIntensity;
 
-        // audioSource.Play();
+    private void Start()
+    {
+        currentIntensity = initialIntensity;
+        InitializeLights();
+    }
+
+    private void InitializeLights()
+    {
+        OnDimLight?.Invoke(initialIntensity);
+        if (isOn)
+        {
+            OnDimLight?.Invoke(currentIntensity);
+        }
+        else
+        {
+            OnDimLight?.Invoke(0);
+        }
+    }
+
+    public void SwitchLight()
+    {
+        isOn = !isOn;
+        if (isOn)
+        {
+            OnDimLight?.Invoke(currentIntensity);
+        }
+        else
+        {
+            OnDimLight?.Invoke(0);
+        }
+    }
+    
+    public void DimLight(float intensity)
+    {
+        currentIntensity = intensity;
+        OnDimLight?.Invoke(currentIntensity);
     }
 }

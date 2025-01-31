@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour, IHittable
+public class EnemyManager : MonoBehaviour, IDamageable
 {
     [SerializeField] private float _health;
     [SerializeField] private GameObject _ragdoll;

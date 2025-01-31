@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,22 +62,15 @@ public class Gun : MonoBehaviour, IGun, IEquippable
 
     public void OnShoot()
     {
-        RaycastHit hit;
         Vector3 forwardDir = Camera.main.transform.forward;
         Vector3 rightDir = Camera.main.transform.right;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out hit, Mathf.Infinity, _layerMask))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), out var hit, Mathf.Infinity, _layerMask))
         {
-            // if (hit.collider.gameObject.GetComponent<IHoldable>() != null)
-            // {
-            //     hit.transform.gameObject.GetComponentInParent<Rigidbody>().AddForce(forwardDir * _force, ForceMode.Impulse);
-            //     hit.transform.gameObject.GetComponentInParent<Rigidbody>().AddTorque(rightDir * _torque, ForceMode.Impulse);
-            //     Instantiate(_emitter, hit.point, Quaternion.LookRotation(-forwardDir));
-            // }
-            var hittable = hit.collider.GetComponent<IHittable>();
-            hittable?.TakeDamage(_damage, forwardDir * _force, rightDir * _torque);
+            var damageObject = hit.collider.GetComponent<IDamageable>();
+            damageObject?.TakeDamage(_damage, forwardDir * _force, rightDir * _torque);
         }
 
-        if (_gunShot != null)
+        if (_gunShot.clip != null)
         {
             _gunShot.PlayOneShot(_gunShot.clip);
         }

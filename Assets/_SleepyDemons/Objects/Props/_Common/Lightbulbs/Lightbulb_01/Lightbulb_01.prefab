@@ -1,5 +1,84 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &725340075545866895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9075512850101250876}
+  - component: {fileID: 7871479181738286078}
+  m_Layer: 0
+  m_Name: flare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9075512850101250876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725340075545866895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.17100005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3836695178166698318}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!123 &7871479181738286078
+LensFlare:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725340075545866895}
+  m_Enabled: 1
+  m_Flare: {fileID: 12100000, guid: 4d6d53aa3f276d6a385fe335ab18f965, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 1
+  m_FadeSpeed: 20
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 32774
+  m_Directional: 0
+--- !u!1 &6701144124031745322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7296227830761010274}
+  m_Layer: 15
+  m_Name: LIGHTS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7296227830761010274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701144124031745322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3836695178166698318}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3653567817831802533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,18 +137,96 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 879933600045338520, guid: fde8d7440c358f8478cf710612d55186,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: de4ae81e1c3d430dea0af61bf392a260, type: 2}
     - target: {fileID: 919132149155446097, guid: fde8d7440c358f8478cf710612d55186,
         type: 3}
       propertyPath: m_Name
       value: Lightbulb_01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fde8d7440c358f8478cf710612d55186,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1139390586483452868, guid: fde8d7440c358f8478cf710612d55186,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: de4ae81e1c3d430dea0af61bf392a260, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: fde8d7440c358f8478cf710612d55186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9075512850101250876}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: fde8d7440c358f8478cf710612d55186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7296227830761010274}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fde8d7440c358f8478cf710612d55186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4794273974108680293}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fde8d7440c358f8478cf710612d55186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 604094408068903439}
   m_SourcePrefab: {fileID: 100100000, guid: fde8d7440c358f8478cf710612d55186, type: 3}
+--- !u!4 &3836695178166698318 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fde8d7440c358f8478cf710612d55186,
+    type: 3}
+  m_PrefabInstance: {fileID: 3653567817831802533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4500641130628832244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fde8d7440c358f8478cf710612d55186,
+    type: 3}
+  m_PrefabInstance: {fileID: 3653567817831802533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4794273974108680293
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500641130628832244}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.14, y: 0.19, z: 0.14}
+  m_Center: {x: 0, y: 0.14, z: 0}
+--- !u!114 &604094408068903439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500641130628832244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e19906250be7e7fbaea96cdebae427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  destroyedBulb: {fileID: 7508080693772739706, guid: 11f9861891b258ccaabd2279bec83354,
+    type: 3}
+  sparks: {fileID: 4350676609968045409, guid: e6b7a241c9d71acf7880a768a5ab134f, type: 3}
+  lightSources: []
+  lightController2: {fileID: 0}
+  flare: {fileID: 7871479181738286078}
