@@ -977,6 +977,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2730765890992365849, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730765890992365849, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730765890992365849, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3768787608333504673, guid: b0f3700f1a9518b519d9819a2798a2a5,
         type: 3}
       propertyPath: field of view
@@ -1001,6 +1016,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FirstPersonController
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792560430545496650, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: crouchHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792560430545496650, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: ceilingOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792560430545496650, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: GroundedOffset
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922788505070152042, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7068140528095539999, guid: b0f3700f1a9518b519d9819a2798a2a5,
         type: 3}

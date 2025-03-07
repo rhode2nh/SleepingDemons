@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace StarterAssets
 		public float lean;
 		public bool jump;
 		public bool sprint;
+		public bool crouched;
 		public bool throwItem;
 
 		[Header("Movement Settings")]
@@ -30,6 +32,8 @@ namespace StarterAssets
 		[SerializeField] private Gun _gun;
 		[SerializeField] [ReadOnly] private List<string> _lastActionMap;
 		private bool _checkChamberCoroutineStarted;
+
+		public event Action TriggerCrouch;
 
 		void Start()
 		{
@@ -215,6 +219,12 @@ namespace StarterAssets
 		public void OnFlashlight(InputValue value)
 		{
 			InputManager.instance.isFlashlightOn = !InputManager.instance.isFlashlightOn;
+		}
+
+		public void OnCrouch(InputValue newCrouchState)
+		{
+			crouched = !crouched;
+			TriggerCrouch?.Invoke();
 		}
 		
 		public void OnThrow(InputValue value)
