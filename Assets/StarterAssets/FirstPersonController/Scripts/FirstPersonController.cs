@@ -52,6 +52,7 @@ namespace StarterAssets
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
 		public bool Grounded = true;
+		public bool Crouched = false;
 		public bool hitCeiling = false;
 		bool resetVerticalVelocity = false;
 		[Tooltip("Useful for rough ground")]
@@ -114,6 +115,10 @@ namespace StarterAssets
 		[SerializeField] private bool _smoothCamera = false;
 		[SerializeField] private float _dampening = 0.0f;
 
+		private float _initialHeight = 2.0f;
+		private float _currentHeight = 2.0f;
+		[SerializeField] private float crouchHeight;
+
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -129,11 +134,13 @@ namespace StarterAssets
             _initialRotation = CinemachineCameraTarget.transform.localRotation;
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
+			_input.TriggerCrouch += Crouch;
 			playerInput = GetComponent<PlayerInput>();
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+			_initialHeight = _controller.height;
 		}
 
 		public void ApplyForces(Vector3 rotationalDir, Vector3 forceDir) {
@@ -146,6 +153,8 @@ namespace StarterAssets
 			GroundedCheck();
 			CeilingCheck();
 			Move();
+
+			_currentHeight = _controller.height;
 		}
 
 		private void LateUpdate()
@@ -160,16 +169,34 @@ namespace StarterAssets
 			}
 		}
 
+		private void Crouch()
+		{
+			float newYPos;
+			if (_input.crouched)
+			{
+				_controller.height = crouchHeight;
+				newYPos = transform.position.y - ((_initialHeight - crouchHeight) / 2.0f);
+			}
+			else
+			{
+				_controller.height = _initialHeight;
+				newYPos = transform.position.y + ((_initialHeight - crouchHeight) / 2.0f);
+			}
+			_controller.enabled = false;
+			transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
+			_controller.enabled = true;
+		}
+
 		private void GroundedCheck()
 		{
 			// set sphere position, with offset
-			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - (_controller.height / 2.0f) - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 		}
 
 		private void CeilingCheck() {
 			// set sphere position, with offset
-			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y + ceilingOffset, transform.position.z);
+			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y + (_controller.height / 2.0f) + ceilingOffset, transform.position.z);
 			hitCeiling = Physics.CheckSphere(spherePosition, GroundedRadius, CeilingLayers, QueryTriggerInteraction.Ignore);
 		}
 
@@ -367,10 +394,11 @@ namespace StarterAssets
 			else Gizmos.color = transparentRed;
 
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
-			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+			// Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - (_height / 2.0f) - GroundedOffset, transform.position.z);
+			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - (_currentHeight / 2.0f) - GroundedOffset, transform.position.z), GroundedRadius);
 			if (hitCeiling) Gizmos.color = transparentGreen;
 			else Gizmos.color = transparentRed;
-			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y + ceilingOffset, transform.position.z), GroundedRadius);
+			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y + (_currentHeight / 2.0f) + ceilingOffset, transform.position.z), GroundedRadius);
 			Gizmos.color = Color.magenta;
 			Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), inputDirection * 3);
 			Gizmos.color = Color.yellow;
