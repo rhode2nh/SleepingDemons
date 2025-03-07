@@ -979,8 +979,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3768787608333504673, guid: b0f3700f1a9518b519d9819a2798a2a5,
         type: 3}
+      propertyPath: field of view
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768787608333504673, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768787608333504673, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 18167
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768787608333504678, guid: b0f3700f1a9518b519d9819a2798a2a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 5435351746387582239, guid: b0f3700f1a9518b519d9819a2798a2a5,
         type: 3}
