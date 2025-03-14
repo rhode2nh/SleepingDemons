@@ -10,12 +10,12 @@ public class UISlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image _icon;
     [SerializeField] private Image _activeImage;
+    [SerializeField] private Text title;
     private int _index;
-    private Action<PointerEventData, int> onPointerClickFunc;
 
     public Sprite Icon { set => _icon.sprite = value; }
     public int Index { get => _index; set => _index = value; }
-    public Action<PointerEventData, int> OnPointerClickFunc { get => onPointerClickFunc; set => onPointerClickFunc = value; }
+    public Action<PointerEventData, int> OnPointerClickFunc { get; set; }
 
     void Awake()
     {

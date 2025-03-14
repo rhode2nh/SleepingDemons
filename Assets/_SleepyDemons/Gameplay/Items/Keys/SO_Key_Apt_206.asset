@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fe7d889f5597eb98ed302df742f9d4, type: 3}
   m_Name: SO_Key_Apt_206
   m_EditorClassIdentifier: 
-  _GUID: 
+  _GUID: 14a45ae7-03c0-4616-ac4e-5ffaf124cd6f
   _icon: {fileID: 0}
   _cost: 0
   _worldItem: {fileID: 0}
   _marketItem: {fileID: 0}
-  _fpsItem: {fileID: 0}
+  _options:
+  - {fileID: 11400000, guid: ccc8730043734152b95695f98b54ea85, type: 2}
