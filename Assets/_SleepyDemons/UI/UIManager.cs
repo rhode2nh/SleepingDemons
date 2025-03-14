@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     {
         _pauseUI = _pause.GetComponent<IUIPanel>();
         _inventoryUI = _inventory.GetComponent<IUIPanel>();
+        _pauseUI.ClosePanel();
+        _inventoryUI.ClosePanel();
     }
 
     public void OpenPanel(IUIPanel panel)
@@ -31,8 +33,6 @@ public class UIManager : MonoBehaviour
 
     public void ClosePanel(IUIPanel panel)
     {
-        // temp fix until root issue can be figured out.
-        PlayerManager.instance.isHolding = false;
         panel.ClosePanel();
     }
 }

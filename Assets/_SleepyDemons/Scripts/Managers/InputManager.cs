@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        string mapToSwitchTo = _lastActionMap[_lastActionMap.Count - 1];
+        string mapToSwitchTo = _lastActionMap[^1];
         _lastActionMap.RemoveAt(_lastActionMap.Count - 1);
         _playerInput.SwitchCurrentActionMap(mapToSwitchTo);
         UIManager.instance.ClosePanel(panel);

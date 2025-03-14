@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour, IInventory
         {
             _items.Add(DatabaseManager.instance.GetEmptySlot());
         }
+        InventoryManager.instance.InitializeInventoryGUI();
     }
 
     public bool Add(Slot slot)
@@ -43,6 +44,20 @@ public class Inventory : MonoBehaviour, IInventory
         catch (Exception e)
         {
             Debug.LogError("Could not get item at index: " + index + "\nError: " + e.Message);
+            return null;
+        }
+    }
+    
+    public Slot Get(string GUID)
+    {
+        try
+        {
+            int index = _items.FindIndex(x => x.GUID == GUID);
+            return _items[index];
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Could not remove item with GUID: " + GUID + "\nError: " + e.Message);
             return null;
         }
     }

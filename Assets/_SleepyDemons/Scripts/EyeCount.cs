@@ -16,7 +16,7 @@ public class EyeCount : MonoBehaviour
     void Start()
     {
         _text.SetText("Eyes: " + InventoryManager.instance.eyes.ToString());
-        InventoryManager.instance.onUpdateEyeGUI += UpdateUI;
+        InventoryManager.instance.OnUpdateEyeGUI += UpdateUI;
     }
 
     // Update is called once per frame

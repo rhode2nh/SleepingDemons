@@ -12,11 +12,14 @@ public class Item : ScriptableObject, IItem
     [SerializeField] private int _cost;
     [SerializeField] private GameObject _worldItem;
     [SerializeField] private GameObject _marketItem;
+
+    [SerializeField] private List<DropdownOption> _options;
     // [SerializeField] private GameObject _fpsItem;
 
     void Awake()
     {
         _GUID = Guid.NewGuid().ToString();
+        _options = new List<DropdownOption>();
     }
 
     public string GUID { get => _GUID; }
@@ -24,6 +27,7 @@ public class Item : ScriptableObject, IItem
     public int Cost { get => _cost;}
     public GameObject WorldItem { get => _worldItem; }
     public GameObject MarketItem { get => _marketItem; }
+    public List<DropdownOption> Options { get => _options; }
 
     // This method is called whenever an item in the inventory is used.
     public virtual void Use()

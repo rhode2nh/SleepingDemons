@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -15,8 +11,9 @@ public class InventoryManager : MonoBehaviour
     private GameObject _equippedWeaponGameobject;
     public int eyes;
 
-    public event Action<int> onUpdateEyeGUI;
-    public event Action onUpdateInventoryGUI;
+    public event Action<int> OnUpdateEyeGUI;
+    public event Action OnUpdateInventoryGUI;
+    public event Action OnInitializeInventoryGUI;
 
     void Awake()
     {
@@ -63,18 +60,26 @@ public class InventoryManager : MonoBehaviour
 
     public void UpdateEyeGUI()
     {
-        if (onUpdateEyeGUI != null)
+        if (OnUpdateEyeGUI != null)
         {
-            onUpdateEyeGUI(eyes);
+            OnUpdateEyeGUI(eyes);
         }
     }
 
+    public void InitializeInventoryGUI()
+    {
+        OnInitializeInventoryGUI?.Invoke();
+    }
+    
     public void UpdateInventoryGUI()
     {
-        if (onUpdateInventoryGUI != null)
-        {
-            onUpdateInventoryGUI();
-        }
+        OnUpdateInventoryGUI?.Invoke();
+    }
+    
+    public void UseItem(string GUID)
+    {
+        selectedSlot = inventory.Get(GUID);
+        selectedSlot.Item.Use();
     }
     
     public void UseItem(int index)

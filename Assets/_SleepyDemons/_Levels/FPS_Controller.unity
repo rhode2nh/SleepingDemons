@@ -1020,7 +1020,7 @@ PrefabInstance:
     - target: {fileID: 6792560430545496650, guid: b0f3700f1a9518b519d9819a2798a2a5,
         type: 3}
       propertyPath: crouchHeight
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6792560430545496650, guid: b0f3700f1a9518b519d9819a2798a2a5,
         type: 3}
