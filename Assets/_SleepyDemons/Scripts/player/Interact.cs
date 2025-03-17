@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isHolding;
-
     public InputRaycast _inputRaycast;
 
     public void InteractWith(bool isPressed) {

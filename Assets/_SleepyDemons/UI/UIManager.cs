@@ -16,16 +16,6 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    public void OpenPanel(IUIPanel panel)
-    {
-        panel.OpenPanel();
-    }
-
-    public void ClosePanel(IUIPanel panel)
-    {
-        panel.ClosePanel();
-    }
-
     public virtual void OpenPauseUI()
     {
         OnOpenPauseUI?.Invoke();

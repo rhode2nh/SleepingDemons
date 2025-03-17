@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public interface IInteractable
 {
+    public Sprite InteractableIcon { get; }
     void ExecuteInteraction(GameObject other);
     bool ExecuteOnRelease();
 }

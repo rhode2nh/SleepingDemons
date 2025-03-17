@@ -20,6 +20,7 @@ public class DropdownOptionUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
         _outline = GetComponent<Outline>();
         _outlineColor = _outline.effectColor;
         _label = GetComponentInChildren<TMP_Text>();
+        _dropdownUI = GetComponentInParent<DropdownUI>();
     }
 
     public string GetLabel()
@@ -27,10 +28,9 @@ public class DropdownOptionUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
         return _label.text;
     }
 
-    public void Initialize(Slot slot, DropdownUI dropdownUI, DropdownOption dropdownOption)
+    public void Initialize(Slot slot, DropdownOption dropdownOption)
     {
         _slot = slot;
-        _dropdownUI = dropdownUI;
         _dropdownOption = dropdownOption;
         _label.SetText(_dropdownOption.Label);
     }

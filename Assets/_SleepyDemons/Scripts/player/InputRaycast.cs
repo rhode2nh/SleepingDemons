@@ -25,20 +25,19 @@ public class InputRaycast : MonoBehaviour
     {
         if (isHitting && !PlayerManager.Instance.IsAiming && !PlayerManager.Instance.IsHolding)
         {
-            if (hit.transform.gameObject.GetComponentInParent<IInteractable>() != null
-                || hit.transform.gameObject.GetComponentInParent<IHoldable>() != null
-                || hit.transform.gameObject.GetComponentInParent<IPickupable>() != null)
+            var interactable = hit.collider.GetComponent<IInteractable>();
+            if (interactable != null)
             {
-                CrosshairManager.instance.ShowInteractIcon();
+                CrosshairManager.Instance.ShowInteractIcon(interactable.InteractableIcon);
             }
             else
             {
-                CrosshairManager.instance.HideInteractIcon();
+                CrosshairManager.Instance.HideInteractIcon();
             }
         }
         else
         {
-            CrosshairManager.instance.HideInteractIcon();
+            CrosshairManager.Instance.HideInteractIcon();
         }
     }
 }

@@ -5,15 +5,16 @@ public class InventoryUI : MonoBehaviour, IUIPanel
 {
     [SerializeField] private ItemUI _itemUI;
     [SerializeField] private ItemPreview _itemPreview;
+    [SerializeField] private DropdownUI _dropdownUI;
     
     private List<ItemUI> _itemUIList;
     private ParentObject _itemsParent;
-    [SerializeField] private DropdownUI _dropdownUI;
+    private DropdownUI _dropdownUIInstance;
 
     private void Awake()
     {
+        _dropdownUIInstance = Instantiate(_dropdownUI, gameObject.transform, true);
         _itemsParent = GetComponentInChildren<ParentObject>();
-        _dropdownUI = GetComponentInChildren<DropdownUI>();
         _itemUIList = new List<ItemUI>();
     }
 
@@ -28,10 +29,11 @@ public class InventoryUI : MonoBehaviour, IUIPanel
 
     private void InitializeSlots()
     {
+        
         for (int i = 0; i < InventoryManager.instance.inventory.MaxLength; i++)
         {
             var instantiatedItemUI = Instantiate(_itemUI, _itemsParent.transform, true);
-            instantiatedItemUI.Initialize(InventoryManager.instance.inventory.Get(i), _dropdownUI, _itemPreview);
+            instantiatedItemUI.Initialize(InventoryManager.instance.inventory.Get(i), _dropdownUIInstance, _itemPreview);
             _itemUIList.Add(instantiatedItemUI);
         }
         
@@ -42,7 +44,7 @@ public class InventoryUI : MonoBehaviour, IUIPanel
     {
         for (int i = 0; i < InventoryManager.instance.inventory.MaxLength; i++)
         {
-            _itemUIList[i].Initialize(InventoryManager.instance.inventory.Get(i), _dropdownUI, _itemPreview);
+            _itemUIList[i].Initialize(InventoryManager.instance.inventory.Get(i),_dropdownUIInstance, _itemPreview);
         }
     }
 

@@ -55,7 +55,7 @@ public class MarketUI : MonoBehaviour, IUIPanel, IUIInventory
 
     public void OpenPanel()
     {
-        CrosshairManager.instance.HideCrossHair();
+        CrosshairManager.Instance.HideCrossHair();
         gameObject.SetActive(true);
         for (int i = 0; i < _inventory.MaxLength; i++)
         {
@@ -89,7 +89,7 @@ public class MarketUI : MonoBehaviour, IUIPanel, IUIInventory
 
     public void ClosePanel()
     {
-        CrosshairManager.instance.ShowCrossHair();
+        CrosshairManager.Instance.ShowCrossHair();
         gameObject.SetActive(false);
         _inventory.Clear();
         _index = 0;

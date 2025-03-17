@@ -4,13 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class DropdownUI : MonoBehaviour
 {
-    [SerializeField] private Canvas _canvas;
     [SerializeField] private float _distanceToClose;
     [SerializeField] private DropdownOptionUI _dropdownOptionUI;
     [SerializeField] private Vector2 _offset;
     
     private RectTransform _rectTransform;
     private ParentObject _optionsParent;
+    private Canvas _canvas;
 
     private Slot _slot;
     private List<DropdownOptionUI> _dropdownOptions;
@@ -22,6 +22,7 @@ public class DropdownUI : MonoBehaviour
     private void Awake()
     {
         _dropdownOptions = new List<DropdownOptionUI>();
+        _canvas = GetComponentInParent<Canvas>();
         _rectTransform = GetComponent<RectTransform>();
         _optionsParent = GetComponentInChildren<ParentObject>();
     }
@@ -53,7 +54,7 @@ public class DropdownUI : MonoBehaviour
             foreach (var option in slot.Item.Options)
             {
                 var dropDownOption = Instantiate(_dropdownOptionUI, _optionsParent.transform, true);
-                dropDownOption.Initialize(slot, this, option);
+                dropDownOption.Initialize(slot, option);
                 _dropdownOptions.Add(dropDownOption);
             }
             FilterOptions();

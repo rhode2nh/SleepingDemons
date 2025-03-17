@@ -262,11 +262,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8172264422006176177, guid: 7692088ada4c672a68f37b4594e4830f,
-        type: 3}
-      propertyPath: <IsLocked>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -57439,7 +57434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71df177d4c2f89d0a1a702970ad3561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executeOnRelease: 0
+  _executeOnRelease: 0
+  <InteractableIcon>k__BackingField: {fileID: 0}
   physicsDoor: {fileID: 0}
   lockController: {fileID: 0}
 --- !u!59 &1880256869
