@@ -21,7 +21,7 @@ public class FpsArmsAnimatorController : MonoBehaviour
     {
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            _transition = PlayerManager.instance.isAiming ? 1f : 0f;
+            _transition = PlayerManager.Instance.IsAiming ? 1f : 0f;
             _lerpedTransition = Mathf.Lerp(_lerpedTransition, _transition, Time.deltaTime * _strength);
             _animator.SetFloat("AimBlendTree", _lerpedTransition);
         }

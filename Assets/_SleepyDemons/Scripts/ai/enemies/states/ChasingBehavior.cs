@@ -24,7 +24,7 @@ public class ChasingBehavior : StateMachineBehaviour
             animator.SetBool("isSearching", true);
         }
         
-        playerPosition = PlayerManager.instance.player.transform.position;
+        playerPosition = PlayerManager.Instance.Player.transform.position;
         _navMesh.destination = playerPosition;
     }
 

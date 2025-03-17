@@ -1,28 +1,45 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager instance;
+    public static InputManager Instance;
     [SerializeField] public float _checkChamberTimerDuration;
     [SerializeField] [ReadOnly] private List<string> _lastActionMap;
-    [SerializeField] private PlayerInput _playerInput;
+    private PlayerInput _playerInput;
 
-    public bool isFlashlightOn;
+    public bool IsFlashlightOn;
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     void Start()
     {
+        _playerInput = FindObjectOfType<PlayerInput>();
         _lastActionMap = new List<string>
         {
             _playerInput.currentActionMap.name
         };
+    }
+
+    public void OpenUI(string actionMap)
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        _lastActionMap.Add(_playerInput.currentActionMap.name);
+        _playerInput.SwitchCurrentActionMap(actionMap);
+    }
+    
+    public void CloseUI()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        string mapToSwitchTo = _lastActionMap[^1];
+        _lastActionMap.RemoveAt(_lastActionMap.Count - 1);
+        _playerInput.SwitchCurrentActionMap(mapToSwitchTo);
     }
 
     public void OpenPanel(IUIPanel panel, string actionMap)
@@ -31,7 +48,7 @@ public class InputManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         _lastActionMap.Add(_playerInput.currentActionMap.name);
         _playerInput.SwitchCurrentActionMap(actionMap);
-        UIManager.instance.OpenPanel(panel);
+        UIManager.Instance.OpenPanel(panel);
     }
 
     public void ClosePanel(IUIPanel panel)
@@ -41,7 +58,7 @@ public class InputManager : MonoBehaviour
         string mapToSwitchTo = _lastActionMap[^1];
         _lastActionMap.RemoveAt(_lastActionMap.Count - 1);
         _playerInput.SwitchCurrentActionMap(mapToSwitchTo);
-        UIManager.instance.ClosePanel(panel);
+        UIManager.Instance.ClosePanel(panel);
     }
 
     public void SwitchCurrentActionMap(string actionMap)

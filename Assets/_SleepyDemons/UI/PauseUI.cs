@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseUI : MonoBehaviour, IUIPanel
@@ -7,7 +5,9 @@ public class PauseUI : MonoBehaviour, IUIPanel
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);       
+        UIManager.Instance.OnOpenPauseUI += OpenPanel;
+        UIManager.Instance.OnClosePauseUI += ClosePanel;
+        gameObject.SetActive(false);
     }
 
     public void QuitGame()

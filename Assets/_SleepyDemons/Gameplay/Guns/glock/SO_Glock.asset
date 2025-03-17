@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d500accb0cf1568d1a0e85f34906ed29, type: 3}
   m_Name: SO_Glock
   m_EditorClassIdentifier: 
-  _GUID: dc579b83-2104-4f6e-9989-d1a348006204
+  _GUID: 89770ddf-87d3-4e4b-95eb-49b86059f93f
   _icon: {fileID: 0}
   _cost: 2
   _worldItem: {fileID: 4276741596869194307, guid: ae88ead45ee882f94bf6ac785ce2a598,

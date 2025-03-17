@@ -20,8 +20,8 @@ public class WeaponSway : MonoBehaviour
     }
 
     void Update() {
-        lerpedAnimation = Mathf.Lerp(lerpedAnimation, _starterAssetsInput.move.x, Time.deltaTime * _strength);
-        ylerpedAnimation = Mathf.Lerp(ylerpedAnimation, _starterAssetsInput.move.y, Time.deltaTime * _strength);
+        lerpedAnimation = Mathf.Lerp(lerpedAnimation, _starterAssetsInput.Move.x, Time.deltaTime * _strength);
+        ylerpedAnimation = Mathf.Lerp(ylerpedAnimation, _starterAssetsInput.Move.y, Time.deltaTime * _strength);
         _animator.SetFloat("walking-x", Mathf.Clamp(lerpedAnimation, -1, 1));
         _animator.SetFloat("walking-y", Mathf.Clamp(ylerpedAnimation, -1, 1));
     }

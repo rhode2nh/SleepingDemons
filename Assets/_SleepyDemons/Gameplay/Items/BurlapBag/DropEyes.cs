@@ -14,7 +14,7 @@ public class DropEyes : MonoBehaviour
             return;
         }
 
-        GameObject instantiatedSack = Instantiate(_burlapSack, PlayerManager.instance.dropItemSpawnPos.position, Quaternion.identity);
+        GameObject instantiatedSack = Instantiate(_burlapSack, PlayerManager.Instance.DropItemSpawnPos.position, Quaternion.identity);
 
         if (curEyeCount - amount < 0)
         {

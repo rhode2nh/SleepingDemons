@@ -35,7 +35,7 @@ public class PullChain : Chain
         var initialReferencePoint = interact._inputRaycast.hit.point;
         var distanceToTravel = Vector3.Distance(initialReferencePoint, Camera.main.transform.position + (Camera.main.transform.forward * relativeDistance));
         var lightSwitched = false;
-        while (PlayerManager.instance.isHolding)
+        while (PlayerManager.Instance.IsHolding)
         {
             var calculatedDir = (Camera.main.transform.forward + new Vector3(0, distanceToTravel, 0)).normalized;
             var posToHold = Camera.main.transform.position + (calculatedDir * relativeDistance);

@@ -9,7 +9,7 @@ public class GunData : Item
 
     public override void Use()
     {
-        var instantiatedWeapon = Instantiate(FpsItem, PlayerManager.instance.weaponSpawnPos.transform);
+        var instantiatedWeapon = Instantiate(FpsItem, PlayerManager.Instance.WeaponSpawnPos.transform);
         InventoryManager.instance.EquipWeapon(instantiatedWeapon);
     }
 }

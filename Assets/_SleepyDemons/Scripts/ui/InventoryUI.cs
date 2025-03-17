@@ -8,7 +8,7 @@ public class InventoryUI : MonoBehaviour, IUIPanel
     
     private List<ItemUI> _itemUIList;
     private ParentObject _itemsParent;
-    private DropdownUI _dropdownUI;
+    [SerializeField] private DropdownUI _dropdownUI;
 
     private void Awake()
     {
@@ -17,10 +17,13 @@ public class InventoryUI : MonoBehaviour, IUIPanel
         _itemUIList = new List<ItemUI>();
     }
 
-    void OnEnable()
+    private void Start()
     {
+        UIManager.Instance.OnOpenInventoryUI += OpenPanel;
+        UIManager.Instance.OnCloseInventoryUI += ClosePanel;
         InventoryManager.instance.OnInitializeInventoryGUI += InitializeSlots;
         InventoryManager.instance.OnUpdateInventoryGUI += UpdateUI;
+        InitializeSlots();
     }
 
     private void InitializeSlots()
@@ -31,6 +34,8 @@ public class InventoryUI : MonoBehaviour, IUIPanel
             instantiatedItemUI.Initialize(InventoryManager.instance.inventory.Get(i), _dropdownUI, _itemPreview);
             _itemUIList.Add(instantiatedItemUI);
         }
+        
+        ClosePanel();
     }
 
     private void UpdateUI()

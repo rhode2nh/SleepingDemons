@@ -13,13 +13,12 @@ public class Item : ScriptableObject, IItem
     [SerializeField] private GameObject _worldItem;
     [SerializeField] private GameObject _marketItem;
 
-    [SerializeField] private List<DropdownOption> _options;
+    [SerializeField] private List<DropdownOption> _options = new();
     // [SerializeField] private GameObject _fpsItem;
 
     void Awake()
     {
         _GUID = Guid.NewGuid().ToString();
-        _options = new List<DropdownOption>();
     }
 
     public string GUID { get => _GUID; }

@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Cinemachine;
+﻿using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -29,13 +27,13 @@ namespace StarterAssets
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
-		public float accelerationRate = 10.0f;
+		public float AccelerationRate = 10.0f;
         [Tooltip("Tilt speed and angle of the character")]
-		public float friction = 10.0f;
-		public float airResistance = 1.0f;
-        public float tiltSpeed = 7f;
-        public float tiltAngle = 5f;
-		public float tiltOffset;
+		public float Friction = 10.0f;
+		public float AirResistance = 1.0f;
+        public float TiltSpeed = 7f;
+        public float TiltAngle = 5f;
+		public float TiltOffset;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -52,12 +50,12 @@ namespace StarterAssets
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
 		public bool Grounded = true;
-		public bool Crouched = false;
-		public bool hitCeiling = false;
-		bool resetVerticalVelocity = false;
+		public bool Crouched;
+		public bool HitCeiling;
+		bool _resetVerticalVelocity;
 		[Tooltip("Useful for rough ground")]
 		public float GroundedOffset = -0.14f;
-		public float ceilingOffset = 1.0f;
+		public float CeilingOffset = 1.0f;
 		[Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
 		public float GroundedRadius = 0.5f;
 		[Tooltip("What layers the character uses as ground")]
@@ -68,12 +66,12 @@ namespace StarterAssets
 		[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
 		public GameObject CinemachineCameraTargetParent;
 		public GameObject CinemachineCameraTarget;
-		public CinemachineVirtualCamera virtualCamera;
+		public CinemachineVirtualCamera VirtualCamera;
 		[Tooltip("How far in degrees can you move the camera up")]
 		public float TopClamp = 90.0f;
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
-		public PlayerInput playerInput;
+		public PlayerInput PlayerInput;
 
 		// cinemachine
 		private float _cinemachineTargetPitch;
@@ -81,9 +79,9 @@ namespace StarterAssets
 		// player
 		private float _speed;
 		private float _rotationVelocity;
-		public float _verticalVelocity;
+		public float VerticalVelocity;
 		private float _verticalKnockback;
-		public float terminalVelocity = 25.0f;
+		public float TerminalVelocity = 25.0f;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -92,50 +90,49 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
-		public float velocityFOVScaleFactor;
-		public float fovChangeRate;
-		public float fov;
+		public float VelocityFOVScaleFactor;
+		public float FOVChangeRate;
+		public float FOV;
 
-		private const float _threshold = 0.00001f;
+		private const float Threshold = 0.00001f;
 
 		//--------------------user variables--------------------
 		[Tooltip("Show debug info for first person controller function")]
-		public bool isDebug = false;
+		public bool IsDebug;
         private Quaternion _initialRotation;
         private Vector3 _initialPos;
-		private Vector3 _lastLookDirBeforeJump = new Vector3();
-		private Vector3 _lastLookDirBeforeShoot = new Vector3();
-		public Vector3 inputDirection = new Vector3();
-		private Vector3 _lastRightDir = new Vector3();
-		private Vector3 _lastForwardDir = new Vector3();
+		private Vector3 _lastLookDirBeforeJump;
+		private Vector3 _lastLookDirBeforeShoot;
+		public Vector3 InputDirection;
+		private Vector3 _lastRightDir;
+		private Vector3 _lastForwardDir;
 		private bool _captureLastInputDir = true;
-		private Vector3 _lerpedInputDir = new Vector3();
-		private Vector3 _horizontalKnockbackDir = new Vector3();
-		private float _lastMoveSpeed = 0.0f;
-		[SerializeField] private bool _smoothCamera = false;
-		[SerializeField] private float _dampening = 0.0f;
+		private Vector3 _lerpedInputDir;
+		private Vector3 _horizontalKnockbackDir;
+		private float _lastMoveSpeed;
+		[SerializeField] private bool _smoothCamera;
+		[SerializeField] private float _dampening;
 
 		private float _initialHeight = 2.0f;
 		private float _currentHeight = 2.0f;
-		[SerializeField] private float crouchHeight;
+		[SerializeField] private float _crouchHeight;
 
 		private void Awake()
 		{
 			// get a reference to our main camera
-			if (_mainCamera == null)
-			{
-				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-				fov = virtualCamera.m_Lens.FieldOfView;
-			}
+			if (_mainCamera != null) return;
+			_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 		}
 
 		private void Start()
 		{
+			VirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+			FOV = VirtualCamera.m_Lens.FieldOfView;
             _initialRotation = CinemachineCameraTarget.transform.localRotation;
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 			_input.TriggerCrouch += Crouch;
-			playerInput = GetComponent<PlayerInput>();
+			PlayerInput = GetComponent<PlayerInput>();
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
@@ -172,15 +169,15 @@ namespace StarterAssets
 		private void Crouch()
 		{
 			float newYPos;
-			if (_input.crouched)
+			if (_input.Crouched)
 			{
-				_controller.height = crouchHeight;
-				newYPos = transform.position.y - ((_initialHeight - crouchHeight) / 2.0f);
+				_controller.height = _crouchHeight;
+				newYPos = transform.position.y - ((_initialHeight - _crouchHeight) / 2.0f);
 			}
 			else
 			{
 				_controller.height = _initialHeight;
-				newYPos = transform.position.y + ((_initialHeight - crouchHeight) / 2.0f);
+				newYPos = transform.position.y + ((_initialHeight - _crouchHeight) / 2.0f);
 			}
 			_controller.enabled = false;
 			transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
@@ -196,17 +193,17 @@ namespace StarterAssets
 
 		private void CeilingCheck() {
 			// set sphere position, with offset
-			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y + (_controller.height / 2.0f) + ceilingOffset, transform.position.z);
-			hitCeiling = Physics.CheckSphere(spherePosition, GroundedRadius, CeilingLayers, QueryTriggerInteraction.Ignore);
+			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y + (_controller.height / 2.0f) + CeilingOffset, transform.position.z);
+			HitCeiling = Physics.CheckSphere(spherePosition, GroundedRadius, CeilingLayers, QueryTriggerInteraction.Ignore);
 		}
 
 		private void CameraRotation()
 		{
 			// if there is an input
-			if (_input.look.sqrMagnitude >= _threshold)
+			if (_input.Look.sqrMagnitude >= Threshold)
 			{
-				_cinemachineTargetPitch += _input.look.y * RotationSpeed;
-				_rotationVelocity = _input.look.x * RotationSpeed;
+				_cinemachineTargetPitch += _input.Look.y * RotationSpeed;
+				_rotationVelocity = _input.Look.x * RotationSpeed;
 
 				// clamp our pitch rotation
 				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
@@ -225,8 +222,8 @@ namespace StarterAssets
 			// if there is an input
 			// if (_input.look.sqrMagnitude >= _threshold)
 			// {
-				_cinemachineTargetPitch += _input.look.y * RotationSpeed;
-				_rotationVelocity = _input.look.x * RotationSpeed;
+				_cinemachineTargetPitch += _input.Look.y * RotationSpeed;
+				_rotationVelocity = _input.Look.x * RotationSpeed;
 				_targetYRotation += _rotationVelocity;
 
 				// clamp our pitch rotation
@@ -247,37 +244,37 @@ namespace StarterAssets
 
 		private void Move()
 		{
-			inputDirection = MoveGround();
+			InputDirection = MoveGround();
 			_horizontalKnockbackDir = -MoveKnockback() * Time.deltaTime;
 			// move the player
-			_controller.Move(Vector3.ClampMagnitude(inputDirection, 1f) * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime + _horizontalKnockbackDir);
+			_controller.Move(Vector3.ClampMagnitude(InputDirection, 1f) * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime + _horizontalKnockbackDir);
             float maxSpeed = 100.0f;
             float normalizedSpeed = _controller.velocity.magnitude / maxSpeed;
 			// virtualCamera.m_Lens.FieldOfView = Mathf.Clamp(Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, fov + fov * Mathf.Pow(normalizedSpeed, 2) * velocityFOVScaleFactor, Time.deltaTime * fovChangeRate), 0.0f, 120.0f);
 
             Quaternion _targetRotation;
 			Vector3 _targetPos;
-            if (_input.lean == -1) {
-                _targetRotation = Quaternion.Euler(0, 0, tiltAngle) * _initialRotation;
-				_targetPos = new Vector3(_initialPos.x - tiltOffset, _initialPos.y, _initialPos.z);
-            } else if (_input.lean == 1) {
-                _targetRotation = Quaternion.Euler(0, 0, -tiltAngle) * _initialRotation;
-				_targetPos = new Vector3(_initialPos.x + tiltOffset, _initialPos.y, _initialPos.z);
+            if (_input.Lean == -1) {
+                _targetRotation = Quaternion.Euler(0, 0, TiltAngle) * _initialRotation;
+				_targetPos = new Vector3(_initialPos.x - TiltOffset, _initialPos.y, _initialPos.z);
+            } else if (_input.Lean == 1) {
+                _targetRotation = Quaternion.Euler(0, 0, -TiltAngle) * _initialRotation;
+				_targetPos = new Vector3(_initialPos.x + TiltOffset, _initialPos.y, _initialPos.z);
             } else {
                 _targetRotation = _initialRotation;
 				_targetPos = _initialPos;
             }
-            CinemachineCameraTarget.transform.localRotation = Quaternion.Slerp(CinemachineCameraTarget.transform.localRotation, _targetRotation, tiltSpeed * Time.deltaTime);
-            CinemachineCameraTarget.transform.localPosition = Vector3.Lerp(CinemachineCameraTarget.transform.localPosition, _targetPos, tiltSpeed * Time.deltaTime);
+            CinemachineCameraTarget.transform.localRotation = Quaternion.Slerp(CinemachineCameraTarget.transform.localRotation, _targetRotation, TiltSpeed * Time.deltaTime);
+            CinemachineCameraTarget.transform.localPosition = Vector3.Lerp(CinemachineCameraTarget.transform.localPosition, _targetPos, TiltSpeed * Time.deltaTime);
 		}
 
 		private Vector3 MoveAir() {
 			float targetSpeed = 0.0f;
-			float decelType = airResistance;
+			float decelType = AirResistance;
 			Vector3 dir = new Vector3();
 
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-			_speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * airResistance);
+			_speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * AirResistance);
 
 			dir = _lastLookDirBeforeJump;
 
@@ -285,28 +282,28 @@ namespace StarterAssets
 		}
 
 		private Vector3 MoveKnockback() {
-			float frictionType = Grounded ? friction : airResistance;
+			float frictionType = Grounded ? Friction : AirResistance;
 			_lastLookDirBeforeShoot = Vector3.Lerp(_lastLookDirBeforeShoot, new Vector3(), Time.deltaTime * frictionType);
 			return _lastLookDirBeforeShoot;
 		}
 		
 		private Vector3 MoveGround() {
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = Grounded ? (PlayerManager.instance.isAiming ? AimSpeed : _input.sprint ? SprintSpeed : MoveSpeed) : _lastMoveSpeed;
+			float targetSpeed = Grounded ? (PlayerManager.Instance.IsAiming ? AimSpeed : _input.Sprint ? SprintSpeed : MoveSpeed) : _lastMoveSpeed;
 			if (targetSpeed == 0.0f) {
 				targetSpeed = MoveSpeed;
 			}
-			Vector3 inputDir = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-			float frictionType = Grounded ? friction : airResistance;
+			Vector3 inputDir = new Vector3(_input.Move.x, 0.0f, _input.Move.y).normalized;
+			float frictionType = Grounded ? Friction : AirResistance;
 
 			// note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is a move input rotate player when the player is moving
-			if (_input.move == Vector2.zero && _captureLastInputDir) {
+			if (_input.Move == Vector2.zero && _captureLastInputDir) {
 				_lastRightDir = transform.right;
 				_lastForwardDir = transform.forward;
 				inputDir = _lastRightDir * inputDir.x + _lastForwardDir * inputDir.z;
 				_captureLastInputDir = false;
-			} else if (_input.move != Vector2.zero) {
+			} else if (_input.Move != Vector2.zero) {
 				inputDir = transform.right * inputDir.x + transform.forward * inputDir.z;
 				_captureLastInputDir = true;
 			} 
@@ -325,25 +322,25 @@ namespace StarterAssets
 
 		private void JumpAndGravity()
 		{
-			if (Grounded && !hitCeiling)
+			if (Grounded && !HitCeiling)
 			{
-				resetVerticalVelocity = false;
+				_resetVerticalVelocity = false;
 				// reset the fall timeout timer
 				_fallTimeoutDelta = FallTimeout;
 
 				// stop our velocity dropping infinitely when grounded
-				if (_verticalVelocity < 0.0f)
+				if (VerticalVelocity < 0.0f)
 				{
-					_verticalVelocity = -2f;
+					VerticalVelocity = -2f;
 				}
 
 				// Jump
-				if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+				if (_input.Jump && _jumpTimeoutDelta <= 0.0f)
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
-					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+					VerticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 					_lastLookDirBeforeJump = (transform.right * Vector3.Dot(_controller.velocity, transform.right) + transform.forward * Vector3.Dot(_controller.velocity, transform.forward)).normalized;
-					_lastMoveSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+					_lastMoveSpeed = _input.Sprint ? SprintSpeed : MoveSpeed;
 				}
 
 				// jump timeout
@@ -364,17 +361,17 @@ namespace StarterAssets
 				}
 
 				// if we are not grounded, do not jump
-				_input.jump = false;
+				_input.Jump = false;
 			}
 
 			// apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
-			if (Mathf.Abs(_verticalVelocity) < terminalVelocity)
+			if (Mathf.Abs(VerticalVelocity) < TerminalVelocity)
 			{
-				if (hitCeiling && !resetVerticalVelocity) {
-					_verticalVelocity = 0f;
-					resetVerticalVelocity = true;
+				if (HitCeiling && !_resetVerticalVelocity) {
+					VerticalVelocity = 0f;
+					_resetVerticalVelocity = true;
 				} 
-				_verticalVelocity += Gravity * Time.deltaTime;
+				VerticalVelocity += Gravity * Time.deltaTime;
 			}
 		}
 
@@ -396,11 +393,11 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			// Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - (_height / 2.0f) - GroundedOffset, transform.position.z);
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - (_currentHeight / 2.0f) - GroundedOffset, transform.position.z), GroundedRadius);
-			if (hitCeiling) Gizmos.color = transparentGreen;
+			if (HitCeiling) Gizmos.color = transparentGreen;
 			else Gizmos.color = transparentRed;
-			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y + (_currentHeight / 2.0f) + ceilingOffset, transform.position.z), GroundedRadius);
+			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y + (_currentHeight / 2.0f) + CeilingOffset, transform.position.z), GroundedRadius);
 			Gizmos.color = Color.magenta;
-			Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), inputDirection * 3);
+			Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), InputDirection * 3);
 			Gizmos.color = Color.yellow;
 			Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), _horizontalKnockbackDir);
 		}
@@ -414,8 +411,8 @@ namespace StarterAssets
 		}
 
 		public void ApplyRecoilKnockback(float knockback, Vector3 direction) {
-			_verticalVelocity += Vector3.Dot(CinemachineCameraTarget.transform.forward, -transform.up) * knockback;
-			resetVerticalVelocity = false;
+			VerticalVelocity += Vector3.Dot(CinemachineCameraTarget.transform.forward, -transform.up) * knockback;
+			_resetVerticalVelocity = false;
 			var forward = CinemachineCameraTarget.transform.forward;
 			_lastLookDirBeforeShoot += new Vector3(forward.x, 0.0f, forward.z) * knockback;
 		}

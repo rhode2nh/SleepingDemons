@@ -27,8 +27,8 @@ public class Falling : MonoBehaviour
                 fallingSound.Play();
                 isPlaying = true;
             }
-            if (Mathf.Abs(firstPersonController._verticalVelocity) >= velocityThreshold) {
-                curVolume = (Mathf.Abs(firstPersonController._verticalVelocity) - velocityThreshold) / (firstPersonController.terminalVelocity - velocityThreshold);
+            if (Mathf.Abs(firstPersonController.VerticalVelocity) >= velocityThreshold) {
+                curVolume = (Mathf.Abs(firstPersonController.VerticalVelocity) - velocityThreshold) / (firstPersonController.TerminalVelocity - velocityThreshold);
                 fallingSound.volume = curVolume;
                 fallingSound.pitch = 1.0f + (curVolume * pitchFactor);
             }

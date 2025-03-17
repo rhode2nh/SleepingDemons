@@ -24,7 +24,11 @@ public class DropdownUI : MonoBehaviour
         _dropdownOptions = new List<DropdownOptionUI>();
         _rectTransform = GetComponent<RectTransform>();
         _optionsParent = GetComponentInChildren<ParentObject>();
-        gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        Close();
     }
 
     private void Update()

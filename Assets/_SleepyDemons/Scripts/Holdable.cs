@@ -33,7 +33,7 @@ public class Holdable : Interactable, IHoldable
         _initialReferencePoint = Camera.main.transform.position + Camera.main.transform.forward * relativeDistance;
         var initialPos = _rb.position;
         
-        while (PlayerManager.instance.isHolding)
+        while (PlayerManager.Instance.IsHolding)
         {
             _posToHold = Camera.main.transform.position + (Camera.main.transform.forward * relativeDistance);
             var pointToHold = _bringToCenter ? _rb.position : _initialReferencePoint + (_rb.position - initialPos);
@@ -77,6 +77,6 @@ public class Holdable : Interactable, IHoldable
     public override void ExecuteInteraction(GameObject other)
     {
         // TODO: Is there some way to get around using the global variable?
-        Hold(other.gameObject.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.instance.isHolding);
+        Hold(other.gameObject.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.Instance.IsHolding);
     }
 }

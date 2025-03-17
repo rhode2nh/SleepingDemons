@@ -96,7 +96,7 @@ public class Gun : MonoBehaviour, IGun, IEquippable
         {
             _animator.SetBool("IsSwitchingToMag", newState);
             _animator.SetBool("IsCheckingChamber", false);
-            InputManager.instance.SwitchCurrentActionMap("CheckMagazine");
+            InputManager.Instance.SwitchCurrentActionMap("CheckMagazine");
         }
     }
 
@@ -111,7 +111,7 @@ public class Gun : MonoBehaviour, IGun, IEquippable
         {
             _animator.SetBool("IsSwitchingToChamber", newState);
             _animator.SetBool("IsCheckingMagazine", false);
-            InputManager.instance.SwitchCurrentActionMap("CheckChamber");
+            InputManager.Instance.SwitchCurrentActionMap("CheckChamber");
         }
     }
 

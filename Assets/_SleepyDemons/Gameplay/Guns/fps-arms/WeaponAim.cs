@@ -20,7 +20,7 @@ public class WeaponAim : MonoBehaviour
     void Start()
     {
         _firstPersonController = GetComponentInParent<FirstPersonController>();
-        _initialFOV = _firstPersonController.virtualCamera.m_Lens.FieldOfView;
+        _initialFOV = _firstPersonController.VirtualCamera.m_Lens.FieldOfView;
         _lerpedFOV = _initialFOV;
         _lerpToFOV = _zoomFOV;
         _animator = GetComponent<Animator>();
@@ -30,7 +30,7 @@ public class WeaponAim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isAiming != PlayerManager.instance.isAiming)
+        if (_isAiming != PlayerManager.Instance.IsAiming)
         {
             if (_animator.GetCurrentAnimatorStateInfo(4).IsName("Idle"))
             {
@@ -46,14 +46,14 @@ public class WeaponAim : MonoBehaviour
             }
         }
         
-        _isAiming = PlayerManager.instance.isAiming;
+        _isAiming = PlayerManager.Instance.IsAiming;
         Zoom();
     }
 
     void Zoom()
     {
-        _lerpToFOV = PlayerManager.instance.isAiming ? _zoomFOV : _initialFOV;
+        _lerpToFOV = PlayerManager.Instance.IsAiming ? _zoomFOV : _initialFOV;
         _lerpedFOV = Mathf.Lerp(_lerpedFOV, _lerpToFOV, Time.deltaTime * _zoomStrength);
-        _firstPersonController.virtualCamera.m_Lens.FieldOfView = _lerpedFOV;
+        _firstPersonController.VirtualCamera.m_Lens.FieldOfView = _lerpedFOV;
     }
 }

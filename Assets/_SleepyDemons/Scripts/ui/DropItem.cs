@@ -7,6 +7,6 @@ public class DropItem : DropdownOption
     {
         Slot removedSlot = InventoryManager.instance.Remove(slot.GUID);
         InventoryManager.instance.UpdateInventoryGUI();
-        Instantiate(removedSlot.Item.WorldItem, PlayerManager.instance.dropItemSpawnPos.position, Quaternion.identity);
+        Instantiate(removedSlot.Item.WorldItem, PlayerManager.Instance.DropItemSpawnPos.position, Quaternion.identity);
     }
 }

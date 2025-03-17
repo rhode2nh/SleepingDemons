@@ -49,7 +49,7 @@ public class PhysicsDoor : MonoBehaviour, IHoldable
         var intiialReferencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
         var referenceDot = Vector3.Dot(transform.forward, intiialReferencePoint);
         // _rb.angularDrag = 5f;
-        while (PlayerManager.instance.isHolding) {
+        while (PlayerManager.Instance.IsHolding) {
             var referencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
             var dotProduct = Vector3.Dot(transform.forward, referencePoint) - referenceDot;
             if (flipAxis) {

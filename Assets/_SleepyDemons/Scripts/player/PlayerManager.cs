@@ -1,32 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using StarterAssets;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager instance;
+    public static PlayerManager Instance;
 
     [Header("Player Input State")]
-    public bool isAiming;
-    public bool isHolding;
+    public bool IsAiming;
+    public bool IsHolding;
+    
+    [SerializeField] private Texture2D _cursorTexture;
 
-    [SerializeField] private IUIPanel _currentUIPanel;
-    [SerializeField] public Transform dropItemSpawnPos; 
-    [SerializeField] public GameObject weaponSpawnPos;
-    [SerializeField] private Texture2D cursorTexture;
-    [field: SerializeField] public GameObject player;
+    public Transform DropItemSpawnPos { get; private set; } 
+    public GameObject WeaponSpawnPos { get; private set; }
+    public GameObject Player { get; private set; }
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        Vector2 cursorOffset = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
-        Cursor.SetCursor(cursorTexture, cursorOffset, CursorMode.Auto);
+        Player = GameObject.FindWithTag("Player");
+        DropItemSpawnPos = Player.GetComponentInChildren<Drop>().transform;
+        WeaponSpawnPos = Player.GetComponentInChildren<GunPos>().gameObject;
+        Vector2 cursorOffset = new Vector2(_cursorTexture.width / 2, _cursorTexture.height / 2);
+        Cursor.SetCursor(_cursorTexture, cursorOffset, CursorMode.Auto);
     }
 }

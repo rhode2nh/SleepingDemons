@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour, IInventory
         {
             _items.Add(DatabaseManager.instance.GetEmptySlot());
         }
-        InventoryManager.instance.InitializeInventoryGUI();
+        // InventoryManager.instance.InitializeInventoryGUI();
     }
 
     public bool Add(Slot slot)

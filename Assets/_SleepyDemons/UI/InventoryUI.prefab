@@ -287,9 +287,7 @@ MonoBehaviour:
   _distanceToClose: 200
   _dropdownOptionUI: {fileID: 3139530820517398805, guid: 96c1fd13e0fd72747a4c7cb8cb53ab00,
     type: 3}
-  optionsParent: {fileID: 7172576367988308763}
   _offset: {x: 0, y: 0}
-  rectTransform: {fileID: 5205244825681578382}
 --- !u!1 &2905801232449530361
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +299,7 @@ GameObject:
   - component: {fileID: 7923550727862038372}
   - component: {fileID: 5600040962792631291}
   - component: {fileID: 546130601377880954}
+  - component: {fileID: 541763362680998260}
   m_Layer: 5
   m_Name: ItemsParent
   m_TagString: Untagged
@@ -367,6 +366,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &541763362680998260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905801232449530361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0573ed9ef6cba89b9df002f7aed329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3881301261861662774
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4110810916769804282}
   - component: {fileID: 253448878539720737}
+  - component: {fileID: 546735764188527387}
   m_Layer: 5
   m_Name: OptionsParent
   m_TagString: Untagged
@@ -593,6 +605,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &546735764188527387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7172576367988308763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0573ed9ef6cba89b9df002f7aed329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8080804765730743557
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +836,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemUI: {fileID: 2599321642785645325, guid: 9d67be0622f4b109eb764d92efa70a19, type: 3}
-  _itemsParent: {fileID: 2905801232449530361}
+  _itemPreview: {fileID: 0}
   _dropdownUI: {fileID: 6932839181694636317}
-  _itemPreview: {fileID: 5061945172915721910, guid: 6038118fccad19b4f954009f5abdc08e,
-    type: 3}

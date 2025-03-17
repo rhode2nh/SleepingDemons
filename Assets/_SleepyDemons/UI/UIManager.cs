@@ -1,29 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance;
+    public static UIManager Instance;
 
-    public IUIPanel _pauseUI;
-    public IUIPanel _inventoryUI;
-
-    [SerializeField] private GameObject _pause;
-    [SerializeField] private GameObject _inventory;
-
+    public event Action OnOpenPauseUI;
+    public event Action OnClosePauseUI;
+    
+    public event Action OnOpenInventoryUI;
+    public event Action OnCloseInventoryUI;
 
     void Awake()
     {
-        instance = this;
-    }
-
-    void Start()
-    {
-        _pauseUI = _pause.GetComponent<IUIPanel>();
-        _inventoryUI = _inventory.GetComponent<IUIPanel>();
-        _pauseUI.ClosePanel();
-        _inventoryUI.ClosePanel();
+        Instance = this;
     }
 
     public void OpenPanel(IUIPanel panel)
@@ -34,5 +24,25 @@ public class UIManager : MonoBehaviour
     public void ClosePanel(IUIPanel panel)
     {
         panel.ClosePanel();
+    }
+
+    public virtual void OpenPauseUI()
+    {
+        OnOpenPauseUI?.Invoke();
+    }
+
+    public virtual void ClosePauseUI()
+    {
+        OnClosePauseUI?.Invoke();
+    }
+
+    public virtual void OpenInventoryUI()
+    {
+        OnOpenInventoryUI?.Invoke();
+    }
+
+    public virtual void CloseInventoryUI()
+    {
+        OnCloseInventoryUI?.Invoke();
     }
 }

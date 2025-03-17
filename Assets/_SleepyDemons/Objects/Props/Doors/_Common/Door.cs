@@ -13,7 +13,7 @@ public class Door : Interactable
     {
         if (!IsLocked())
         {
-            physicsDoor.Hold(other.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.instance.isHolding);
+            physicsDoor.Hold(other.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.Instance.IsHolding);
         }
     }
 

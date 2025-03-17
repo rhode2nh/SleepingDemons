@@ -23,7 +23,7 @@ public class InputRaycast : MonoBehaviour
 
     public void DisplayHoverText()
     {
-        if (isHitting && !PlayerManager.instance.isAiming && !PlayerManager.instance.isHolding)
+        if (isHitting && !PlayerManager.Instance.IsAiming && !PlayerManager.Instance.IsHolding)
         {
             if (hit.transform.gameObject.GetComponentInParent<IInteractable>() != null
                 || hit.transform.gameObject.GetComponentInParent<IHoldable>() != null

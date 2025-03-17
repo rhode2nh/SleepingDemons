@@ -11,25 +11,24 @@ namespace StarterAssets
 	public class StarterAssetsInputs : MonoBehaviour
 	{
 		[Header("Character Input Values")]
-		public Vector2 move;
-		public Vector2 look;
-		public float lean;
-		public bool jump;
-		public bool sprint;
-		public bool crouched;
-		public bool throwItem;
+		public Vector2 Move;
+		public Vector2 Look;
+		public float Lean;
+		public bool Jump;
+		public bool Sprint;
+		public bool Crouched;
+		public bool ThrowItem;
 
 		[Header("Movement Settings")]
-		public bool analogMovement;
+		public bool AnalogMovement;
 
 		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
-		public bool cursorInputForLook = true;
+		public bool CursorLocked = true;
+		public bool CursorInputForLook = true;
 
-		private Interact interact;
+		private Interact _interact;
 		private PlayerInput _playerInput;
 		private bool _checkChamber;
-		[SerializeField] private Gun _gun;
 		[SerializeField] [ReadOnly] private List<string> _lastActionMap;
 		private bool _checkChamberCoroutineStarted;
 
@@ -38,13 +37,13 @@ namespace StarterAssets
 		void Start()
 		{
 			_lastActionMap = new List<string>();
-			interact = GetComponentInChildren<Interact>();
+			_interact = GetComponentInChildren<Interact>();
 			_playerInput = GetComponent<PlayerInput>();
 			_lastActionMap.Add(_playerInput.currentActionMap.name);
 			_checkChamber = false;
 			_checkChamberCoroutineStarted = false;
 			Cursor.visible = false;
-			Cursor.lockState = cursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
+			Cursor.lockState = CursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 
 #if ENABLE_INPUT_SYSTEM
@@ -60,7 +59,7 @@ namespace StarterAssets
 
 		public void OnLook(InputValue value)
 		{
-			if (cursorInputForLook)
+			if (CursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
 			}
@@ -93,18 +92,18 @@ namespace StarterAssets
 
 		public void OnAim(InputValue value)
 		{
-			if (PlayerManager.instance.isHolding) return;
+			if (PlayerManager.Instance.IsHolding) return;
 			if (InventoryManager.instance.selectedSlot.IsEmpty) return;
 			
 			InventoryManager.instance.Equippable.Aim(value.isPressed);
 			if (value.isPressed)
 			{
-				PlayerManager.instance.isAiming = true;
+				PlayerManager.Instance.IsAiming = true;
 				_playerInput.SwitchCurrentActionMap("Aim");
 			}
 			else
 			{
-				PlayerManager.instance.isAiming = false;
+				PlayerManager.Instance.IsAiming = false;
 				_playerInput.SwitchCurrentActionMap("Player");
 			}
 		}
@@ -121,7 +120,7 @@ namespace StarterAssets
 
 		IEnumerator CheckChamber()
 		{
-			yield return new WaitForSeconds(InputManager.instance._checkChamberTimerDuration);
+			yield return new WaitForSeconds(InputManager.Instance._checkChamberTimerDuration);
 			_checkChamber = false;
 			_checkChamberCoroutineStarted = false;
 		}
@@ -198,38 +197,42 @@ namespace StarterAssets
 
 		public void OnPause(InputValue value)
 		{
-			InputManager.instance.OpenPanel(UIManager.instance._pauseUI, "Pause");
+			InputManager.Instance.OpenUI("Pause");
+			UIManager.Instance.OpenPauseUI();
 		}
 
 		public void OnUnpause(InputValue value)
 		{
-			InputManager.instance.ClosePanel(UIManager.instance._pauseUI);
+			InputManager.Instance.CloseUI();
+			UIManager.Instance.ClosePauseUI();
 		}
 
 		public void OnOpenInventory(InputValue value)
 		{
-			InputManager.instance.OpenPanel(UIManager.instance._inventoryUI, "Inventory");
+			InputManager.Instance.OpenUI("Inventory");
+			UIManager.Instance.OpenInventoryUI();
 		}
 
 		public void OnCloseInventory(InputValue value)
 		{
-			InputManager.instance.ClosePanel(UIManager.instance._inventoryUI);
+			InputManager.Instance.CloseUI();
+			UIManager.Instance.CloseInventoryUI();
 		}
 
 		public void OnFlashlight(InputValue value)
 		{
-			InputManager.instance.isFlashlightOn = !InputManager.instance.isFlashlightOn;
+			InputManager.Instance.IsFlashlightOn = !InputManager.Instance.IsFlashlightOn;
 		}
 
 		public void OnCrouch(InputValue newCrouchState)
 		{
-			crouched = !crouched;
+			Crouched = !Crouched;
 			TriggerCrouch?.Invoke();
 		}
 		
 		public void OnThrow(InputValue value)
 		{
-			throwItem = value.isPressed;
+			ThrowItem = value.isPressed;
 		}
 
 		public void OnQuit(InputValue value)
@@ -245,37 +248,37 @@ namespace StarterAssets
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			move = newMoveDirection;
+			Move = newMoveDirection;
 		}
 
 		public void LeanInput(float newLeanInput)
 		{
-			lean = newLeanInput;
+			Lean = newLeanInput;
 		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
-			look = newLookDirection;
+			Look = newLookDirection;
 		}
 
 		public void JumpInput(bool newJumpState)
 		{
-			jump = newJumpState;
+			Jump = newJumpState;
 		}
 
 		public void SprintInput(bool newSprintState)
 		{
-			sprint = newSprintState;
+			Sprint = newSprintState;
 		}
 
 		public void InteractInput(bool newInteractState)
 		{
-			interact.InteractWith(newInteractState);
+			_interact.InteractWith(newInteractState);
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
 		{
-			SetCursorState(cursorLocked);
+			SetCursorState(CursorLocked);
 		}
 
 		private void SetCursorState(bool newState)
