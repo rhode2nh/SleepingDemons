@@ -8696,6 +8696,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1510910455778502397, guid: 250ac6c1f453b035ab12778119f5357d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2286708901836078151, guid: 250ac6c1f453b035ab12778119f5357d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15042,6 +15047,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightSwitch_Slide_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1336860746104891842, guid: 1aba508a4146fdf80b10cdf28f604136,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1857360391295644536, guid: 1aba508a4146fdf80b10cdf28f604136,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15171,6 +15181,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 490665596}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &497207376
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2260966099727407669, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: _lightSwitch
+      value: 
+      objectReference: {fileID: 1285922492}
+    - target: {fileID: 3783213317505330765, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_Name
+      value: Light_Fixture_01_low
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.206
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.864
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.4971886
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f93f80fe0a301f726bf9a2eb1ef4e982, type: 3}
 --- !u!1001 &500601893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32314,6 +32397,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_Fixture_01_low
       objectReference: {fileID: 0}
+    - target: {fileID: 3783213317505330765, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38947,6 +39035,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1285650993}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1285922492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7982022921561796909, guid: 880c6cfe0aae29931969c769985d5a31,
+    type: 3}
+  m_PrefabInstance: {fileID: 8164575905950316444}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007a702c787661e1f8707fffe39bf833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1286013218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41384,11 +41484,11 @@ Transform:
   - {fileID: 1882082272}
   - {fileID: 72598605}
   - {fileID: 974400309}
-  - {fileID: 1073669407}
-  - {fileID: 437729797}
   - {fileID: 1737861017}
+  - {fileID: 1073669407}
   - {fileID: 793729676}
   - {fileID: 291344584}
+  - {fileID: 437729797}
   m_Father: {fileID: 1106144126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1369325547
@@ -41408,6 +41508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Light_Fixture_01_low (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783213317505330765, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
         type: 3}
@@ -51240,6 +51345,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light_Fixture_01_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3783213317505330765, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4596905126074971383, guid: f93f80fe0a301f726bf9a2eb1ef4e982,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -60655,6 +60765,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightSwitch_Slide_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1336860746104891842, guid: 1aba508a4146fdf80b10cdf28f604136,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1857360391295644536, guid: 1aba508a4146fdf80b10cdf28f604136,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65799,6 +65914,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6b7a241c9d71acf7880a768a5ab134f, type: 3}
+--- !u!1001 &8164575905950316444
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6442432
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.7490897
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823817865942586360, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312686691905997122, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: m_Name
+      value: LightSwitch_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982022921561796909, guid: 880c6cfe0aae29931969c769985d5a31,
+        type: 3}
+      propertyPath: <InitialIntensity>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 880c6cfe0aae29931969c769985d5a31, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -65818,3 +66006,5 @@ SceneRoots:
   - {fileID: 110500927}
   - {fileID: 941301178}
   - {fileID: 1021487586}
+  - {fileID: 8164575905950316444}
+  - {fileID: 497207376}

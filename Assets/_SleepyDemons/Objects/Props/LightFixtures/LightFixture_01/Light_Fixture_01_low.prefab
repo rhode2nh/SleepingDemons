@@ -292,6 +292,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 604094408068903439, guid: 2e0b1463bd626a5ceaf4cd227807ba60,
         type: 3}
+      propertyPath: lightController
+      value: 
+      objectReference: {fileID: 2260966099727407669}
+    - target: {fileID: 604094408068903439, guid: 2e0b1463bd626a5ceaf4cd227807ba60,
+        type: 3}
       propertyPath: lightController2
       value: 
       objectReference: {fileID: 2260966099727407669}
@@ -425,17 +430,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 450954443d4e907ff8e6eb8f18240612,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.242174
+      value: -4.206
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 450954443d4e907ff8e6eb8f18240612,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.823
+      value: 2.864
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 450954443d4e907ff8e6eb8f18240612,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.75293756
+      value: 7.4971886
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 450954443d4e907ff8e6eb8f18240612,
         type: 3}
@@ -513,7 +518,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc99c2574590569d1b3b8f1c39208981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightSwitch: {fileID: 0}
+  _lightSwitch: {fileID: 0}
+  _enableFlicker: 0
+  _flickerFrequency: 1
+  _flickerRandomness: 0
+  _minRandom: 0
+  _maxRandom: 0
 --- !u!4 &4596905126074971383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 450954443d4e907ff8e6eb8f18240612,
