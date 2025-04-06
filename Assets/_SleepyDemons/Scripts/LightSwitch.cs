@@ -4,23 +4,24 @@ using UnityEngine;
 public class LightSwitch : MonoBehaviour
 {
     public event Action<float> OnDimLight;
-    public float initialIntensity;
-    public bool isOn;
+    
+    [field: SerializeField] public float InitialIntensity { get; private set; }
+    [field: SerializeField] public bool IsOn { get; private set; }
 
-    private float currentIntensity;
+    private float _currentIntensity;
 
     private void Start()
     {
-        currentIntensity = initialIntensity;
+        _currentIntensity = InitialIntensity;
         InitializeLights();
     }
 
     private void InitializeLights()
     {
-        OnDimLight?.Invoke(initialIntensity);
-        if (isOn)
+        OnDimLight?.Invoke(InitialIntensity);
+        if (IsOn)
         {
-            OnDimLight?.Invoke(currentIntensity);
+            OnDimLight?.Invoke(_currentIntensity);
         }
         else
         {
@@ -30,10 +31,10 @@ public class LightSwitch : MonoBehaviour
 
     public void SwitchLight()
     {
-        isOn = !isOn;
-        if (isOn)
+        IsOn = !IsOn;
+        if (IsOn)
         {
-            OnDimLight?.Invoke(currentIntensity);
+            OnDimLight?.Invoke(_currentIntensity);
         }
         else
         {
@@ -43,7 +44,7 @@ public class LightSwitch : MonoBehaviour
     
     public void DimLight(float intensity)
     {
-        currentIntensity = intensity;
-        OnDimLight?.Invoke(currentIntensity);
+        _currentIntensity = intensity;
+        OnDimLight?.Invoke(_currentIntensity);
     }
 }
