@@ -584,8 +584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007a702c787661e1f8707fffe39bf833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialIntensity: 1
-  isOn: 0
+  <InitialIntensity>k__BackingField: 1
+  <IsOn>k__BackingField: 0
 --- !u!4 &8320179456800350823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8670266948652757942, guid: 6d12d1a1acce122eeb1178cc5208f6d6,
@@ -603,17 +603,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.994668
+      value: 2.995
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.964
+      value: 0.961
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.92225
+      value: -1.0154104
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1445c3db719a3182a311d4231e4b334,
         type: 3}
@@ -746,7 +746,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9e1263f2ad46e82afe0e2c87717bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightSwitch: {fileID: 2436052002338909392}
+  _lightSwitch: {fileID: 2436052002338909392}
+  _enableFlicker: 0
+  _flickerFrequency: 0
+  _flickerRandomness: 0
+  _minRandom: 0
+  _maxRandom: 0
   lampShadeRenderer: {fileID: 8219012405901690198}
   lampSwitchOn: {fileID: 6299397611522943152}
   lampSwitchOff: {fileID: 5486751593366230539}

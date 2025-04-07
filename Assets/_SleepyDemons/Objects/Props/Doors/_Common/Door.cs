@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
@@ -5,20 +6,185 @@ using UnityEngine;
 [RequireComponent(typeof(HingeJoint))]
 public class Door : Interactable
 {
-    [Header("References")]
-    [SerializeField] private PhysicsDoor physicsDoor;
-    [SerializeField] private LockController lockController;
+    private enum HingePosition
+    {
+        Center,
+        Up,
+        Down,
+        Left,
+        Right,
+    }
+
+    private enum HingeZPosition
+    {
+        Center,
+        Front,
+        Back,
+    }
     
+    [Header("Parameters")]
+    [SerializeField] private float _strength = 4.0f;
+
+    [SerializeField] private float _maxVelocity = 1.0f;
+    [SerializeField] private float _boxColliderScalar = 1.0f;
+
+    [Header("Hinge Settings")]
+    [SerializeField] private HingePosition _hingePosition = HingePosition.Right;
+    [SerializeField] private HingeZPosition _hingeZPosition = HingeZPosition.Center;
+    [SerializeField] private float _minAngle = -90f;
+    [SerializeField] private float _maxAngle = 0f;
+    [SerializeField] private Collider _ignoreCollider;
+    
+    private Rigidbody _rb;
+    private HingeJoint _hinge;
+    private BoxCollider _boxCollider;
+    private LockController _lockController;
+    
+    private Vector3 _axis;
+    private bool _isHolding;
+    private int _axisForceSign = 1;
+    
+    private Vector3 _initialReferencePoint;
+    private Vector3 _torqueDir;
+    private Vector3 _posToHold;
+    
+    void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+        _hinge = GetComponent<HingeJoint>();
+        _boxCollider = GetComponent<BoxCollider>();
+        _lockController = GetComponentInChildren<LockController>();
+        if (_ignoreCollider)
+        {
+            Physics.IgnoreCollision(_boxCollider, _ignoreCollider);
+        }
+
+        _rb.interpolation = RigidbodyInterpolation.Interpolate;
+        _isHolding = false;
+    }
+
+    void Start()
+    {
+        CalculateHingePosition();
+        CalculateBoxCollider();
+        InitializeHinge();
+    }
+
     public override void ExecuteInteraction(GameObject other)
     {
         if (!IsLocked())
         {
-            physicsDoor.Hold(other.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.Instance.IsHolding);
+            Hold(other.GetComponent<Interact>()._inputRaycast.hit.point, PlayerManager.Instance.IsHolding);
         }
     }
 
     private bool IsLocked()
     {
-        return lockController.IsLocked();
+        if (_lockController != null)
+        {
+            return _lockController.IsLocked();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void Hold(Vector3 hitPoint, bool isHolding) {
+        this._isHolding = isHolding;
+        if (this._isHolding) {
+            StartCoroutine(HoldObject(hitPoint));
+        }
+    }
+
+    public void Nudge(float strength)
+    {
+        // _rb.AddTorque(transform.up * (_xAxisSign * strength), ForceMode.Impulse);
+    }
+
+    IEnumerator HoldObject(Vector3 hitPoint) {
+        var relativeDistance = Vector3.Distance(Camera.main.transform.position, hitPoint);
+        var initialReferencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
+        var referenceDot = Vector3.Dot(transform.forward, initialReferencePoint);
+        _rb.useGravity = false;
+        while (PlayerManager.Instance.IsHolding) {
+            var referencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
+            var dotProduct = Vector3.Dot(transform.forward, referencePoint) - referenceDot;
+            _rb.AddTorque(_torqueDir * (_axisForceSign * _strength * dotProduct));
+            _rb.AddTorque(-_rb.angularVelocity);
+        
+            yield return new WaitForFixedUpdate();
+        }
+        _rb.useGravity = true;
+    }
+
+    public float GetNormalizedVelocity() {
+        return (_rb.velocity.magnitude - 0.0f) / (_maxVelocity - 0);
+    }
+
+    private void InitializeHinge()
+    {
+        var limits = _hinge.limits;
+        limits.min = _minAngle;
+        limits.max = _maxAngle;
+        _hinge.limits = limits;
+        _hinge.useLimits = true;
+    }
+    
+    private void CalculateHingePosition()
+    {
+        var center = _boxCollider.center;
+        var xHingePos = center.x;
+        var yHingePos = center.y;
+        var zHingePos = center.z;
+        var xAxis = 0;
+        var yAxis = 0;
+        var zAxis = 0;
+        switch (_hingePosition)
+        {
+            case HingePosition.Center:
+                break;
+            case HingePosition.Up:
+                xAxis = 1;
+                _axisForceSign = -1;
+                yHingePos += _boxCollider.size.y / 2;
+                _torqueDir = transform.right;
+                break;
+            case HingePosition.Down:
+                xAxis = 1;
+                yHingePos += -_boxCollider.size.y / 2;
+                _torqueDir = transform.right;
+                break;
+            case HingePosition.Left:
+                yAxis = 1;
+                _axisForceSign = -1;
+                xHingePos += -_boxCollider.size.x / 2;
+                _torqueDir = transform.up;
+                break;
+            case HingePosition.Right:
+                yAxis = 1;
+                xHingePos += _boxCollider.size.x / 2;
+                _torqueDir = transform.up;
+                break;
+        }
+
+        switch (_hingeZPosition)
+        {
+            case HingeZPosition.Center:
+                break;
+            case HingeZPosition.Front:
+                zHingePos += _boxCollider.size.z / 2;
+                break;
+            case HingeZPosition.Back:
+                zHingePos += -_boxCollider.size.z / 2;
+                break;
+        }
+        _hinge.anchor = new Vector3(xHingePos, yHingePos, zHingePos);
+        _hinge.axis = new Vector3(xAxis, yAxis, zAxis);
+    }
+
+    private void CalculateBoxCollider()
+    {
+        _boxCollider.size *= _boxColliderScalar;
     }
 }

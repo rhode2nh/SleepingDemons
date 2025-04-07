@@ -57523,14 +57523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fa7fe191783b115847ac8e8ac53301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  hinge: {fileID: 0}
-  boxCollider: {fileID: 0}
-  isHolding: 0
-  flipAxis: 0
-  strength: 0
-  maxVelocity: 0
-  boxColliderScalar: 1
 --- !u!114 &1880256868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57546,8 +57538,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _executeOnRelease: 0
   <InteractableIcon>k__BackingField: {fileID: 0}
-  physicsDoor: {fileID: 0}
-  lockController: {fileID: 0}
+  _strength: 0
+  _maxVelocity: 0
+  _boxColliderScalar: 1
+  _hingePosition: 4
+  _hingeZPosition: 0
+  _flipAxis: 0
+  _calculateZHingeAtCenter: 0
+  _minAngle: -90
+  _maxAngle: 0
 --- !u!59 &1880256869
 HingeJoint:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class MarketArmEvents : MonoBehaviour
     [SerializeField] private Transform _currencySpawnPos;
     [SerializeField] private SpringJoint _sprintJoint;
     [SerializeField] private Rigidbody _doorRb;
-    [SerializeField] private PhysicsDoor physicsDoor;
+    [SerializeField] private Door physicsDoor;
     private Vector3 _armPosition;
 
     public void SetWorldItem(GameObject worldItem)
