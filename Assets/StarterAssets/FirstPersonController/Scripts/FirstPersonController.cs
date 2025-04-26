@@ -188,13 +188,14 @@ namespace StarterAssets
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - (_controller.height / 2.0f) - GroundedOffset, transform.position.z);
-			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+			// Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+			Grounded = _controller.isGrounded;
 		}
 
 		private void CeilingCheck() {
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y + (_controller.height / 2.0f) + CeilingOffset, transform.position.z);
-			HitCeiling = Physics.CheckSphere(spherePosition, GroundedRadius, CeilingLayers, QueryTriggerInteraction.Ignore);
+			// HitCeiling = Physics.CheckSphere(spherePosition, GroundedRadius, CeilingLayers, QueryTriggerInteraction.Ignore);
 		}
 
 		private void CameraRotation()
@@ -246,8 +247,14 @@ namespace StarterAssets
 		{
 			InputDirection = MoveGround();
 			_horizontalKnockbackDir = -MoveKnockback() * Time.deltaTime;
+
+			var x = _input.Move.x;
+			var z = _input.Move.y;
+			var test = transform.right * x + transform.forward * z;
+			
 			// move the player
-			_controller.Move(Vector3.ClampMagnitude(InputDirection, 1f) * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime + _horizontalKnockbackDir);
+			// _controller.Move(Vector3.ClampMagnitude(InputDirection, 1f) * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime + _horizontalKnockbackDir);
+			_controller.Move(test * (_speed * Time.deltaTime) + new Vector3(0.0f, VerticalVelocity, 0.0f) * Time.deltaTime + _horizontalKnockbackDir);
             float maxSpeed = 100.0f;
             float normalizedSpeed = _controller.velocity.magnitude / maxSpeed;
 			// virtualCamera.m_Lens.FieldOfView = Mathf.Clamp(Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, fov + fov * Mathf.Pow(normalizedSpeed, 2) * velocityFOVScaleFactor, Time.deltaTime * fovChangeRate), 0.0f, 120.0f);

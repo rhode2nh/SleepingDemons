@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Holdable : Interactable, IHoldable
 {
     [SerializeField] protected bool _isHolding;

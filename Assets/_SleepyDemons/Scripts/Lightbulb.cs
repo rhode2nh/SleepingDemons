@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,6 +11,7 @@ public class LightBulb : MonoBehaviour, IDamageable
     [SerializeField] private List<Light> lightSources;
     [FormerlySerializedAs("lightController2")] [SerializeField] private LightController lightController;
     [SerializeField] private LensFlare flare;
+    [SerializeField] public bool IsOn { get; private set; }
 
     private void OnEnable()
     {
@@ -36,6 +38,7 @@ public class LightBulb : MonoBehaviour, IDamageable
     private void DimLightBulb(float intensity)
     {
         bool turnOn = intensity > 0.0f;
+        IsOn = turnOn;
         foreach (var lightSource in lightSources)
         {
             lightSource.intensity = intensity;
@@ -54,5 +57,13 @@ public class LightBulb : MonoBehaviour, IDamageable
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(transform.position, lightSource.transform.position);
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        var rb = other.gameObject.GetComponent<Rigidbody>();
+        if (rb == null) return;
+        
+        TakeDamage(rb.velocity.magnitude, new Vector3(), new Vector3());
     }
 }

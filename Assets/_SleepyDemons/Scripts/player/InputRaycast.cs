@@ -16,7 +16,7 @@ public class InputRaycast : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        isHitting = Physics.Raycast(transform.position, fwd, out hit, maxDistance);
+        isHitting = Physics.Raycast(transform.position, fwd, out hit, maxDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
         Debug.DrawRay(transform.position, fwd * maxDistance, Color.green);
         DisplayHoverText();
     }

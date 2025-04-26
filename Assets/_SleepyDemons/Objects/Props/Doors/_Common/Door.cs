@@ -24,7 +24,7 @@ public class Door : Interactable
     
     [Header("Parameters")]
     [SerializeField] private float _strength = 4.0f;
-
+    [SerializeField] private float _drag = 0.5f;
     [SerializeField] private float _maxVelocity = 1.0f;
     [SerializeField] private float _boxColliderScalar = 1.0f;
 
@@ -59,6 +59,8 @@ public class Door : Interactable
             Physics.IgnoreCollision(_boxCollider, _ignoreCollider);
         }
 
+        _rb.drag = _drag;
+        _rb.angularDrag = _drag;
         _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _isHolding = false;
     }
@@ -125,8 +127,19 @@ public class Door : Interactable
     private void InitializeHinge()
     {
         var limits = _hinge.limits;
-        limits.min = _minAngle;
-        limits.max = _maxAngle;
+        switch (_hingePosition)
+        {
+            case HingePosition.Up:
+            case HingePosition.Right:
+                limits.min = _maxAngle;
+                limits.max = -_minAngle;
+                break;
+            case HingePosition.Down:
+            case HingePosition.Left:
+                limits.min = _minAngle;
+                limits.max = _maxAngle;
+                break;
+        }
         _hinge.limits = limits;
         _hinge.useLimits = true;
     }
