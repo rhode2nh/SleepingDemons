@@ -11,32 +11,42 @@ public class Holdable : Interactable, IHoldable
     [SerializeField] private bool modifyVelocityDirectly;
     [SerializeField] private float brakingDistance;
     [SerializeField] private float brakingStrength;
+    [SerializeField] private float _holdingDrag = 1.0f;
+    [SerializeField] private float _holdingAngularDrag = 1.0f;
     
     private Rigidbody _rb;
     private Vector3 _initialReferencePoint;
     private Vector3 _posToHold;
+    private float _initialDrag;
+    private float _initialAngularDrag;
 
      internal virtual void Awake() {
         _rb = GetComponent<Rigidbody>();
+        _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _initialReferencePoint = new Vector3();
         _isHolding = false;
-    }
+        _initialDrag = _rb.drag;
+        _initialAngularDrag = _rb.angularDrag;
+     }
 
     public void Hold(Vector3 hitPoint, bool isHolding) {
         _isHolding = isHolding;
-        if (_isHolding) {
+        if (_isHolding)
+        {
             StartCoroutine(HoldObject(hitPoint));
         }
     }
 
     IEnumerator HoldObject(Vector3 hitPoint) {
+        _rb.drag = _holdingDrag;
+        _rb.angularDrag = _holdingAngularDrag;
         var relativeDistance = Vector3.Distance(Camera.main.transform.position, hitPoint);
         _initialReferencePoint = Camera.main.transform.position + Camera.main.transform.forward * relativeDistance;
         var initialPos = _rb.position;
         
         while (PlayerManager.Instance.IsHolding)
         {
-            _posToHold = Camera.main.transform.position + (Camera.main.transform.forward * relativeDistance);
+            _posToHold = Camera.main.transform.position + (Camera.main.transform.forward * (relativeDistance + PlayerManager.Instance.HoldOffset));
             var pointToHold = _bringToCenter ? _rb.position : _initialReferencePoint + (_rb.position - initialPos);
             var force = (_posToHold - pointToHold) * _strength;
             
@@ -64,7 +74,23 @@ public class Holdable : Interactable, IHoldable
                 }
             }
 
+            if (PlayerManager.Instance.IsRotating)
+            {
+                _rb.AddTorque(-Camera.main.transform.up * PlayerManager.Instance.RotateVector.x);
+                _rb.AddTorque(-Camera.main.transform.right * PlayerManager.Instance.RotateVector.y);
+                _rb.AddTorque(-_rb.angularVelocity * 0.5f);
+            }
+            
             yield return new WaitForFixedUpdate();
+        }
+        _rb.drag = _initialDrag;
+        _rb.angularDrag = _initialAngularDrag;
+        PlayerManager.Instance.HoldOffset = 0.0f;
+
+        if (PlayerManager.Instance.IsThrowing)
+        {
+            _rb.AddForce(Camera.main.transform.forward * PlayerManager.Instance.ThrowForce, ForceMode.Impulse);
+            PlayerManager.Instance.IsThrowing = false;
         }
     }
 

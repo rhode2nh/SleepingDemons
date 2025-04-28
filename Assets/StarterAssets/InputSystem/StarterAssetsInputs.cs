@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ParadoxNotion;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
+using System.Text;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 #endif
 
 namespace StarterAssets
@@ -63,6 +66,11 @@ namespace StarterAssets
 			{
 				LookInput(value.Get<Vector2>());
 			}
+			else
+			{
+				LookInput(new Vector2());
+				PlayerManager.Instance.RotateVector = value.Get<Vector2>();
+			}
 		}
 
 		public void OnJump(InputValue value)
@@ -92,7 +100,13 @@ namespace StarterAssets
 
 		public void OnAim(InputValue value)
 		{
-			if (PlayerManager.Instance.IsHolding) return;
+			if (PlayerManager.Instance.IsHolding && value.isPressed)
+			{
+				Debug.Log("Throwing");
+				PlayerManager.Instance.IsHolding = false;
+				PlayerManager.Instance.IsThrowing = true;
+				return;
+			};
 			if (InventoryManager.instance.selectedSlot.IsEmpty) return;
 			
 			InventoryManager.instance.Equippable.Aim(value.isPressed);
@@ -135,6 +149,21 @@ namespace StarterAssets
 			StartCoroutine(CheckChamber());
 		}
 
+		public void OnMoveHoldable(InputValue value)
+		{
+			float input = value.Get<float>();
+			if (input != 0.0f)
+			{
+				PlayerManager.Instance.MoveHoldPosition((int)input);
+			}
+		}
+
+		public void OnRotateHoldable(InputValue value)
+		{
+			CursorInputForLook = !value.isPressed;
+			PlayerManager.Instance.IsRotating = value.isPressed;
+		}
+		
 		public void OnCheckChamber(InputValue value)
 		{
 			// TODO: Rework when animations are implemented

@@ -60,24 +60,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SetCheckChamber",
-                    "type": "Button",
-                    "id": "f6809af3-f85c-4ad2-87a1-2a303a465e18",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "CheckAmmo",
-                    "type": "Button",
-                    "id": "e8f00e6c-cd98-4d00-9242-eb0b4e43fc30",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(duration=0.4)",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Aim",
                     "type": "Button",
                     "id": "4ae8076c-6971-461a-a7a3-4fcbc1904911",
@@ -129,6 +111,24 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveHoldable",
+                    "type": "PassThrough",
+                    "id": "1be1d356-e5b4-4967-aaa2-04fe35d497c7",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RotateHoldable",
+                    "type": "Button",
+                    "id": "bc04ff1b-d554-4f52-b93c-0b27b00a90f7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 }
             ],
@@ -399,28 +399,6 @@
                 },
                 {
                     "name": "",
-                    "id": "890ccf1e-bce2-40ad-8995-f7551140f942",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "SetCheckChamber",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7e6ead12-ce0a-4c70-aa9d-611a1e762e10",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "CheckAmmo",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0c850282-c04e-469e-b6a3-59352acf9f79",
                     "path": "<Keyboard>/f",
                     "interactions": "",
@@ -438,6 +416,28 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af369ab9-4ded-4bda-a0f4-25e35618100d",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "Normalize(min=-120,max=120)",
+                    "groups": "KeyboardMouse",
+                    "action": "MoveHoldable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89de6fd7-46bd-4dcb-8465-a3c895db4b15",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "RotateHoldable",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

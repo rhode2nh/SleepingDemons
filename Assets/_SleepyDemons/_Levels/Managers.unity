@@ -413,6 +413,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAiming: 0
   IsHolding: 0
+  IsThrowing: 0
+  ThrowForce: 5
+  HoldOffset: 0
+  MaxHoldOffset: 0.2
+  MinHoldOffset: -0.4
   _cursorTexture: {fileID: 2800000, guid: b91cf042a13adcf0f9f3d1830bb030ee, type: 3}
 --- !u!1 &1608015716
 GameObject:
