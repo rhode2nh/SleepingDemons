@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_Edge_Standard_01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8758c719cb07c09d9a4a00ceb737eca1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

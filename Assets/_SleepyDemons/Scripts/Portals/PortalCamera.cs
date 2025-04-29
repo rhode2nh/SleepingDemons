@@ -28,59 +28,42 @@ public class PortalCamera : MonoBehaviour
         foreach (PortalSet portalSet in _portalSets)
         {
             if (!portalSet.IsInitialized) continue;
-            if (!portalSet.PortalA.IsRendererVisible() && !portalSet.PortalB.IsRendererVisible())
-            {
-                portalSet.PortalLightObject.SetPortals(null, null);
-            }
             
-            if (portalSet.PortalA.IsRendererVisible())
-            {
-                // Render the first portal output onto the image.
-                if (portalSet.PortalA.IsVisibleFromCamera())
-                {
-                    portalSet.PortalLightObject.SetPortals(portalSet.PortalA, portalSet.PortalB);
-                    portalSet.PortalLightObject.UpdatePos();
-                }
-                RenderCamera(portalSet.PortalA, portalSet.PortalB, portalSet.PortalCamera);
-                portalMaterial.SetInt("_MaskID", portalSet.PortalA.MaskID);
-                Graphics.Blit(portalSet.TargetTexture, src, portalMaterial);
-            }
-            
-            if (portalSet.PortalB.IsRendererVisible())
-            {
-                // Render the first portal output onto the image.
-                if (portalSet.PortalB.IsVisibleFromCamera())
-                {
-                    portalSet.PortalLightObject.SetPortals(portalSet.PortalB, portalSet.PortalA);
-                    portalSet.PortalLightObject.UpdatePos();
-                }
-                RenderCamera(portalSet.PortalB, portalSet.PortalA, portalSet.PortalCamera);
-                portalMaterial.SetInt("_MaskID", portalSet.PortalB.MaskID);
-                Graphics.Blit(portalSet.TargetTexture, src, portalSet.PortalMaterial);
-            }
+            CheckPortal(portalSet, portalSet.PortalA, portalSet.PortalB, src);
+            CheckPortal(portalSet, portalSet.PortalB, portalSet.PortalA, src);
 
             if (portalSet.PortalSetType == PortalSetType.ManyToOne)
             {
                 foreach (var additionalPortal in portalSet.AdditionalPortals)
                 {
-                    if (additionalPortal.IsRendererVisible())
-                    {
-                        // Render the first portal output onto the image.
-                        if (additionalPortal.IsVisibleFromCamera())
-                        {
-                            portalSet.PortalLightObject.SetPortals(additionalPortal, portalSet.PortalB);
-                            portalSet.PortalLightObject.UpdatePos();
-                        }
-                        RenderCamera(additionalPortal, portalSet.PortalB, portalSet.PortalCamera);
-                        portalMaterial.SetInt("_MaskID", additionalPortal.MaskID);
-                        Graphics.Blit(portalSet.TargetTexture, src, portalSet.PortalMaterial);
-                    }
+                    CheckPortal(portalSet, additionalPortal, portalSet.PortalB, src);
                 }
             }
         }
 
         // Output the combined texture.
         Graphics.Blit(src, dst);
+    }
+
+    private void CheckPortal(PortalSet portalSet, Portal inPortal, Portal outPortal, RenderTexture src)
+    {
+        if ((!inPortal.IsRendererVisible() || !inPortal.RaycastCheck()) && !inPortal.IsPlayerInPortal()) return;
+        foreach (var portalLightObject in portalSet.PortalLightObjects)
+        {
+            if (portalLightObject.IsLightOn())
+            {
+                portalLightObject.Activate();
+                portalLightObject.SetPortals(inPortal, outPortal);
+                portalLightObject.UpdatePos();
+            }
+            else
+            {
+                portalLightObject.Deactivate();
+            }
+        }
+        RenderCamera(inPortal, outPortal, portalSet.PortalCamera);
+        portalMaterial.SetInt("_MaskID", inPortal.MaskID);
+        Graphics.Blit(portalSet.TargetTexture, src, portalSet.PortalMaterial);
     }
 
     private void RenderCamera(Portal inPortal, Portal outPortal, Camera portalCamera)

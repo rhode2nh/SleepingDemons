@@ -11,7 +11,12 @@ PrefabInstance:
     - target: {fileID: 358690642127118006, guid: 6e3c74a21b9b473279477c64d7cd7ec2,
         type: 3}
       propertyPath: m_Name
-      value: Floor_Edge_Standard_01 Variant
+      value: Floor_Edge_Prototype_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 358690642127118006, guid: 6e3c74a21b9b473279477c64d7cd7ec2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1130829642631873548, guid: 6e3c74a21b9b473279477c64d7cd7ec2,
         type: 3}

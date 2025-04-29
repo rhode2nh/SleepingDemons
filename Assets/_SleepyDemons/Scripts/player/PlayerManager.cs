@@ -31,8 +31,8 @@ public class PlayerManager : MonoBehaviour
     {
         Player = GameObject.FindWithTag("Player");
         InputRaycast = FindObjectOfType<InputRaycast>();
-        DropItemSpawnPos = Player.GetComponentInChildren<Drop>().transform;
-        WeaponSpawnPos = Player.GetComponentInChildren<GunPos>().gameObject;
+        // DropItemSpawnPos = Player.GetComponentInChildren<Drop>().transform;
+        // WeaponSpawnPos = Player.GetComponentInChildren<GunPos>().gameObject;
         Vector2 cursorOffset = new Vector2(_cursorTexture.width / 2, _cursorTexture.height / 2);
         Cursor.SetCursor(_cursorTexture, cursorOffset, CursorMode.Auto);
     }

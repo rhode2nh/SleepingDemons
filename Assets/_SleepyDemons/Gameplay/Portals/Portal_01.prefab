@@ -68,6 +68,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: -7310244506519752801, guid: 4465f1bfbd5322af1b51a559b45f4d7d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -3539722823491579100, guid: 4465f1bfbd5322af1b51a559b45f4d7d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -82,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4465f1bfbd5322af1b51a559b45f4d7d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -127,6 +137,8 @@ MonoBehaviour:
     m_Bits: 0
   <Center>k__BackingField: {fileID: 3612742569153413592}
   _wallColliders: []
+  raycastCols: 5
+  raycastRows: 7
   _portalObjects: []
 --- !u!65 &3436501780639586691
 BoxCollider:

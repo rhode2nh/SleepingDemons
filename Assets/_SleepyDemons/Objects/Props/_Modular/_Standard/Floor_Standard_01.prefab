@@ -66,7 +66,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f72e9259230e12dd89691758f4413db4,
         type: 3}
       propertyPath: m_Name
-      value: SM_Floor_01
+      value: Floor_Standard_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f72e9259230e12dd89691758f4413db4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -11,7 +11,12 @@ PrefabInstance:
     - target: {fileID: 2615035289142394133, guid: 0629f191dd1e226c9a9ae0e981907685,
         type: 3}
       propertyPath: m_Name
-      value: Floor_Quarter_Standard_01 Variant
+      value: Floor_Quarter_Carpet_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615035289142394133, guid: 0629f191dd1e226c9a9ae0e981907685,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3387173186108991407, guid: 0629f191dd1e226c9a9ae0e981907685,
         type: 3}

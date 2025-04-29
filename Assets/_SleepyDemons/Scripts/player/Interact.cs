@@ -1,11 +1,16 @@
+using System;
 using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
     public InputRaycast _inputRaycast;
 
-    public void InteractWith(bool isPressed) {
-        PlayerManager.Instance.IsHolding = isPressed;
+    private void Start()
+    {
+        InputManager.Instance.OnInteract += InteractWith;
+    }
+    
+    private void InteractWith(bool isPressed) {
         if (!_inputRaycast.isHitting) return;
         var interactable = _inputRaycast.hit.collider.GetComponent<IInteractable>();
         if (interactable == null) return;

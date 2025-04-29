@@ -61,7 +61,12 @@ PrefabInstance:
     - target: {fileID: 5445138689590422859, guid: c1945a57ec7ca82f8927a915bdf77dba,
         type: 3}
       propertyPath: m_Name
-      value: Wall_Doorway_Standard_01 Variant
+      value: Wall_Doorway_Prototype_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445138689590422859, guid: c1945a57ec7ca82f8927a915bdf77dba,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5805694871723986078, guid: c1945a57ec7ca82f8927a915bdf77dba,
         type: 3}

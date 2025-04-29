@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PortalLightObject : MonoBehaviour
 {
-    private GameObject _cloneObject;
+    public GameObject CloneObject { get; private set; }
 
     private Light _light;
     
@@ -17,9 +17,9 @@ public class PortalLightObject : MonoBehaviour
     {
         _light = GetComponent<Light>();
         
-        _cloneObject = new GameObject();
-        _cloneObject.SetActive(false);
-        var cloneLight = _cloneObject.AddComponent<Light>();
+        CloneObject = new GameObject();
+        CloneObject.SetActive(false);
+        var cloneLight = CloneObject.AddComponent<Light>();
         cloneLight.type = _light.type;
         cloneLight.range = _light.range;
         cloneLight.spotAngle = _light.spotAngle;
@@ -31,36 +31,23 @@ public class PortalLightObject : MonoBehaviour
         cloneLight.cookie = _light.cookie;
         cloneLight.shadows = _light.shadows;
         
-        _cloneObject.transform.localScale = transform.localScale;
+        CloneObject.transform.localScale = transform.localScale;
     }
 
     public void UpdatePos()
     {
-        if(InPortal == null || OutPortal == null)
-        {
-            _cloneObject.SetActive(false);
-            return;
-        }
-        _cloneObject.SetActive(_light.enabled);
-        if(_cloneObject.activeSelf)
-        {
-            var inTransform = InPortal.Center;
-            var outTransform = OutPortal.Center;
+        var inTransform = InPortal.Center;
+        var outTransform = OutPortal.Center;
 
-            // Update position of clone.
-            Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
-            relativePos = HalfTurn * relativePos;
-            _cloneObject.transform.position = outTransform.TransformPoint(relativePos);
+        // Update position of clone.
+        Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
+        relativePos = HalfTurn * relativePos;
+        CloneObject.transform.position = outTransform.TransformPoint(relativePos);
 
-            // Update rotation of clone.
-            Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
-            relativeRot = HalfTurn * relativeRot;
-            _cloneObject.transform.rotation = outTransform.rotation * relativeRot;
-        }
-        else
-        {
-            _cloneObject.transform.position = new Vector3(-1000.0f, 1000.0f, -1000.0f);
-        }
+        // Update rotation of clone.
+        Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
+        relativeRot = HalfTurn * relativeRot;
+        CloneObject.transform.rotation = outTransform.rotation * relativeRot;
     }
 
     public void SetPortals(Portal inPortal, Portal outPortal)
@@ -68,14 +55,21 @@ public class PortalLightObject : MonoBehaviour
         InPortal = inPortal;
         OutPortal = outPortal;
         
-        _cloneObject.SetActive(true);
+        CloneObject.SetActive(true);
     }
 
-    public void ExitPortals()
+    public void Deactivate()
     {
-        OutPortal = null;
-        InPortal = null;
-        
-        _cloneObject.SetActive(false);
+        CloneObject.SetActive(false);
+    }
+
+    public void Activate()
+    {
+        CloneObject.SetActive(true);
+    }
+
+    public bool IsLightOn()
+    {
+        return _light.enabled;
     }
 }

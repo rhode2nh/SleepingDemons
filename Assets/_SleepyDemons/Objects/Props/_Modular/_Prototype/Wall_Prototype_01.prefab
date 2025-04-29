@@ -66,7 +66,12 @@ PrefabInstance:
     - target: {fileID: 4498835335343126816, guid: a3ad860125ddd663e9b795cb82f44d71,
         type: 3}
       propertyPath: m_Name
-      value: Wall_Standard_01 Variant
+      value: Wall_Prototype_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498835335343126816, guid: a3ad860125ddd663e9b795cb82f44d71,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
