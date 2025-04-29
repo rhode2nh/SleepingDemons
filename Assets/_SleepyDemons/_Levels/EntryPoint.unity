@@ -172,7 +172,7 @@ MonoBehaviour:
   _managers: Managers
   _ui: UI
   _fpsController: FPS_Controller
-  _level: Prototyping
+  _level: 01_Intro
 --- !u!1001 &6557488638944749257
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -61,7 +61,12 @@ PrefabInstance:
     - target: {fileID: 885856317658410398, guid: e21cd8d58424d4056acba17048ca2866,
         type: 3}
       propertyPath: m_Name
-      value: Floor_Corner_Standard_01 Variant
+      value: Floor_Corner_Prototype_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 885856317658410398, guid: e21cd8d58424d4056acba17048ca2866,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

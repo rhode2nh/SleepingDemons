@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,8 @@ public class InputManager : MonoBehaviour
 
     public bool IsFlashlightOn;
 
+    public Action<bool> OnInteract;
+
     void Awake()
     {
         Instance = this;
@@ -18,7 +21,7 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        _playerInput = FindObjectOfType<PlayerInput>();
+        _playerInput = GetComponent<PlayerInput>();
         _lastActionMap = new List<string>
         {
             _playerInput.currentActionMap.name

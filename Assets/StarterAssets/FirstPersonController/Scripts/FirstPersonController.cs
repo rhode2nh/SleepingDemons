@@ -13,7 +13,6 @@ namespace StarterAssets
 {
 	[RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-	[RequireComponent(typeof(PlayerInput))]
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
@@ -71,7 +70,6 @@ namespace StarterAssets
 		public float TopClamp = 90.0f;
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
-		public PlayerInput PlayerInput;
 
 		// cinemachine
 		private float _cinemachineTargetPitch;
@@ -110,6 +108,7 @@ namespace StarterAssets
 		private Vector3 _lerpedInputDir;
 		private Vector3 _horizontalKnockbackDir;
 		private float _lastMoveSpeed;
+		private Interact _interact;
 		[SerializeField] private bool _smoothCamera;
 		[SerializeField] private float _dampening;
 
@@ -122,6 +121,7 @@ namespace StarterAssets
 			// get a reference to our main camera
 			if (_mainCamera != null) return;
 			_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+			_interact = GetComponentInChildren<Interact>();
 		}
 
 		private void Start()
@@ -130,9 +130,8 @@ namespace StarterAssets
 			FOV = VirtualCamera.m_Lens.FieldOfView;
             _initialRotation = CinemachineCameraTarget.transform.localRotation;
 			_controller = GetComponent<CharacterController>();
-			_input = GetComponent<StarterAssetsInputs>();
+			_input = InputManager.Instance.GetComponent<StarterAssetsInputs>();
 			_input.TriggerCrouch += Crouch;
-			PlayerInput = GetComponent<PlayerInput>();
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;

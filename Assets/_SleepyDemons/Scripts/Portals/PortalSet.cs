@@ -19,7 +19,7 @@ public class PortalSet : MonoBehaviour
     public bool IsInitialized { get; private set; }
     public RenderTexture TargetTexture { get; private set; }
     [field: SerializeField] public RenderTexture MainRenderTexture { get; private set; }
-    public PortalLightObject PortalLightObject { get; private set; }
+    public List<PortalLightObject> PortalLightObjects { get; private set; }
 
     public Action<PortalSet, Portal> onWarp;
 
@@ -27,7 +27,7 @@ public class PortalSet : MonoBehaviour
     {
         Portal[] portals = GetComponentsInChildren<Portal>();
         PortalCamera = GetComponentInChildren<Camera>();
-        PortalLightObject = FindObjectOfType<PortalLightObject>();
+        PortalLightObjects = FindObjectsOfType<PortalLightObject>().ToList();
         if (portals.Length < 2)
         {
             Debug.LogError("There must at least be 2 portals!");

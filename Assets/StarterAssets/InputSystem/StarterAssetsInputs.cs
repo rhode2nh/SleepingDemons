@@ -29,7 +29,7 @@ namespace StarterAssets
 		public bool CursorLocked = true;
 		public bool CursorInputForLook = true;
 
-		private Interact _interact;
+		// private Interact _interact;
 		private PlayerInput _playerInput;
 		private bool _checkChamber;
 		[SerializeField] [ReadOnly] private List<string> _lastActionMap;
@@ -40,7 +40,7 @@ namespace StarterAssets
 		void Start()
 		{
 			_lastActionMap = new List<string>();
-			_interact = GetComponentInChildren<Interact>();
+			// _interact = GetComponentInChildren<Interact>();
 			_playerInput = GetComponent<PlayerInput>();
 			_lastActionMap.Add(_playerInput.currentActionMap.name);
 			_checkChamber = false;
@@ -302,7 +302,8 @@ namespace StarterAssets
 
 		public void InteractInput(bool newInteractState)
 		{
-			_interact.InteractWith(newInteractState);
+			PlayerManager.Instance.IsHolding = newInteractState;
+			InputManager.Instance.OnInteract?.Invoke(newInteractState);
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

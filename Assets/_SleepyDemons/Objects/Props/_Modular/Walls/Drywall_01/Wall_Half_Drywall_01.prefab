@@ -61,7 +61,12 @@ PrefabInstance:
     - target: {fileID: 7806450330501981442, guid: 3b8c95455b786dc349023c339121619d,
         type: 3}
       propertyPath: m_Name
-      value: Wall_Half_Standard_01 Variant
+      value: Wall_Half_Drywall_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806450330501981442, guid: 3b8c95455b786dc349023c339121619d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8599317030415533271, guid: 3b8c95455b786dc349023c339121619d,
         type: 3}

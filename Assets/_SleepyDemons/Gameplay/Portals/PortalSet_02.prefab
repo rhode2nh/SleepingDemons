@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 449124063391241970, guid: 6ac7d2fc65c2f9cb2a13903af652ee81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2809036878209363147, guid: 6ac7d2fc65c2f9cb2a13903af652ee81,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -68,6 +73,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal_02
       objectReference: {fileID: 0}
+    - target: {fileID: 3292241849935492721, guid: 6ac7d2fc65c2f9cb2a13903af652ee81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3940817851089934244, guid: 6ac7d2fc65c2f9cb2a13903af652ee81,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -107,6 +117,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 449124063391241970, guid: 6ac7d2fc65c2f9cb2a13903af652ee81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2809036878209363147, guid: 6ac7d2fc65c2f9cb2a13903af652ee81,
         type: 3}
@@ -162,6 +177,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Portal_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292241849935492721, guid: 6ac7d2fc65c2f9cb2a13903af652ee81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3940817851089934244, guid: 6ac7d2fc65c2f9cb2a13903af652ee81,
         type: 3}
