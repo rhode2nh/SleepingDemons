@@ -24,7 +24,7 @@ public class Drawer : MonoBehaviour, IHoldable
         var relativeDistance = Vector3.Distance(Camera.main.transform.position, hitPoint);
         var intiialReferencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
         var referenceDot = Vector3.Dot(transform.forward, intiialReferencePoint);
-        _rb.angularDrag = 5f;
+        _rb.angularDamping = 5f;
         while (_isHolding) {
             var referencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
             var dotProduct = Vector3.Dot(transform.forward, referencePoint) - referenceDot;
@@ -33,6 +33,6 @@ public class Drawer : MonoBehaviour, IHoldable
 
             yield return new WaitForFixedUpdate();
         }
-        _rb.angularDrag = 0.5f;
+        _rb.angularDamping = 0.5f;
     }
 }

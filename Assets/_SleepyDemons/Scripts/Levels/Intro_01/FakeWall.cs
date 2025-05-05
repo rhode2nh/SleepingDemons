@@ -10,7 +10,7 @@ public class FakeWall : MonoBehaviour
 
     private void Update()
     {
-        if (_lightBulb.IsOn)
+        if (!_lightBulb.IsOn || _lightBulb.IsRemoved)
         {
             for (var i = 0; i < transform.childCount; i++)
             {

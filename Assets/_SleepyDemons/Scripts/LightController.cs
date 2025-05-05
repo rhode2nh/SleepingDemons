@@ -7,7 +7,8 @@ using Random = UnityEngine.Random;
 public class LightController : MonoBehaviour
 {
     [SerializeField] private LightSwitch _lightSwitch;
-
+    private LightBulb _lightBulb;
+    
     [Header("Flicker Settings")]
     [SerializeField] private bool _enableFlicker;
 
@@ -18,6 +19,11 @@ public class LightController : MonoBehaviour
     
     public event Action<float> OnDimLightBulb;
 
+    private void Awake()
+    {
+        _lightBulb = GetComponentInChildren<LightBulb>();
+    }
+
     protected virtual void OnEnable()
     {
         _lightSwitch.OnDimLight += DimLight;
@@ -26,6 +32,23 @@ public class LightController : MonoBehaviour
     protected virtual void OnDisable()
     {
         _lightSwitch.OnDimLight -= DimLight;
+    }
+
+    public void RemoveLightBulb(LightBulb lightBulb)
+    {
+        lightBulb.gameObject.SetActive(false);
+        StopCoroutine(Flicker());
+        lightBulb.Spawn();
+    }
+
+    private void ReplaceLightBulb(LightBulbData lightBulbData)
+    {
+        _enableFlicker = lightBulbData.Flicker;
+        _lightBulb.Replace(lightBulbData);
+        if (_lightSwitch.IsOn)
+        {
+            DimLight(1.0f);
+        }
     }
 
     protected virtual IEnumerator Flicker()
@@ -60,5 +83,21 @@ public class LightController : MonoBehaviour
         
         Gizmos.color = Color.magenta;
         Gizmos.DrawLine(transform.position, _lightSwitch.transform.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var lightBulbData = other.GetComponent<LightBulbData>();
+        if (lightBulbData == null) return;
+        if (lightBulbData.JustSpawned) return;
+        
+        ReplaceLightBulb(lightBulbData);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        var lightBulbData = other.GetComponent<LightBulbData>();
+        if (lightBulbData == null) return;
+        if (lightBulbData.JustSpawned) lightBulbData.JustSpawned = false;
     }
 }

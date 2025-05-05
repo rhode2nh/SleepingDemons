@@ -27,7 +27,7 @@ public class PortalSet : MonoBehaviour
     {
         Portal[] portals = GetComponentsInChildren<Portal>();
         PortalCamera = GetComponentInChildren<Camera>();
-        PortalLightObjects = FindObjectsOfType<PortalLightObject>().ToList();
+        PortalLightObjects = FindObjectsByType<PortalLightObject>(FindObjectsSortMode.None).ToList();
         if (portals.Length < 2)
         {
             Debug.LogError("There must at least be 2 portals!");

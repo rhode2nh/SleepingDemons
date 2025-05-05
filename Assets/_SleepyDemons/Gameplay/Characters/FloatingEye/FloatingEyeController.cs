@@ -50,7 +50,7 @@ public class FloatingEyeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CurrentSpeed = _rb.velocity.magnitude;
+        CurrentSpeed = _rb.linearVelocity.magnitude;
         CurrentRotationSpeed = _rb.angularVelocity.magnitude;
         AnotherTest();
     }
@@ -70,7 +70,7 @@ public class FloatingEyeController : MonoBehaviour
     private void LookAtPosition(Vector3 position)
     {
         Vector3 dir;
-        dir = _rb.velocity;
+        dir = _rb.linearVelocity;
 
         if (dir.magnitude > 0.1)
         {
@@ -83,7 +83,7 @@ public class FloatingEyeController : MonoBehaviour
     private void RotateTowardsDirection()
     {
         // Get the Rigidbody's velocity
-        Vector3 velocity = _rb.velocity;
+        Vector3 velocity = _rb.linearVelocity;
 
         // If the Rigidbody is moving
         if (velocity.magnitude > 0.1f)
@@ -134,7 +134,7 @@ public class FloatingEyeController : MonoBehaviour
         else
         {
             // Apply braking force when near the waypoint
-            Vector3 brakingForce = -_rb.velocity.normalized * brakingStrength;
+            Vector3 brakingForce = -_rb.linearVelocity.normalized * brakingStrength;
             _rb.AddForce(brakingForce, ForceMode.Force);
         }
 

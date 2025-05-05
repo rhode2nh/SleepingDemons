@@ -21,7 +21,7 @@ public class Fly : MonoBehaviour
     public void RotateToVelocity(float turnSpeed, bool ignoreY)
     {
         Vector3 dir;
-        dir = _rb.velocity;
+        dir = _rb.linearVelocity;
 
         if (dir.magnitude > 0.1)
         {

@@ -12,7 +12,7 @@ public class PortalCamera : MonoBehaviour
     private void Awake()
     {
         _mainCamera = GetComponent<Camera>();
-        _portalSets = FindObjectsOfType<PortalSet>().ToList();
+        _portalSets = FindObjectsByType<PortalSet>(FindObjectsSortMode.None).ToList();
     }
 
     private void Start()

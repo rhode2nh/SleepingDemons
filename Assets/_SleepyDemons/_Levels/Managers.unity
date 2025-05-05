@@ -555,6 +555,7 @@ MonoBehaviour:
   HoldOffset: 0
   MaxHoldOffset: 0.2
   MinHoldOffset: -0.4
+  RotateForce: 2
   _cursorTexture: {fileID: 2800000, guid: b91cf042a13adcf0f9f3d1830bb030ee, type: 3}
 --- !u!1 &1608015716
 GameObject:

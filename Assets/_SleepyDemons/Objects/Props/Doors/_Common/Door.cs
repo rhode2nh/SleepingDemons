@@ -59,8 +59,8 @@ public class Door : Interactable
             Physics.IgnoreCollision(_boxCollider, _ignoreCollider);
         }
 
-        _rb.drag = _drag;
-        _rb.angularDrag = _drag;
+        _rb.linearDamping = _drag;
+        _rb.angularDamping = _drag;
         _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _isHolding = false;
     }
@@ -121,7 +121,7 @@ public class Door : Interactable
     }
 
     public float GetNormalizedVelocity() {
-        return (_rb.velocity.magnitude - 0.0f) / (_maxVelocity - 0);
+        return (_rb.linearVelocity.magnitude - 0.0f) / (_maxVelocity - 0);
     }
 
     private void InitializeHinge()

@@ -25,8 +25,8 @@ public class Holdable : Interactable, IHoldable
         _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _initialReferencePoint = new Vector3();
         _isHolding = false;
-        _initialDrag = _rb.drag;
-        _initialAngularDrag = _rb.angularDrag;
+        _initialDrag = _rb.linearDamping;
+        _initialAngularDrag = _rb.angularDamping;
      }
 
     public void Hold(Vector3 hitPoint, bool isHolding) {
@@ -38,8 +38,8 @@ public class Holdable : Interactable, IHoldable
     }
 
     IEnumerator HoldObject(Vector3 hitPoint) {
-        _rb.drag = _holdingDrag;
-        _rb.angularDrag = _holdingAngularDrag;
+        _rb.linearDamping = _holdingDrag;
+        _rb.angularDamping = _holdingAngularDrag;
         var relativeDistance = Vector3.Distance(Camera.main.transform.position, hitPoint);
         _initialReferencePoint = Camera.main.transform.position + Camera.main.transform.forward * relativeDistance;
         var initialPos = _rb.position;
@@ -57,7 +57,7 @@ public class Holdable : Interactable, IHoldable
             // What are the reprecussions?
             if (modifyVelocityDirectly)
             {
-                _rb.velocity = force;
+                _rb.linearVelocity = force;
             }
             else
             {
@@ -69,22 +69,22 @@ public class Holdable : Interactable, IHoldable
                 else
                 {
                     // Apply braking force when near the waypoint
-                    Vector3 brakingForce = -_rb.velocity.normalized * brakingStrength;
+                    Vector3 brakingForce = -_rb.linearVelocity.normalized * brakingStrength;
                     _rb.AddForce(brakingForce, ForceMode.Force);
                 }
             }
 
             if (PlayerManager.Instance.IsRotating)
             {
-                _rb.AddTorque(-Camera.main.transform.up * PlayerManager.Instance.RotateVector.x);
-                _rb.AddTorque(-Camera.main.transform.right * PlayerManager.Instance.RotateVector.y);
-                _rb.AddTorque(-_rb.angularVelocity * 0.5f);
+                Vector3 rotateY = -Camera.main.transform.up * PlayerManager.Instance.RotateVector.x;
+                Vector3 rotateX = -Camera.main.transform.right * PlayerManager.Instance.RotateVector.y;
+                _rb.angularVelocity = (rotateY + rotateX) * PlayerManager.Instance.RotateForce;
             }
             
             yield return new WaitForFixedUpdate();
         }
-        _rb.drag = _initialDrag;
-        _rb.angularDrag = _initialAngularDrag;
+        _rb.linearDamping = _initialDrag;
+        _rb.angularDamping = _initialAngularDrag;
         PlayerManager.Instance.HoldOffset = 0.0f;
 
         if (PlayerManager.Instance.IsThrowing)

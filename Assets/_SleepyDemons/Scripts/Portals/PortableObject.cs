@@ -91,7 +91,7 @@ public class PortableObject : MonoBehaviour
         transform.rotation = outTransform.rotation * relativeRot;
 
         // Update velocity of rigidbody.
-        Vector3 relativeVel = inTransform.InverseTransformDirection(_rigidbody.velocity);
+        Vector3 relativeVel = inTransform.InverseTransformDirection(_rigidbody.linearVelocity);
         relativeVel = HalfTurn * relativeVel;
         
         // Update torque of rigidbody
@@ -99,7 +99,7 @@ public class PortableObject : MonoBehaviour
         relativeTorque = HalfTurn * relativeTorque;
         
         Physics.SyncTransforms();
-        _rigidbody.velocity = outTransform.TransformDirection(relativeVel);
+        _rigidbody.linearVelocity = outTransform.TransformDirection(relativeVel);
         _rigidbody.angularVelocity = outTransform.TransformDirection(relativeTorque);
 
         // Swap portal references.

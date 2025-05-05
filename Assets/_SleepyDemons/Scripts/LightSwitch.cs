@@ -9,6 +9,7 @@ public class LightSwitch : MonoBehaviour
     [field: SerializeField] public bool IsOn { get; private set; }
 
     private float _currentIntensity;
+    public Action OnSwitchLight;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class LightSwitch : MonoBehaviour
         {
             OnDimLight?.Invoke(0);
         }
+        OnSwitchLight?.Invoke();
     }
     
     public void DimLight(float intensity)

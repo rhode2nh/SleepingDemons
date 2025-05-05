@@ -135,7 +135,7 @@ public static class DragDuplicateTool
 
     private static bool DeleteObjectInPosition(GameObject selected)
     {
-        var all = Object.FindObjectsOfType<GameObject>();
+        var all = Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
         var selectedPrefab = GetPrefabSource(selected);
         var objectDeleted = false;
         foreach (var other in all)

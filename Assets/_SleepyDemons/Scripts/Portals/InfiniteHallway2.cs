@@ -59,7 +59,7 @@ public class InfiniteHallway2 : MonoBehaviour
 
         if (_currentDepth == _maxDepth)
         {
-            _portalSets[^1].gameObject.SetActive(false);
+            _portalSets[1].gameObject.SetActive(false);
             _maxDepthReached = true;
         }
     }
