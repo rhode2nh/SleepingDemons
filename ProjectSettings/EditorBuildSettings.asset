@@ -14,12 +14,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_SleepyDemons/_Levels/UI.unity
     guid: 11bfb88f4b45cf366b954635acf2d52d
-  - enabled: 1
-    path: Assets/_SleepyDemons/_Levels/FPS_Controller.unity
-    guid: 3d5d971569804ade184533296f23fb61
-  - enabled: 1
+  - enabled: 0
     path: Assets/_SleepyDemons/_Levels/Prototyping.unity
     guid: 746f780784aeb60518d9f6caabbf9ea5
+  - enabled: 1
+    path: Assets/_SleepyDemons/_Levels/01_Intro.unity
+    guid: 1ed4ffb78c2c89f17aafbdb78830d0b3
+  - enabled: 0
+    path: Assets/_SleepyDemons/_Levels/FPS_Controller.unity
+    guid: 3d5d971569804ade184533296f23fb61
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

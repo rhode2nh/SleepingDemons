@@ -30,9 +30,6 @@ namespace StarterAssets
         [Tooltip("Tilt speed and angle of the character")]
 		public float Friction = 10.0f;
 		public float AirResistance = 1.0f;
-        public float TiltSpeed = 7f;
-        public float TiltAngle = 5f;
-		public float TiltOffset;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -63,16 +60,13 @@ namespace StarterAssets
 
 		[Header("Cinemachine")]
 		[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
-		public GameObject CinemachineCameraTargetParent;
-		public GameObject CinemachineCameraTarget;
-		public CinemachineVirtualCamera VirtualCamera;
-		[Tooltip("How far in degrees can you move the camera up")]
-		public float TopClamp = 90.0f;
-		[Tooltip("How far in degrees can you move the camera down")]
-		public float BottomClamp = -90.0f;
+		private CinemachineVirtualCamera _virtualCamera;
 
 		// cinemachine
 		private float _cinemachineTargetPitch;
+		private float _cinemachineTargetYaw;
+		private POVCamera _povCamera;
+		private POVCamera _activePovCamera;
 
 		// player
 		private float _speed;
@@ -108,9 +102,6 @@ namespace StarterAssets
 		private Vector3 _lerpedInputDir;
 		private Vector3 _horizontalKnockbackDir;
 		private float _lastMoveSpeed;
-		private Interact _interact;
-		[SerializeField] private bool _smoothCamera;
-		[SerializeField] private float _dampening;
 
 		private float _initialHeight = 2.0f;
 		private float _currentHeight = 2.0f;
@@ -121,14 +112,14 @@ namespace StarterAssets
 			// get a reference to our main camera
 			if (_mainCamera != null) return;
 			_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-			_interact = GetComponentInChildren<Interact>();
+			_virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+			_povCamera = GetComponentInChildren<POVCamera>();
+			_activePovCamera = _povCamera;
 		}
 
 		private void Start()
 		{
-			VirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
-			FOV = VirtualCamera.m_Lens.FieldOfView;
-            _initialRotation = CinemachineCameraTarget.transform.localRotation;
+			FOV = _virtualCamera.m_Lens.FieldOfView;
 			_controller = GetComponent<CharacterController>();
 			_input = InputManager.Instance.GetComponent<StarterAssetsInputs>();
 			_input.TriggerCrouch += Crouch;
@@ -137,10 +128,6 @@ namespace StarterAssets
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 			_initialHeight = _controller.height;
-		}
-
-		public void ApplyForces(Vector3 rotationalDir, Vector3 forceDir) {
-
 		}
 
 		private void Update()
@@ -155,14 +142,21 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			if (_smoothCamera)
-			{
-				SmoothCameraRotation();
-			}
-			else
-			{
-				CameraRotation();
-			}
+			CameraRotation();
+		}
+
+		public void SetActivePOVCamera(POVCamera povCamera)
+		{
+			_activePovCamera = povCamera;
+			_cinemachineTargetPitch = 0.0f;
+			_cinemachineTargetYaw = 0.0f;
+			_activePovCamera.VirtualCamera.transform.rotation = new Quaternion();
+			_activePovCamera.CameraTransform.transform.rotation = new Quaternion();
+		}
+
+		public void ResetPOVCamera()
+		{
+			_activePovCamera = _povCamera;
 		}
 
 		private void Crouch()
@@ -203,44 +197,24 @@ namespace StarterAssets
 			if (_input.Look.sqrMagnitude >= Threshold)
 			{
 				_cinemachineTargetPitch += _input.Look.y * RotationSpeed;
+				_cinemachineTargetYaw += _input.Look.x * RotationSpeed;
 				_rotationVelocity = _input.Look.x * RotationSpeed;
 
 				// clamp our pitch rotation
-				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
+				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, _activePovCamera.BottomClamp, _activePovCamera.TopClamp);
+				_cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, _activePovCamera.LeftClamp, _activePovCamera.RightClamp);
+				
+				// clamp our 
 
 				// Update Cinemachine camera target pitch
-				CinemachineCameraTargetParent.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
+				_activePovCamera.VirtualCamera.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
 				
 				// rotate the player left and right
-				transform.Rotate(Vector3.up * _rotationVelocity);
+				_activePovCamera.CameraTransform.transform.localRotation = Quaternion.Euler(0.0f, _cinemachineTargetYaw, 0.0f);
 			}
 		}
 
 		private float _targetYRotation;
-		private void SmoothCameraRotation()
-		{
-			// if there is an input
-			// if (_input.look.sqrMagnitude >= _threshold)
-			// {
-				_cinemachineTargetPitch += _input.Look.y * RotationSpeed;
-				_rotationVelocity = _input.Look.x * RotationSpeed;
-				_targetYRotation += _rotationVelocity;
-
-				// clamp our pitch rotation
-				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
-
-				// Update Cinemachine camera target pitch
-				Quaternion goal = Quaternion.Euler(_cinemachineTargetPitch, 0f, 0f);
-				CinemachineCameraTargetParent.transform.localRotation = Quaternion.Slerp( CinemachineCameraTargetParent.transform.localRotation, goal, _dampening * Time.deltaTime);
-				// CinemachineCameraTargetParent.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
-				
-				// rotate the player left and right
-				// transform.Rotate(Vector3.up * _rotationVelocity);
-				Quaternion currentYRotation = transform.rotation;
-				Quaternion targetYRotationRot = Quaternion.Euler(0f, _targetYRotation, 0f);
-				transform.rotation = Quaternion.Slerp(currentYRotation, targetYRotationRot, _dampening * Time.deltaTime);
-			// }
-		}
 
 		private void Move()
 		{
@@ -257,21 +231,6 @@ namespace StarterAssets
             float maxSpeed = 100.0f;
             float normalizedSpeed = _controller.velocity.magnitude / maxSpeed;
 			// virtualCamera.m_Lens.FieldOfView = Mathf.Clamp(Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, fov + fov * Mathf.Pow(normalizedSpeed, 2) * velocityFOVScaleFactor, Time.deltaTime * fovChangeRate), 0.0f, 120.0f);
-
-            Quaternion _targetRotation;
-			Vector3 _targetPos;
-            if (_input.Lean == -1) {
-                _targetRotation = Quaternion.Euler(0, 0, TiltAngle) * _initialRotation;
-				_targetPos = new Vector3(_initialPos.x - TiltOffset, _initialPos.y, _initialPos.z);
-            } else if (_input.Lean == 1) {
-                _targetRotation = Quaternion.Euler(0, 0, -TiltAngle) * _initialRotation;
-				_targetPos = new Vector3(_initialPos.x + TiltOffset, _initialPos.y, _initialPos.z);
-            } else {
-                _targetRotation = _initialRotation;
-				_targetPos = _initialPos;
-            }
-            CinemachineCameraTarget.transform.localRotation = Quaternion.Slerp(CinemachineCameraTarget.transform.localRotation, _targetRotation, TiltSpeed * Time.deltaTime);
-            CinemachineCameraTarget.transform.localPosition = Vector3.Lerp(CinemachineCameraTarget.transform.localPosition, _targetPos, TiltSpeed * Time.deltaTime);
 		}
 
 		private Vector3 MoveAir() {
@@ -380,7 +339,7 @@ namespace StarterAssets
 				VerticalVelocity += Gravity * Time.deltaTime;
 			}
 		}
-
+		
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
 			if (lfAngle < -360f) lfAngle += 360f;
@@ -414,13 +373,6 @@ namespace StarterAssets
 
 		public float GetMouseSense() {
 			return RotationSpeed;
-		}
-
-		public void ApplyRecoilKnockback(float knockback, Vector3 direction) {
-			VerticalVelocity += Vector3.Dot(CinemachineCameraTarget.transform.forward, -transform.up) * knockback;
-			_resetVerticalVelocity = false;
-			var forward = CinemachineCameraTarget.transform.forward;
-			_lastLookDirBeforeShoot += new Vector3(forward.x, 0.0f, forward.z) * knockback;
 		}
 	}
 }

@@ -26,6 +26,13 @@ public class SleepManager : MonoBehaviour
     private int OPTIMAL_SLEEP = 28800;
     private int FULL_DAY = 86400;
 
+    public static SleepManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         TimeManager.Instance.onProcessTick += ProcessTick;

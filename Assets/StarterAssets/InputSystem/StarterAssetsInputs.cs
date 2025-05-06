@@ -36,11 +36,11 @@ namespace StarterAssets
 		private bool _checkChamberCoroutineStarted;
 
 		public event Action TriggerCrouch;
+		public event Action OnGetOutOfBed;
 
 		void Start()
 		{
 			_lastActionMap = new List<string>();
-			// _interact = GetComponentInChildren<Interact>();
 			_playerInput = GetComponent<PlayerInput>();
 			_lastActionMap.Add(_playerInput.currentActionMap.name);
 			_checkChamber = false;
@@ -302,8 +302,15 @@ namespace StarterAssets
 
 		public void InteractInput(bool newInteractState)
 		{
-			PlayerManager.Instance.IsHolding = newInteractState;
-			InputManager.Instance.OnInteract?.Invoke(newInteractState);
+			if (PlayerManager.Instance.IsInBed && newInteractState)
+			{
+				OnGetOutOfBed?.Invoke();
+			}
+			else
+			{
+				PlayerManager.Instance.IsHolding = newInteractState;
+				InputManager.Instance.OnInteract?.Invoke(newInteractState);
+			}
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
@@ -314,6 +321,11 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+
+		public void SetInputActive(bool active)
+		{
+			_playerInput.enabled = active;
 		}
 	}
 

@@ -148,6 +148,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 132159217620733920, guid: 3a65f930ae09b524495ef56d37d80d32,
+        type: 3}
+      propertyPath: <End>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 548712558505235229, guid: 3a65f930ae09b524495ef56d37d80d32,
         type: 3}
       propertyPath: _minAngle
@@ -192,6 +197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PHYS_Door_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030346240240014433, guid: 3a65f930ae09b524495ef56d37d80d32,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

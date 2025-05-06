@@ -16,6 +16,9 @@ public class PlayerManager : MonoBehaviour
     
     [SerializeField] private Texture2D _cursorTexture;
 
+    [SerializeField] public bool IsInBed;
+    [SerializeField] public bool InTransitionState;
+
     public Transform DropItemSpawnPos { get; private set; } 
     public GameObject WeaponSpawnPos { get; private set; }
     public GameObject Player { get; private set; }

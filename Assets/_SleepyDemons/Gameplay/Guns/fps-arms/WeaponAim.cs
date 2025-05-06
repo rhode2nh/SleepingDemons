@@ -1,26 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using StarterAssets;
 using UnityEngine;
 
 public class WeaponAim : MonoBehaviour
 {
-    [SerializeField] private float _strength;
     [SerializeField] private float _zoomFOV;
     [SerializeField] private float _zoomStrength;
 
     private float _initialFOV;
     private float _lerpedFOV;
     private float _lerpToFOV;
-    private FirstPersonController _firstPersonController;
+    private CinemachineVirtualCamera _virtualCamera;
     private Animator _animator;
     private bool _isAiming;
     
     // Start is called before the first frame update
     void Start()
     {
-        _firstPersonController = GetComponentInParent<FirstPersonController>();
-        _initialFOV = _firstPersonController.VirtualCamera.m_Lens.FieldOfView;
+        _virtualCamera = GetComponentInParent<CinemachineVirtualCamera>();
+        _initialFOV = SaveLoadManager.Instance.CurrentSettings.FieldOfView;
         _lerpedFOV = _initialFOV;
         _lerpToFOV = _zoomFOV;
         _animator = GetComponent<Animator>();
@@ -54,6 +54,6 @@ public class WeaponAim : MonoBehaviour
     {
         _lerpToFOV = PlayerManager.Instance.IsAiming ? _zoomFOV : _initialFOV;
         _lerpedFOV = Mathf.Lerp(_lerpedFOV, _lerpToFOV, Time.deltaTime * _zoomStrength);
-        _firstPersonController.VirtualCamera.m_Lens.FieldOfView = _lerpedFOV;
+        _virtualCamera.m_Lens.FieldOfView = _lerpedFOV;
     }
 }

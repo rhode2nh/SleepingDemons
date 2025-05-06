@@ -28,12 +28,19 @@ public class DoorCreakController : MonoBehaviour
         _currentNormalizedVelocity = _door.GetNormalizedVelocity();
 
         for (int i = 0; i < _doorCreakList.Count; i++) {
-            _volumeList[i] = Mathf.Lerp(0.0f, _doorCreakList[i].end, _currentNormalizedVelocity);
-            // return (_rb.velocity.magnitude - 0.0f) / (_maxVelocity - 0);
-            _volumeList[i] = (_volumeList[i] - _doorCreakList[i].start) / (_doorCreakList[i].end - _doorCreakList[i].start);
-            if (_doorCreakList[i].creakAudio != null) {
-                _doorCreakList[i].creakAudio.volume = _doorCreakList[i].volumeCurve.Evaluate(_volumeList[i]);
-                _doorCreakList[i].creakAudio.pitch = initialPitch + (_currentNormalizedVelocity * pitchAmount);
+            _volumeList[i] = Mathf.Lerp(0.0f, _doorCreakList[i].End, _currentNormalizedVelocity);
+            _volumeList[i] = (_volumeList[i] - _doorCreakList[i].Start) / (_doorCreakList[i].End - _doorCreakList[i].Start);
+            _doorCreakList[i].CreakAudio.volume = _doorCreakList[i].volumeCurve.Evaluate(_volumeList[i]);
+            _doorCreakList[i].CreakAudio.pitch = initialPitch + (_currentNormalizedVelocity * pitchAmount);
+
+            if (_doorCreakList[i].CreakAudio.volume == 0.0f && _doorCreakList[i].CreakAudio.isPlaying)
+            {
+                _doorCreakList[i].CreakAudio.Stop();
+            }
+
+            else if (_doorCreakList[i].CreakAudio.volume > 0.0f && !_doorCreakList[i].CreakAudio.isPlaying)
+            {
+                _doorCreakList[i].CreakAudio.Play();
             }
         }
     }

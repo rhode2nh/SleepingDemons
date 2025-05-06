@@ -71,9 +71,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725811362864937597}
   m_Enabled: 0
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 0
-  m_Shape: 0
   m_Color: {r: 0.3637252, g: 0.3637252, b: 0.3637252, a: 1}
   m_Intensity: 1
   m_Range: 2
@@ -123,8 +122,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: -36.171875, z: 4.426e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1 &2133953425455453334
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,9 +300,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3678724483580660020}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 0
-  m_Shape: 0
   m_Color: {r: 1, g: 0.856168, b: 0.5028606, a: 1}
   m_Intensity: 0.66
   m_Range: 40
@@ -349,11 +351,15 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!95 &5334553875615664282
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -367,6 +373,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -460,6 +467,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2902b8229916199d89b583b9bad3e977, type: 3}
+  m_Resource: {fileID: 8300000, guid: 2902b8229916199d89b583b9bad3e977, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -607,6 +615,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1a862be7db507bf44a514556f4b551ce, type: 3}
+  m_Resource: {fileID: 8300000, guid: 1a862be7db507bf44a514556f4b551ce, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
@@ -750,7 +759,6 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -780,9 +788,6 @@ MonoBehaviour:
   AccelerationRate: 10
   Friction: 10
   AirResistance: 1
-  TiltSpeed: 7
-  TiltAngle: 5
-  TiltOffset: 0
   JumpHeight: 0.5
   Gravity: -9.81
   JumpTimeout: 0.1
@@ -799,9 +804,6 @@ MonoBehaviour:
   CeilingLayers:
     serializedVersion: 2
     m_Bits: 0
-  CinemachineCameraTargetParent: {fileID: 6297133896230264121}
-  CinemachineCameraTarget: {fileID: 9143590191246609275}
-  VirtualCamera: {fileID: 0}
   TopClamp: 90
   BottomClamp: -89
   VerticalVelocity: 0
@@ -811,8 +813,6 @@ MonoBehaviour:
   FOV: 0
   IsDebug: 0
   InputDirection: {x: 0, y: 0, z: 0}
-  _smoothCamera: 0
-  _dampening: 5
   _crouchHeight: 0
 --- !u!114 &8057605349148179249
 MonoBehaviour:
@@ -865,6 +865,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -981,6 +984,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1523,7 +1529,7 @@ PrefabInstance:
     - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 149239
+      value: 411383
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74,
         type: 3}
