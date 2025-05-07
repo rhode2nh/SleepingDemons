@@ -145,7 +145,7 @@ namespace StarterAssets
 			CameraRotation();
 		}
 
-		public void SetActivePOVCamera(POVCamera povCamera)
+		public void SetActivePovCamera(POVCamera povCamera)
 		{
 			_activePovCamera = povCamera;
 			_cinemachineTargetPitch = 0.0f;
@@ -154,7 +154,7 @@ namespace StarterAssets
 			_activePovCamera.CameraTransform.transform.rotation = new Quaternion();
 		}
 
-		public void ResetPOVCamera()
+		public void ResetPovCamera()
 		{
 			_activePovCamera = _povCamera;
 		}

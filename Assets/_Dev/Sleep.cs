@@ -36,13 +36,13 @@ public class Sleep : MonoBehaviour
     {
         _activeCamera = povCamera.VirtualCamera;
         _activeCamera.Priority = _fpsCam.Priority + 1;
-        _fpsController.SetActivePOVCamera(povCamera);
+        _fpsController.SetActivePovCamera(povCamera);
         StartCoroutine(WaitForTransition(SetPlayerInBed));
     }
 
     private void GetOutOfBed()
     {
-        _fpsController.ResetPOVCamera();
+        _fpsController.ResetPovCamera();
         _activeCamera.Priority = _fpsCam.Priority - 1;
         _activeCamera = _fpsCam;
         StartCoroutine(WaitForTransition(SetPlayerInBed));

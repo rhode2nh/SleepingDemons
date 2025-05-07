@@ -93,15 +93,16 @@ public class Door : Interactable
     }
 
     public void Hold(Vector3 hitPoint, bool isHolding) {
-        this._isHolding = isHolding;
-        if (this._isHolding) {
+        _isHolding = isHolding;
+        if (_isHolding) {
             StartCoroutine(HoldObject(hitPoint));
         }
     }
 
-    public void Nudge(float strength)
+    public void Nudge(float strength, bool open)
     {
-        // _rb.AddTorque(transform.up * (_xAxisSign * strength), ForceMode.Impulse);
+        int sign = open ? 1 : -1;
+        _rb.AddTorque(transform.up * (sign * strength), ForceMode.Impulse);
     }
 
     IEnumerator HoldObject(Vector3 hitPoint) {

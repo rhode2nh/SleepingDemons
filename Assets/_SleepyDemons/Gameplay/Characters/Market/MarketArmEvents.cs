@@ -55,7 +55,7 @@ public class MarketArmEvents : MonoBehaviour
     public void OnOpenDoorComplete()
     {
         _marketArmAnimator.SetBool("IsOpening", false);
-        physicsDoor.Nudge(_nudgeStrength);
+        // physicsDoor.Nudge(_nudgeStrength);
     }
 
     public void GrabItem()
