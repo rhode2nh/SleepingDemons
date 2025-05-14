@@ -148,15 +148,21 @@ namespace StarterAssets
 		public void SetActivePovCamera(POVCamera povCamera)
 		{
 			_activePovCamera = povCamera;
-			_cinemachineTargetPitch = 0.0f;
-			_cinemachineTargetYaw = 0.0f;
-			_activePovCamera.VirtualCamera.transform.rotation = new Quaternion();
-			_activePovCamera.CameraTransform.transform.rotation = new Quaternion();
+			UpdateCameraRotations();
+		}
+
+		private void UpdateCameraRotations()
+		{
+			_cinemachineTargetPitch =
+				Common.NormalizeAngle(_activePovCamera.VirtualCamera.transform.localRotation.eulerAngles.x);
+			_cinemachineTargetYaw =
+				Common.NormalizeAngle(_activePovCamera.CameraTransform.transform.localRotation.eulerAngles.y);
 		}
 
 		public void ResetPovCamera()
 		{
 			_activePovCamera = _povCamera;
+			UpdateCameraRotations();
 		}
 
 		private void Crouch()
@@ -212,6 +218,11 @@ namespace StarterAssets
 				// rotate the player left and right
 				_activePovCamera.CameraTransform.transform.localRotation = Quaternion.Euler(0.0f, _cinemachineTargetYaw, 0.0f);
 			}
+		}
+
+		public void SetYaw(float yaw)
+		{
+			_cinemachineTargetYaw = yaw;
 		}
 
 		private float _targetYRotation;

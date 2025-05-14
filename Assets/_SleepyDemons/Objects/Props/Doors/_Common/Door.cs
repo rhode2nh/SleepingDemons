@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(HingeJoint))]
-public class Door : Interactable
+public class Door : Interactable, IObservable
 {
     private enum HingePosition
     {
@@ -21,6 +21,9 @@ public class Door : Interactable
         Front,
         Back,
     }
+    
+    [Header("Observable Settings")]
+    [field: SerializeField, Range(0, 100)] public float RollChance { get; private set; }
     
     [Header("Parameters")]
     [SerializeField] private float _strength = 4.0f;
@@ -110,6 +113,7 @@ public class Door : Interactable
         var initialReferencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
         var referenceDot = Vector3.Dot(transform.forward, initialReferencePoint);
         _rb.useGravity = false;
+        PlayerManager.Instance.Holdable = gameObject;
         while (PlayerManager.Instance.IsHolding) {
             var referencePoint = (Camera.main.transform.position + Camera.main.transform.forward * relativeDistance - transform.position).normalized;
             var dotProduct = Vector3.Dot(transform.forward, referencePoint) - referenceDot;
@@ -118,6 +122,7 @@ public class Door : Interactable
         
             yield return new WaitForFixedUpdate();
         }
+        PlayerManager.Instance.Holdable = null;
         _rb.useGravity = true;
     }
 
@@ -200,5 +205,25 @@ public class Door : Interactable
     private void CalculateBoxCollider()
     {
         _boxCollider.size *= _boxColliderScalar;
+    }
+
+    public void OnRollSuccess()
+    {
+        Nudge(0.1f, true);
+    }
+
+    // private IEnumerator WaitForConditions()
+    // {
+    //     yield return WaitUntil(() => IsWithinRange())
+    // }
+
+    public bool IsWithinRange(GameObject other)
+    {
+        return Vector3.Distance(other.transform.position, transform.position) <= 2.0f;
+    }
+
+    public bool IsLookingAt(GameObject other)
+    {
+        return true;
     }
 }

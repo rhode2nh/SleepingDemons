@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,23 +10,32 @@ public class InputManager : MonoBehaviour
     [SerializeField] public float _checkChamberTimerDuration;
     [SerializeField] [ReadOnly] private List<string> _lastActionMap;
     private PlayerInput _playerInput;
+    private StarterAssetsInputs _input;
 
     public bool IsFlashlightOn;
+    public Vector2 MouseVelocity { get; private set; }
+    public float LookVelocity { get; private set; }
 
     public Action<bool> OnInteract;
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
+        _playerInput = GetComponent<PlayerInput>();
+        _input = GetComponent<StarterAssetsInputs>();
     }
 
-    void Start()
+    private void Start()
     {
-        _playerInput = GetComponent<PlayerInput>();
         _lastActionMap = new List<string>
         {
             _playerInput.currentActionMap.name
         };
+    }
+
+    private void Update()
+    {
+        LookVelocity = _input.Look.magnitude;
     }
 
     public void OpenUI(string actionMap)

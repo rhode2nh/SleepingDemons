@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     public float MaxHoldOffset;
     public float MinHoldOffset;
     public float RotateForce = 1.0f;
+    public GameObject Holdable;
     
     [SerializeField] private Texture2D _cursorTexture;
 
@@ -55,5 +57,18 @@ public class PlayerManager : MonoBehaviour
         {
             HoldOffset += 0.1f * direction;
         }
+    }
+
+    private void OnGUI()
+    {
+        GUI.Box (new Rect (10,10,200,200), new GUIContent(RenderGUIInfo()));
+    }
+
+    private string RenderGUIInfo()
+    {
+        string holdableName = Holdable == null ? "Nothing" : Holdable.name;
+        return $"-- Player Manager --\n" +
+               $"Is Holding: {IsHolding}\n" +
+               $"Holding: {holdableName}\n";
     }
 }

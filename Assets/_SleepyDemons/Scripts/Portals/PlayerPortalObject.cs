@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 
 public class PlayerPortalObject : PortableObject
 {
     private CharacterController _characterController;
     private RecursiveApartment _recursiveApartment;
+    private FirstPersonController _firstPersonController;
 
     // private PortalLightObject _portalLightObject;
     
@@ -15,6 +17,7 @@ public class PlayerPortalObject : PortableObject
         base.Awake();
         
         _characterController = GetComponent<CharacterController>();
+        _firstPersonController = GetComponent<FirstPersonController>();
         // _portalLightObject = GetComponentInChildren<PortalLightObject>();
     }
 
@@ -48,7 +51,7 @@ public class PlayerPortalObject : PortableObject
             _recursiveApartment.OnTriggerExit(other);
         }
     }
-
+    
     public override void Warp()
     {
         var inTransform = InPortal.Center;
@@ -67,6 +70,7 @@ public class PlayerPortalObject : PortableObject
         Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
         relativeRot = HalfTurn * relativeRot;
         transform.rotation = Quaternion.Euler(0, (outTransform.rotation * relativeRot).eulerAngles.y, 0);
+        _firstPersonController.SetYaw(transform.rotation.eulerAngles.y);
         
         // Update velocity of rigidbody.
         Physics.SyncTransforms();

@@ -43,6 +43,7 @@ public class Holdable : Interactable, IHoldable
         var relativeDistance = Vector3.Distance(Camera.main.transform.position, hitPoint);
         _initialReferencePoint = Camera.main.transform.position + Camera.main.transform.forward * relativeDistance;
         var initialPos = _rb.position;
+        PlayerManager.Instance.Holdable = gameObject;
         
         while (PlayerManager.Instance.IsHolding)
         {
@@ -83,6 +84,8 @@ public class Holdable : Interactable, IHoldable
             
             yield return new WaitForFixedUpdate();
         }
+        
+        PlayerManager.Instance.Holdable = null;
         _rb.linearDamping = _initialDrag;
         _rb.angularDamping = _initialAngularDrag;
         PlayerManager.Instance.HoldOffset = 0.0f;
