@@ -21,7 +21,6 @@ public class Sleep : MonoBehaviour
     // Sleep values
     private float _currentSleepiness;
     private float _elapsedTime;
-    private int _sign = 1;
 
     private void Awake()
     {
